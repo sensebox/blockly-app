@@ -1,0 +1,35 @@
+<!--
+  Generated template for the SenseBoxPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>senseBox</ion-title>
+  </ion-navbar>
+</ion-header>
+  
+  
+
+
+<ion-content padding>
+
+  <button (click)="getData()" ion-button color="secondary">
+    get data
+  </button>
+
+  <div *ngIf="boxData">
+    <h1>{{boxData.name}}</h1>
+    <ion-list>
+      <div ion-item *ngFor="let sensor of boxData.sensors">
+        <h3>{{sensor.title}}</h3>
+        <p>{{sensor.lastMeasurement.value}} &nbsp; {{sensor.unit}}</p>
+      </div>
+    </ion-list>
+  </div>
+
+</ion-content>

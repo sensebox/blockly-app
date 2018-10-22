@@ -1,0 +1,9 @@
+page-about p{
+    color: map-get($colors, primary);
+}
+
+ul {
+    margin-top: 2.2em;
+    list-style: none;
+    padding: 0;
+}
