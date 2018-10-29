@@ -8,6 +8,7 @@ import { openSenseApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
+import { OtaWifiProvider } from '../providers/ota-wifi/ota-wifi';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiProvider
+    ApiProvider,
+    OtaWifiProvider
   ]
 })
 export class AppModule {}
