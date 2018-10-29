@@ -1,6 +1,6 @@
-import { ApiProvider } from '../../providers/api/api';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OtaWifiProvider } from '../../providers/ota-wifi/ota-wifi';
 
 /**
  * Generated class for the SenseBoxPage page.
@@ -16,13 +16,19 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class BlocklyPage {
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiProvider) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private otaWifi: OtaWifiProvider) {
+      // otaWifi is here only for testing, should later be encapsulated by OtaWizardComponent
+      console.log('wifi strategy:', otaWifi.strategy)
+      otaWifi.findSenseboxes()
+        .then(console.log)
+        .catch(console.error)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SenseBoxPage');
   }
-
 
 }

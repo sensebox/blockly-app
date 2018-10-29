@@ -67,7 +67,7 @@ export class OtaWifiProvider {
 // TODO: replace with "WifiCapabilities".
 // makes it easier to check in each functions if required functionality is available
 enum WifiStrategy {
-  Automatic,   // android, iOS 11+
-  Manual,      // older iOS
-  Unavailable, // browser
+  Automatic   = 'Automatic',   // android, iOS 11+
+  Manual      = 'Manual',      // older iOS
+  Unavailable = 'Unavailable', // browser
 }
