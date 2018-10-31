@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OtaWifiProvider } from '../../providers/ota-wifi/ota-wifi';
+import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 
 /**
  * Generated class for the SenseBoxPage page.
@@ -29,6 +30,10 @@ export class BlocklyPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SenseBoxPage');
+  }
+
+  launchOtaWizard () {
+    this.navCtrl.setRoot(OtaWizardPage)
   }
 
 }

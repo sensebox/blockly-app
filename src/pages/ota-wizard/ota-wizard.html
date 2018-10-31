@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Over The Air Progammer</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding="false"> <!-- FIXME: remove padding -->
+  <ion-slides pager>
+    <ion-slide>
+      <h1>Welcome</h1>
+
+      <img src="TODO-nice-wifi-sensebox-pictrogram>" />
+
+      <p>
+        To program your senseBox wirelessly, please follow these steps.
+        We will help you connect to your senseBox via WiFi.
+        <br/>
+        Please make sure that your senseBox..
+      </p>
+
+      <ul style="text-align: left">
+        <li>has the WiFi shield plugged in</li>
+        <li>has the initial OTA sketch installed</li>
+        <li>TODO review this list foo bar lorem ipsum</li>
+      </ul>
+    </ion-slide>
+
+    <ion-slide>
+      <h1>Check internet connection for compilation</h1>
+      <pre style="text-align: left">
+        - if connected: background: compile code
+        - if not: enable wifi (manually on iOS)
+      </pre>
+    </ion-slide>
+
+    <ion-slide>
+      <h1>senseBox Wifi Selection</h1>
+      <pre style="text-align: left">
+        - Android
+          - select from list?
+            - highlight `sensebox-*` networks?
+            - filter by SSID name (`sensebox-*`)
+            - filter by distance?
+          - enter credentials (if necessary)
+          - background: connect to selected SSID
+        - iOS
+          - tell user to connect to `sensebox-*` SSID, and come back when done
+      </pre>
+    </ion-slide>
+
+    <ion-slide>
+      <h1>Status Screen</h1>
+      <pre style="text-align: left">
+        - background: check if sensebox upload is available
+        - show success or error
+        - instructions to restart sensebox?
+      </pre>
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

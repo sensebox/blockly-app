@@ -1,0 +1,7 @@
+@import '../../theme/variables.scss';
+
+page-ota-wizard {
+  .swiper-pagination-bullet-active {
+    background: map-get($colors, primary);
+  }
+}
