@@ -4,4 +4,33 @@ page-ota-wizard {
   .swiper-pagination-bullet-active {
     background: map-get($colors, primary);
   }
+
+  ion-slide {
+    img {
+      max-height: 50%;
+      max-width: 60%;
+      margin: 18px 0;
+
+      & ~ h2 {
+        margin-top: 2.8rem;
+      }
+    }
+
+    p, ul {
+      padding: 0 20px;
+      font-size: 16px;
+      line-height: 1.4;
+      color: #60646B;
+
+      b {
+        color: #000000;
+        font-weight: 500;
+      }
+    }
+
+    ul {
+      margin-left: 3%;
+      list-style-type: disc;
+    }
+  }
 }

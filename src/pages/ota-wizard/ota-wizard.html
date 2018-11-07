@@ -8,24 +8,34 @@
 </ion-header>
 
 <ion-content padding="false"> <!-- FIXME: remove padding -->
-  <ion-slides pager>
+  <ion-slides #slides pager (ionSlideDidChange)="onSlideChange()">
+
+    <!-- intro -->
     <ion-slide>
-      <h1>Welcome</h1>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-lg-6>
+            <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
+            <h2>Welcome</h2>
+            <p>
+              To <b>program your senseBox</b> wirelessly, please follow these steps.
+              We will help you connect to your senseBox via <b>WiFi</b>.
+            </p>
+          </ion-col>
 
-      <img src="TODO-nice-wifi-sensebox-pictrogram>" />
-
-      <p>
-        To program your senseBox wirelessly, please follow these steps.
-        We will help you connect to your senseBox via WiFi.
-        <br/>
-        Please make sure that your senseBox..
-      </p>
-
-      <ul style="text-align: left">
-        <li>has the WiFi shield plugged in</li>
-        <li>has the initial OTA sketch installed</li>
-        <li>TODO review this list foo bar lorem ipsum</li>
-      </ul>
+          <ion-col col-lg-6>
+            <p>First, please make sure that your senseBox...</p>
+            <ul style="text-align: left">
+              <li>has the <b>WiFi shield</b> plugged in</li>
+              <li>has the initial <b>OTA sketch</b> installed</li>
+            </ul>
+            <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+              Continue
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
 
     <ion-slide>
