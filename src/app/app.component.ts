@@ -4,6 +4,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
+import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -11,7 +13,7 @@ export class openSenseApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = HomePage;
+  rootPage:any = OtaWizardPage; // TODO: for development, revert to HomePage
 
   pages: Array<{title: string, component: any}> = [
     { title: 'Home', component: HomePage },
@@ -21,8 +23,6 @@ export class openSenseApp {
   ];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    
-  
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
