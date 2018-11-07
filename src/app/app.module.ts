@@ -8,7 +8,6 @@ import { openSenseApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
-import { OtaWifiProvider } from '../providers/ota-wifi/ota-wifi';
 import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
 import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
 
@@ -34,7 +33,6 @@ import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    OtaWifiProvider
   ]
 })
 export class AppModule {}

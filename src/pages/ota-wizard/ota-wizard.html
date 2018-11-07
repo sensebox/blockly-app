@@ -38,12 +38,33 @@
       </ion-grid>
     </ion-slide>
 
+    <!-- compilation waiting screen -->
     <ion-slide>
-      <h1>Check internet connection for compilation</h1>
-      <pre style="text-align: left">
-        - if connected: background: compile code
-        - if not: enable wifi (manually on iOS)
-      </pre>
+      <ng-container *ngIf="state.compilation == 'compiling'">
+        <h2>Compiling your sketch...</h2>
+        <ion-spinner item-start name="dots"></ion-spinner>
+      </ng-container>
+
+      <ng-container *ngIf="state.compilation == 'go-online'">
+        <h2>You are offline.</h2>
+        <p>
+          For compilation, you need to connect to the internet.
+          Please enable a connection.
+        </p>
+      </ng-container>
+
+      <ng-container *ngIf="state.compilation == 'done'">
+        <h2>Sketch successfully compiled.</h2>
+        <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="state.compilation == 'error'">
+        <h2>Error compiling your sketch.</h2>
+        <!-- TODO <p>{{ status }}</p> -->
+      </ng-container>
     </ion-slide>
 
     <ion-slide>

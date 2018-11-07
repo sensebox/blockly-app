@@ -17,32 +17,30 @@ export class OtaWifiProvider {
   public strategy: WifiStrategy
 
   constructor(private platform: Platform, private http: HttpClient) {
-    this.selectStrategy()
+    this.strategy = this.selectStrategy()
   }
 
   private selectStrategy (): WifiStrategy {
     try {
       // check if plugin is available (e.g. not in browser builds)
       WifiWizard2
-
-      if (
-        this.platform.is('android') ||
-        this.platform.is('ios') && this.platform.version().major >= 11
-      ) {
-        this.strategy = WifiStrategy.Automatic
-      } else {
-        this.strategy = WifiStrategy.Manual
-      }
     } catch (err) {
-      this.strategy = WifiStrategy.Unavailable
+      return WifiStrategy.Unavailable
     }
 
-    return this.strategy;
+    if (
+      this.platform.is('android') ||
+      this.platform.is('ios') && this.platform.version().major >= 11
+    ) {
+      return WifiStrategy.Automatic
+    }
+
+    return WifiStrategy.Manual
   }
 
   async findSenseboxes (): Promise<string> {
     if (this.strategy != WifiStrategy.Automatic)
-      throw Error('can not search for WiFi networks on this platform')
+      throw new Error('can not search for WiFi networks on this platform')
 
     return WifiWizard2.scan()
       .then(n => n.filter(n.SSID.includes(SSID_PREFIX)))
@@ -51,7 +49,7 @@ export class OtaWifiProvider {
 
   async connectToSensebox (ssid: string): Promise<any> {
     if (this.strategy != WifiStrategy.Automatic)
-      throw Error('can not connect to WiFi network on this platform')
+      throw new Error('can not connect to WiFi network on this platform')
 
     return this.platform.is('ios')
       ? WifiWizard2.iOSConnectNetwork(ssid)
@@ -66,7 +64,7 @@ export class OtaWifiProvider {
 
 // TODO: replace with "WifiCapabilities".
 // makes it easier to check in each functions if required functionality is available
-enum WifiStrategy {
+export enum WifiStrategy {
   Automatic   = 'Automatic',   // android, iOS 11+
   Manual      = 'Manual',      // older iOS
   Unavailable = 'Unavailable', // browser
