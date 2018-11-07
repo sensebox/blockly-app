@@ -23,12 +23,15 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   onlineSub: Subscription
   offlineSub: Subscription
 
-  compilationFailed: boolean
+  filterSsids = false // TODO: add toggle to UI?
+  availableSenseboxes: string[] = [] // list of SSIDs
+  compiledSketch = undefined
+  errorMsg = ''
 
   state: OtaState = {
     isOnline: false,
-    compiledSketch: undefined,
     compilation: 'compiling',
+    wifiSelection: 'scanning',
   }
 
   constructor(
@@ -74,7 +77,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         this.handleWifiSelection()
         break
 
-      case OtaSlides.Status:
+      case OtaSlides.Upload:
+        this.slides.lockSwipeToNext(true)
         break
 
       default:
@@ -82,11 +86,24 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
+  async connectToSensebox (ssid: string) {
+    this.state.wifiSelection = 'connecting'
+    try {
+      await this.otaWifi.connectToSensebox(ssid)
+      this.state.wifiSelection = 'select'
+      this.slides.lockSwipeToNext(false)
+      this.slides.slideNext()
+    } catch (err) {
+      this.state.wifiSelection = 'error'
+      this.errorMsg = err.message
+    }
+  }
+
   private handleCompilation () {
-    this.slides.lockSwipeToNext(!this.state.compiledSketch)
+    this.slides.lockSwipeToNext(!this.compiledSketch)
 
     // need to go online for compilation. compilation is retriggered via this.onlineSub
-    if (!this.state.compiledSketch && !this.state.isOnline) {
+    if (!this.compiledSketch && !this.state.isOnline) {
       switch (this.otaWifi.strategy) {
         case WifiStrategy.Automatic:
           // TODO: auto connect to previous network, if available
@@ -97,20 +114,28 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private handleWifiSelection () {
+  private async handleWifiSelection () {
     this.slides.lockSwipeToNext(true)
 
-    console.log('wifi strategy:', this.otaWifi.strategy)
-    this.otaWifi.findSenseboxes()
-      .then(console.log)
-      .catch(console.error)
+    if (this.otaWifi.strategy == WifiStrategy.Manual) {
+      this.state.wifiSelection = 'manual'
+    } else {
+      this.state.wifiSelection = 'scanning'
+      try {
+        this.availableSenseboxes = await this.otaWifi.findSenseboxes(this.filterSsids)
+        this.state.wifiSelection = 'select'
+      } catch (err) {
+        this.state.wifiSelection = 'error'
+        this.errorMsg = err.message
+      }
+    }
   }
 
   private compileSketch () {
     // TODO: mock
     this.state.compilation = 'compiling'
     setTimeout(() => {
-      this.state.compiledSketch = 'firmware binary here..'
+      this.compiledSketch = 'firmware binary here..'
       this.state.compilation = 'done'
       this.slides.lockSwipeToNext(false)
     }, 4000)
@@ -119,8 +144,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
 
 type OtaState = {
   isOnline: boolean,
-  compiledSketch: any,
   compilation: 'compiling' | 'go-online' | 'done' | 'error',
+  wifiSelection: 'scanning' | 'connecting' | 'select' | 'manual' | 'error',
 }
 
 // names for the slide indices for easier access
@@ -128,5 +153,5 @@ enum OtaSlides {
   Intro = 0,
   Compilation = 1,
   WifiSelection = 2,
-  Status = 3,
+  Upload = 3,
 }

@@ -38,13 +38,17 @@ export class OtaWifiProvider {
     return WifiStrategy.Manual
   }
 
-  async findSenseboxes (): Promise<string> {
+  async findSenseboxes (filterSsids = false): Promise<string[]> {
     if (this.strategy != WifiStrategy.Automatic)
       throw new Error('can not search for WiFi networks on this platform')
 
     return WifiWizard2.scan()
-      .then(n => n.filter(n.SSID.includes(SSID_PREFIX)))
-      .then(n => n.map(n => n.SSID))
+      .then(networks => {
+        if (filterSsids)
+          networks = networks.filter(n => n.SSID.includes(SSID_PREFIX))
+
+        return networks.map(n => n.SSID)
+      })
   }
 
   async connectToSensebox (ssid: string): Promise<any> {
@@ -54,6 +58,8 @@ export class OtaWifiProvider {
     return this.platform.is('ios')
       ? WifiWizard2.iOSConnectNetwork(ssid)
       : WifiWizard2.connect(ssid, true)
+
+    // TODO: validate that the MCU server is available
   }
 
   async uploadFirmware (blob: ArrayBufferLike): Promise<any> {
