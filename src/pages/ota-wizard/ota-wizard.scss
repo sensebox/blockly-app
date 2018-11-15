@@ -37,4 +37,21 @@ page-ota-wizard {
       list-style-type: disc;
     }
   }
+
+  #wifi-slide {
+    h4, button {
+      display: inline-block;
+    }
+
+    // for the ion-list height limitation to work..
+    &, div.slide-zoom, ion-grid, ion-row, ion-col:last-child {
+      height: 100%;
+    }
+
+    #wifi-list {
+      max-height: 55%;
+      overflow-y: scroll;
+    }
+
+  }
 }

@@ -24,6 +24,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   offlineSub: Subscription
 
   filterSsids = false // TODO: add toggle to UI?
+  filterSsids = true
   availableSenseboxes: string[] = [] // list of SSIDs
   compiledSketch = undefined
   errorMsg = ''
@@ -32,6 +33,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     isOnline: false,
     compilation: 'compiling',
     wifiSelection: 'scanning',
+    upload: 'uploading',
   }
 
   constructor(
@@ -62,6 +64,19 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.offlineSub.unsubscribe()
   }
 
+  onWifiRefresh () {
+    this.handleWifiSelection()
+  }
+
+  onFilterToggle (newVal) {
+    this.filterSsids = newVal
+    this.handleWifiSelection()
+  }
+
+  onClose () {
+    this.navCtrl.pop()
+  }
+
   // call logic for each slide
   onSlideChange () {
     switch (this.slides.getActiveIndex()) {
@@ -78,7 +93,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         break
 
       case OtaSlides.Upload:
-        this.slides.lockSwipeToNext(true)
+        this.handleUpload()
         break
 
       default:
@@ -131,14 +146,30 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private compileSketch () {
-    // TODO: mock
+  private async handleUpload () {
+    this.state.upload = 'uploading'
+    try {
+      const res = await this.otaWifi.uploadFirmware(this.sketch)
+      console.log(JSON.stringify(res, null, 2))
+
+      this.state.upload = 'done'
+      this.slides.lockSwipeToNext(false)
+    } catch (err) {
+      this.state.upload = 'error'
+      this.errorMsg = err.message
+    }
+
+  }
+
+  private async compileSketch () {
+    // TODO: implement. use this.sketch
+
     this.state.compilation = 'compiling'
     setTimeout(() => {
       this.compiledSketch = 'firmware binary here..'
       this.state.compilation = 'done'
       this.slides.lockSwipeToNext(false)
-    }, 4000)
+    }, 1000)
   }
 }
 
@@ -146,6 +177,7 @@ type OtaState = {
   isOnline: boolean,
   compilation: 'compiling' | 'go-online' | 'done' | 'error',
   wifiSelection: 'scanning' | 'connecting' | 'select' | 'manual' | 'error',
+  upload: 'uploading' | 'done' | 'error',
 }
 
 // names for the slide indices for easier access

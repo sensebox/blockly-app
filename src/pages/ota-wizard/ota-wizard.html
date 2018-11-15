@@ -43,7 +43,7 @@
     <ion-slide>
       <ng-container *ngIf="state.compilation == 'compiling'">
         <h2>Compiling your sketch...</h2>
-        <ion-spinner item-start name="dots"></ion-spinner>
+        <ion-spinner *ngIf="slides.getActiveIndex() == 1" item-start name="dots"></ion-spinner>
       </ng-container>
 
       <ng-container *ngIf="state.compilation == 'go-online'">
@@ -69,7 +69,7 @@
     </ion-slide>
 
     <!-- wifi selection -->
-    <ion-slide>
+    <ion-slide id="wifi-slide">
       <ng-container *ngIf="state.wifiSelection == 'manual'">
         <h2>Connect to your senseBox</h2>
         <p>
@@ -85,41 +85,41 @@
             <h2>Select your senseBox</h2>
             <p>
               In the list, all running senseBoxes with OTA available are shown.
-              If you don't see yours, please make sure that it
+              If you don't see yours, please make sure that GPS is enabled.
             </p>
-            <ul style="text-align: left">
-              <li>has the <b>WiFi shield</b> plugged in</li>
-              <li>has the initial <b>OTA sketch</b> installed</li>
-              <li>is running</li>
-            </ul>
           </ion-col>
 
           <ion-col col-12 col-md-6>
             <h4>Available senseBox WiFis</h4>
-            <ion-list>
+            <button ion-fab mini color="light" (click)="onWifiRefresh()">
+              <ion-icon name="refresh"></ion-icon>
+            </button>
+
+            <ion-list id="wifi-list">
+              <ion-item *ngIf="state.wifiSelection == 'scanning'">
+                <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
+                searching...
+              </ion-item>
+
+              <ion-item *ngIf="state.wifiSelection == 'connecting'">
+                <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
+                connecting...
+              </ion-item>
+
               <ion-item *ngFor="let ssid of availableSenseboxes" (click)="connectToSensebox(ssid)">
                 <ion-icon name="wifi" item-start></ion-icon>
                 {{ ssid }}
               </ion-item>
 
-              <ion-item *ngIf="state.wifiSelection == 'scanning'">
-                <ion-spinner item-start name="dots"></ion-spinner>
-                searching...
-              </ion-item>
-              <ion-item *ngIf="state.wifiSelection == 'selection' && !availableSenseboxes.length">
+              <ion-item *ngIf="state.wifiSelection == 'select' && !availableSenseboxes.length">
                 no senseboxes available :(
-              </ion-item>
-              <ion-item>
-                <ion-label>Show only senseBox WiFis</ion-label>
-                <!-- TODO: retrigger scan on toggle -->
-                <ion-toggle [(ngModel)]="filterSsids"></ion-toggle>
               </ion-item>
             </ion-list>
 
-            <ng-container *ngIf="state.wifiSelection == 'connecting'">
-                <ion-spinner item-start name="dots"></ion-spinner>
-                connecting...
-            </ng-container>
+            <ion-item>
+              <ion-label>Show only senseBox WiFis</ion-label>
+              <ion-toggle (ngModelChange)="onFilterToggle($event)" [(ngModel)]="filterSsids"></ion-toggle>
+            </ion-item>
 
             <ng-container *ngIf="state.wifiSelection == 'error'">
               <h2>Error!</h2>
@@ -133,14 +133,30 @@
 
     <!-- upload & final status -->
     <ion-slide>
-      <h2>Uploading your sketch</h2>
-      <ion-spinner item-start name="dots"></ion-spinner>
+      <ng-container *ngIf="state.upload == 'uploading'">
+        <h2>Uploading your sketch</h2>
+        <ion-spinner *ngIf="slides.getActiveIndex() == 3" item-start name="dots"></ion-spinner>
+      </ng-container>
 
-      <!-- <pre style="text-align: left">
-        - background: check if sensebox upload is available
-        - show success or error
-        - instructions to restart sensebox?
-      </pre> -->
+      <ng-container *ngIf="state.upload == 'done'">
+        <ion-icon name="checkmark" style="font-size: 160px"></ion-icon>
+        <h2>Done!</h2>
+        <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+          Close
+        </button>
+      </ng-container>
+
+      <ng-container *ngIf="state.upload == 'error'">
+        <h2>Error!</h2>
+        <p [innerHTML]="errorMsg"></p>
+        <button ion-button large clear icon-end color="primary" (click)="slides.slidePrev()">
+          <ion-icon item-start name="arrow-back"></ion-icon>
+          Back
+        </button>
+        <button ion-button large clear icon-end color="primary" (click)="onClose()">
+          Close
+        </button>
+      </ng-container>
     </ion-slide>
 
   </ion-slides>
