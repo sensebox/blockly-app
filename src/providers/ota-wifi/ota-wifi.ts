@@ -7,7 +7,7 @@ declare var WifiWizard2: any;
 
 // corresponding to the initial MCU firmware
 const SSID_PREFIX = 'sensebox';
-const SENSEBOX_API = 'http://192.168.0.1:80';
+const SENSEBOX_API = 'http://192.168.1.1';
 
 /*
   Interface for uploading a binary to a senseBox MCU.
@@ -45,7 +45,8 @@ export class OtaWifiProvider {
     return WifiWizard2.scan()
       .then(networks => {
         if (filterSsids)
-          networks = networks.filter(n => n.SSID.includes(SSID_PREFIX))
+          networks = networks.filter(n => n.SSID.toLowerCase().includes(SSID_PREFIX))
+          networks = networks.filter(n => n.capabilities.includes('[ESS]'))
 
         return networks.map(n => n.SSID)
       })
@@ -55,15 +56,17 @@ export class OtaWifiProvider {
     if (this.strategy != WifiStrategy.Automatic)
       throw new Error('can not connect to WiFi network on this platform')
 
-    return this.platform.is('ios')
+    await this.platform.is('ios')
       ? WifiWizard2.iOSConnectNetwork(ssid)
       : WifiWizard2.connect(ssid, true)
 
-    // TODO: validate that the MCU server is available
+    // validate that the MCU server is available
+    return this.http.get(`${SENSEBOX_API}/version`).toPromise()
   }
 
-  async uploadFirmware (blob: ArrayBufferLike): Promise<any> {
-    return this.http.post(SENSEBOX_API, blob)
+  async uploadFirmware (binary: string): Promise<any> {
+    // TODO: send checksum?
+    return this.http.post(`${SENSEBOX_API}/flash`, binary).toPromise()
   }
 
 }
