@@ -7,7 +7,7 @@ import { BlocklyPage } from './blockly';
     BlocklyPage,
   ],
   imports: [
-    IonicPageModule.forChild(BlocklyPage),
+    IonicPageModule.forChild(BlocklyPage)
   ],
 })
 export class BlocklyPageModule {}

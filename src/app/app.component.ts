@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
+import { BlocklyPage } from '../pages/Blockly/blockly';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +13,7 @@ export class openSenseApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = OtaWizardPage; // TODO: for development, revert to HomePage
+  rootPage:any = BlocklyPage; // TODO: for development, revert to HomePage
 
   pages: Array<{title: string, component: any}> = [
     { title: 'Home', component: HomePage },

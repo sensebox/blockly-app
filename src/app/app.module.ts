@@ -10,6 +10,8 @@ import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
 import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
+import { BlocklyPage} from '../pages/Blockly/blockly'
+import { BlocklyPageModule} from '../pages/Blockly/blockly.module'
 
 @NgModule({
   declarations: [
@@ -20,13 +22,15 @@ import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
     HttpClientModule,
     BrowserModule,
     OtaWizardPageModule,
-    IonicModule.forRoot(openSenseApp)
+    IonicModule.forRoot(openSenseApp),
+    BlocklyPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     openSenseApp,
     OtaWizardPage,
-    HomePage
+    HomePage,
+    BlocklyPage
   ],
   providers: [
     StatusBar,
