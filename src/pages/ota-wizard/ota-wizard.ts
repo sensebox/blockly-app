@@ -7,6 +7,8 @@ import {
 import {
   IonicPage,
   Slides,
+  NavController,
+  NavParams,
 } from 'ionic-angular'
 import { Network } from '@ionic-native/network'
 import { Subscription } from 'rxjs/Subscription';
@@ -23,7 +25,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   onlineSub: Subscription
   offlineSub: Subscription
 
-  filterSsids = false // TODO: add toggle to UI?
+  sketch = ""
   filterSsids = true
   availableSenseboxes: string[] = [] // list of SSIDs
   compiledSketch = undefined
@@ -39,8 +41,11 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
-  ) {
-  }
+    private navCtrl : NavController,
+    navParams : NavParams,
+  )  
+    { this.sketch = navParams.get("sketch")
+     }
 
   ngOnInit() {
     // try to start compilation already in the background

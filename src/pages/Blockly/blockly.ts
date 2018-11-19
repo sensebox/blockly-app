@@ -15,18 +15,20 @@ import { OtaWizardPage } from '../ota-wizard/ota-wizard';
   templateUrl: 'blockly.html',
 })
 export class BlocklyPage {
-
+  sketchtext = ""
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams) {
   }
-
+  goTo(sketch) {
+    this.sketchtext = '' || 'No text Entered';}
   ionViewDidLoad() {
     console.log('ionViewDidLoad SenseBoxPage');
   }
 
-  launchOtaWizard () {
-    this.navCtrl.setRoot(OtaWizardPage)
+  launchOtaWizard() {
+    this.navCtrl.setRoot(OtaWizardPage,{sketch : this.sketchtext})
+
   }
 
 }
