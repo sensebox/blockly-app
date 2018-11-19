@@ -56,23 +56,20 @@ export class OtaWifiProvider {
     if (this.strategy != WifiStrategy.Automatic)
       throw new Error('can not connect to WiFi network on this platform')
 
-    await this.platform.is('ios')
+    return this.platform.is('ios')
       ? WifiWizard2.iOSConnectNetwork(ssid)
       : WifiWizard2.connect(ssid, true)
-
-    // validate that the MCU server is available
-    return this.http.get(`${SENSEBOX_API}/version`).toPromise()
   }
 
   async uploadFirmware (binary: string): Promise<any> {
     // TODO: send checksum?
-    return this.http.post(`${SENSEBOX_API}/flash`, binary).toPromise()
+    return this.http.post(`${SENSEBOX_API}/flash`, binary, {
+      responseType: 'text',
+    }).toPromise()
   }
 
 }
 
-// TODO: replace with "WifiCapabilities".
-// makes it easier to check in each functions if required functionality is available
 export enum WifiStrategy {
   Automatic   = 'Automatic',   // android, iOS 11+
   Manual      = 'Manual',      // older iOS
