@@ -14,7 +14,7 @@ export class openSenseApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = OtaWizardPage; // TODO: for development, revert to HomePage
+  rootPage:any = BlocklyPage; // TODO: for development, revert to HomePage
 
   pages: Array<{title: string, component: any}> = [
     { title: 'Home', component: HomePage },

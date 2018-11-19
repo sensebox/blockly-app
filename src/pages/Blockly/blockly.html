@@ -16,21 +16,17 @@
 
 <ion-content padding>
 
-  
+
  <!-- Real floating action button, fixed. It will not scroll with the content -->
  <ion-fab top right edge>
-  
+
   <button ion-fab mini (click)="launchOtaWizard() " color ="light"><ion-icon name="wifi"></ion-icon></button>
-        
+
   </ion-fab>
   <div>
     Blockly should be displayed here !
   </div>
-  <ion-item>
-    <ion-textarea  placeholder="Enter your text here" #sketchtext>
-      <ion-input>id = "sketchtext" </ion-input>
-      
-    </ion-textarea>    
-  </ion-item>  
-     
+
+  <textarea placeholder="Enter your Sketch here" [(ngModel)]="sketchtext"></textarea>
+
 </ion-content>

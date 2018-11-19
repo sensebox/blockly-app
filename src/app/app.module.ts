@@ -10,7 +10,8 @@ import { ApiProvider } from '../providers/api/api';
 import { HttpClientModule } from '@angular/common/http';
 import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
 import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
-import { CompilerProvider } from '../providers/compiler/compiler';
+import { BlocklyPage } from '../pages/Blockly/blockly';
+import { BlocklyPageModule } from '../pages/Blockly/blockly.module';
 
 @NgModule({
   declarations: [
@@ -21,12 +22,14 @@ import { CompilerProvider } from '../providers/compiler/compiler';
     HttpClientModule,
     BrowserModule,
     OtaWizardPageModule,
+    BlocklyPageModule,
     IonicModule.forRoot(openSenseApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     openSenseApp,
     OtaWizardPage,
+    BlocklyPage,
     HomePage
   ],
   providers: [
@@ -34,7 +37,6 @@ import { CompilerProvider } from '../providers/compiler/compiler';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiProvider,
-    CompilerProvider,
   ]
 })
 export class AppModule {}

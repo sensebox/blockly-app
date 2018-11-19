@@ -174,7 +174,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       this.compiledSketch = 'firmware binary here..'
       this.state.compilation = 'done'
       this.slides.lockSwipeToNext(false)
-    }, 1000)
+    }, 5000)
   }
 }
 
