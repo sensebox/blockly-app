@@ -1,0 +1,3 @@
+[submodule "src/assets/blockly"]
+	path = src/assets/blockly
+	url = https://github.com/sensebox/ardublockly-1
