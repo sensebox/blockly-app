@@ -14,6 +14,7 @@ import { Network } from '@ionic-native/network'
 import { Subscription } from 'rxjs/Subscription';
 
 import { OtaWifiProvider, WifiStrategy } from '../../providers/ota-wifi/ota-wifi';
+import { CompilerProvider } from '../../providers/compiler/compiler';
 
 @IonicPage()
 @Component({
@@ -43,6 +44,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     private otaWifi: OtaWifiProvider,
     private navCtrl : NavController,
     navParams : NavParams,
+    private compilerprovider:CompilerProvider
   ) {
     this.sketch = navParams.get('sketch')
   }
@@ -170,11 +172,16 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     // TODO: implement. use this.sketch
 
     this.state.compilation = 'compiling'
-    setTimeout(() => {
-      this.compiledSketch = 'firmware binary here..'
+    try {
+      this.compiledSketch = await this.compilerprovider.callcompiler(this.sketch)
+      console.log((this.compiledSketch))
+
       this.state.compilation = 'done'
       this.slides.lockSwipeToNext(false)
-    }, 5000)
+    } catch (err) {
+      this.state.compilation = 'error'
+      this.errorMsg = err.message
+    }
   }
 }
 

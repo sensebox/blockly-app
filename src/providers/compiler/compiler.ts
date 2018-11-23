@@ -1,6 +1,7 @@
 import { HttpClient,HttpHeaders }  from '@angular/common/http';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
+import { BindingFlags } from '@angular/core/src/view';
 
 /*
   Generated class for the CompilerProvider provider.
@@ -8,6 +9,8 @@ import { Injectable } from '@angular/core';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+const url = "https://compiler.sensebox.de"
+
 @Injectable()
 export class CompilerProvider {
   
@@ -15,25 +18,21 @@ export class CompilerProvider {
     console.log('Hello CompilerProvider Provider');
   }
   
-async callcompiler(Binary : string): Promise<any> {
+async callcompiler(sketch : string): Promise<any> {
   let Headers =  new HttpHeaders({'Content-Type': 'application/json'} );
   
   /*let options = new RequestOptions({ headers: headers });*/
   
-    let data ='{"board":"sensebox-mcu", "sketch":"void setup() {\nSerial.begin(9600);\nSerial.println(\"Hello World\");\n}\nvoid loop() {}"}'
-    
-    return  this.http.post('url', data,{ headers:new HttpHeaders({'Content-Type': 'application/json'} ) })
+    let data ={"board":"sensebox-mcu", "sketch":sketch}
+    return  this.http.post(`${url}/compile`, data,{ headers:new HttpHeaders({'Content-Type': 'application/json'} ) })
     .toPromise()
-    .then((response) =>
-      {
-      console.log('API Response : ', response.json());
-      return response.json();
+    .then((response:any) =>{
+      console.log('API Response : ', response.data.id);
+      return  this.http.get(`${url}/download?id=${response.data.id}&board=sensebox-mcu`,{
+        responseType: 'text',
       })
-   
-    };
+      .toPromise()
+             
+    });
   };
-  /* .catch((error) =>
-    {
-      console.error('API Error : ', error.status);
-      console.error('API Error : ', JSON.stringify(error));
-      reject(error.json()); */
+}
