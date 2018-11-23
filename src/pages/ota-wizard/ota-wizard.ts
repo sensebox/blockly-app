@@ -156,7 +156,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private async handleUpload () {
     this.state.upload = 'uploading'
     try {
-      const res = await this.otaWifi.uploadFirmware(this.sketch)
+      const res = await this.otaWifi.uploadFirmware(this.compiledSketch)
       console.log(JSON.stringify(res, null, 2))
 
       this.state.upload = 'done'
@@ -169,13 +169,9 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   private async compileSketch () {
-    // TODO: implement. use this.sketch
-
     this.state.compilation = 'compiling'
     try {
       this.compiledSketch = await this.compilerprovider.callcompiler(this.sketch)
-      console.log((this.compiledSketch))
-
       this.state.compilation = 'done'
       this.slides.lockSwipeToNext(false)
     } catch (err) {
