@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 
@@ -9,21 +9,26 @@ import { OtaWizardPage } from '../ota-wizard/ota-wizard';
   templateUrl: 'blockly.html',
 })
 export class BlocklyPage implements OnInit{
+  @ViewChild('blocklyFrame') blocklyFrame: ElementRef
 
-  ngOnInit(){   
-
-  }
+  ngOnInit() {   }
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SenseBoxPage');
+    public navParams: NavParams
+  ) {
+    window.addEventListener('message', ev => {
+      const { type, data } = ev.data;
+      switch (type) {
+        case 'sketch':
+          this.navCtrl.push(OtaWizardPage, { sketch: data })
+          break
+        default:
+      }
+    })
   }
 
   launchOtaWizard () {
-    this.navCtrl.setRoot(OtaWizardPage)
+    this.blocklyFrame.nativeElement.contentWindow.postMessage('getSketch', '*')
   }
 }
