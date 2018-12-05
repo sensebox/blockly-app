@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { BlocklyPage } from '../pages/Blockly/blockly';
-import { OtaWizardPage } from '../pages/ota-wizard/ota-wizard';
 
 @Component({
   templateUrl: 'app.html'

@@ -5,6 +5,10 @@
 - please fork this repository to develop your apps
 
 ### Prequesites 
+- Git Installation
+    - use  
+    `git clone https://github.com/AppDevelopmentAtsenseBox/openSenseApp --recursive`  
+    because the ardublockly submodule is used to implememt blockly
 
 - Node + NPM (nvm) 
     - https://www.npmjs.com/get-npm

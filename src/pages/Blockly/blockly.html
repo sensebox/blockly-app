@@ -5,28 +5,18 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-  <ion-navbar>
+  <ion-navbar class="nav-fixed sensebox_green">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Blockly</ion-title>
+    <ion-title>Blockly for SenseBox</ion-title>
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-
-
- <!-- Real floating action button, fixed. It will not scroll with the content -->
- <ion-fab top right edge>
-
-  <button ion-fab mini (click)="launchOtaWizard() " color ="light"><ion-icon name="wifi"></ion-icon></button>
-
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="launchOtaWizard()" color ="light"><ion-icon name="wifi"></ion-icon></button>
   </ion-fab>
-  <div>
-    Blockly should be displayed here !
-  </div>
 
-  <textarea placeholder="Enter your Sketch here" [(ngModel)]="sketchtext"></textarea>
-
+  <iframe #blocklyFrame src='assets/blockly.html'></iframe>
 </ion-content>
