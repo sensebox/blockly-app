@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Platform } from 'ionic-angular';
+import { Injectable } from '@angular/core'
+import { HttpClient } from '@angular/common/http'
+import { Platform } from 'ionic-angular'
+import { timeout, catchError } from 'rxjs/operators'
 
 // use global var as no @ionic-native/wifiwizard2 package is available yet
-declare var WifiWizard2: any;
+declare var WifiWizard2: any
 
 // corresponding to the initial MCU firmware
-const SSID_PREFIX = 'sensebox';
-const SENSEBOX_API = 'http://192.168.1.1';
+const SSID_PREFIX = 'sensebox'
+const SENSEBOX_API = 'http://192.168.1.1'
 
 /*
   Interface for uploading a binary to a senseBox MCU.
@@ -25,7 +26,7 @@ export class OtaWifiProvider {
       // check if plugin is available (e.g. not in browser builds)
       WifiWizard2
     } catch (err) {
-      return WifiStrategy.Unavailable
+      return WifiStrategy.Manual
     }
 
     if (
@@ -65,7 +66,11 @@ export class OtaWifiProvider {
     // TODO: send checksum?
     return this.http.post(`${SENSEBOX_API}/flash`, binary, {
       responseType: 'text',
-    }).toPromise()
+    })
+      .pipe(timeout(2500), catchError(err => {
+        throw new Error('senseBox not found. Is it running in OTA mode?')
+      }))
+      .toPromise()
   }
 
 }

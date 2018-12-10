@@ -43,15 +43,18 @@ page-ota-wizard {
       display: inline-block;
     }
 
-    // for the ion-list height limitation to work..
-    &, div.slide-zoom, ion-grid, ion-row, ion-col:last-child {
-      height: 100%;
+    #wifi-automatic {
+      // for the ion-list height limitation to work..
+      &, div.slide-zoom, ion-grid, ion-row, ion-col:last-child {
+        height: 100%;
+      }
+
+      #wifi-list {
+        max-height: 55%;
+        overflow-y: scroll;
+      }
     }
 
-    #wifi-list {
-      max-height: 55%;
-      overflow-y: scroll;
-    }
 
   }
 }

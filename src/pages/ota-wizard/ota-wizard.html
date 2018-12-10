@@ -22,7 +22,7 @@
               We will help you connect to your senseBox via <b>WiFi</b>.
             </p>
           </ion-col>
-          
+
           <ion-col col-12 col-md-6>
             <p>First, please make sure that your senseBox...</p>
             <ul style="text-align: left">
@@ -70,16 +70,20 @@
 
     <!-- wifi selection -->
     <ion-slide id="wifi-slide">
-      <ng-container *ngIf="state.wifiSelection == 'manual'">
-        <h2>Connect to your senseBox</h2>
-        <p>
-          Connect to the WiFi network that your senseBox has openened.
-          Because we can not do this automatically on your platform, please do this manually.
-        </p>
-      </ng-container>
+      <ion-grid>
+        <div id="wifi-manual" *ngIf="state.wifiSelection == 'manual'">
+          <h2>Connect to your senseBox</h2>
+          <p>
+            Your senseBox should have opened the a WiFi network.
+            Because we can not do this automatically on your platform, please connect to it manually.
+          </p>
+          <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+            Continue
+            <ion-icon name="arrow-forward"></ion-icon>
+          </button>
+        </div>
 
-      <ion-grid *ngIf="state.wifiSelection != 'manual'">
-        <ion-row>
+        <ion-row id="wifi-automatic" *ngIf="state.wifiSelection != 'manual'">
           <ion-col col-12 col-md-6>
             <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
             <h2>Select your senseBox</h2>

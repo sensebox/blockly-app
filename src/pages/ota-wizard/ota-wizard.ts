@@ -141,6 +141,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
 
     if (this.otaWifi.strategy == WifiStrategy.Manual) {
       this.state.wifiSelection = 'manual'
+      this.slides.lockSwipeToNext(false)
     } else {
       this.state.wifiSelection = 'scanning'
       try {
