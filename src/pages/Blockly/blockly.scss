@@ -1,10 +1,16 @@
 page-blockly {
+    ion-fab {
+        margin-right: 25px;
+        ion-icon {
+            font-size: 35px !important;
+        }
+    }
+
     iframe {
-        height: 97%;
+        height: calc(100% - 4px);
         width: 100%;
         border: 0;
         margin: 0;
         padding: 0;
-        overflow-y: hidden;
-    } 
+    }
 }
