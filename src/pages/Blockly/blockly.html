@@ -13,10 +13,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
   <ion-fab top right edge>
-    <button ion-fab mini (click)="launchOtaWizard()" color ="light"><ion-icon name="wifi"></ion-icon></button>
+    <button ion-fab large (click)="launchOtaWizard()" color ="light"><ion-icon name="wifi"></ion-icon></button>
   </ion-fab>
-
-  <iframe #blocklyFrame src='assets/blockly.html'></iframe>
+  <iframe #blocklyFrame scrolling="no" src='assets/blockly.html'></iframe>
 </ion-content>
