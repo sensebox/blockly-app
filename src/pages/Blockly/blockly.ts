@@ -11,11 +11,15 @@ import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 export class BlocklyPage {
   @ViewChild('blocklyFrame') blocklyFrame: ElementRef
 
+  messageHandler: (ev: IframePostMessageEvent) => void
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams
   ) {
-    window.addEventListener('message', ev => {
+    // need to assign it here to keep the function reference for unsubscribing again
+    // and to maintain the this scope properly
+    this.messageHandler = (ev: IframePostMessageEvent) => {
       const { type, data } = ev.data;
       switch (type) {
         case 'sketch':
@@ -23,10 +27,23 @@ export class BlocklyPage {
           break
         default:
       }
-    })
+    }
+
+    window.addEventListener('message', this.messageHandler)
+  }
+
+  ionViewWillUnload () {
+    window.removeEventListener('message', this.messageHandler)
   }
 
   launchOtaWizard () {
     this.blocklyFrame.nativeElement.contentWindow.postMessage('getSketch', '*')
+  }
+}
+
+interface IframePostMessageEvent extends MessageEvent {
+  data: {
+    type: 'sketch',
+    data: any,
   }
 }
