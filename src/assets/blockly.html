@@ -13,14 +13,14 @@
   <link rel="stylesheet" href="blockly/ardublockly/ardublockly.css" media="screen,projection">
   <style>
     body {
-      padding: 2px;
+      padding: 0px;
     }
     .hidden {
-      display: none;
+      display: none!important;
     }
 
     .blocks_panel_large, .blocks_panel_small, #content_blocks, .content_xml_large, .content_xml_small {
-      height: 94vh;          /* Standard */
+      height: 98.8vh;         /* Standard */
     }
   </style>
 
@@ -127,14 +127,9 @@
   </ul>
 
   <!-- Content -->
-    <div>
-      <label class="btn btn-secondary active">
-        <input type="radio" name="options" id="option1" autocomplete="off" onclick="toggleView()" checked>switch Blockly View/CodeView
-      </label>
-    </div>
     <div id="blocklyview">
     <!-- Toolbox visibility button -->
-      <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off" style="top: 50px"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+      <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
       <!-- Arduino IDE action buttons -->
       <div id="ide_buttons_wrapper" class="hidden">
         <div id="buttons_offline">
@@ -217,13 +212,6 @@
         </li>
       </ul>
     </div>
-    <script>
-      function toggleView() {
-        document.getElementById('button_toggle_toolbox_icon').click();
-        document.getElementById('blocklyview').classList.toggle('hidden');
-        document.getElementById('codeview').classList.toggle('hidden');
-        }
-    </script>
 
   <!-- IDE Output content -->
   <div class="ide_output_wrapper hidden">
@@ -379,11 +367,15 @@
               data: code,
             }, event.origin)
             break;
+          case 'toggleView':
+            document.getElementById('blocklyview').classList.toggle('hidden');
+            document.querySelector('.blocklyToolboxDiv').classList.toggle('hidden');
+            document.getElementById('codeview').classList.toggle('hidden');
+            break;
           default:
             console.warn(`postMessage type ${event.data} not implemented`)
         }
       });
-
     });
   </script>
 </body>

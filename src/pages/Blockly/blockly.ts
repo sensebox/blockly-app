@@ -31,4 +31,7 @@ export class BlocklyPage implements OnInit{
   launchOtaWizard () {
     this.blocklyFrame.nativeElement.contentWindow.postMessage('getSketch', '*')
   }
+  toggleView () {
+    this.blocklyFrame.nativeElement.contentWindow.postMessage('toggleView', '*') 
+  }
 }
