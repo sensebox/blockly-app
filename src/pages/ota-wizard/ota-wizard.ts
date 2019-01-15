@@ -47,6 +47,11 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     private compilerprovider:CompilerProvider
   ) {
     this.sketch = navParams.get('sketch')
+
+    // for OTA to work, the new sketch has to include the OTA logic as well.
+    // to ensure that, we're prepending it here to the sketch.
+    // this also works regardless wether the sketch already contains this line.
+    this.sketch = '#include <SenseBoxOTA.h>\n' + this.sketch
   }
 
   ngOnInit() {
