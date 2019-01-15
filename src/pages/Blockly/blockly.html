@@ -14,8 +14,13 @@
 </ion-header>
 
 <ion-content>
-  <ion-fab top right edge>
-    <button ion-fab large (click)="launchOtaWizard()" color ="light"><ion-icon name="wifi"></ion-icon></button>
+  <ion-fab top right edge style="right: 4vh">
+    <button ion-fab large (click)="launchOtaWizard()" color="light"><ion-icon name="wifi"></ion-icon></button>
   </ion-fab>
+
+  <ion-fab top right edge style="right: calc(4vh + 60px)">
+    <button ion-fab mini (click)="toggleView();" color ="light"><ion-icon name="code"></ion-icon></button>
+  </ion-fab>
+
   <iframe #blocklyFrame scrolling="no" src='assets/blockly.html'></iframe>
 </ion-content>

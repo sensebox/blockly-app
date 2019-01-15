@@ -39,6 +39,10 @@ export class BlocklyPage {
   launchOtaWizard () {
     this.blocklyFrame.nativeElement.contentWindow.postMessage('getSketch', '*')
   }
+
+  toggleView () {
+    this.blocklyFrame.nativeElement.contentWindow.postMessage('toggleView', '*')
+  }
 }
 
 interface IframePostMessageEvent extends MessageEvent {

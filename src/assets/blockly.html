@@ -17,7 +17,7 @@
     }
 
     .hidden {
-      display: none;
+      display: none!important;
     }
 
     .blocks_panel_large, .blocks_panel_small, #content_blocks, .content_xml_large, .content_xml_small {
@@ -89,90 +89,91 @@
   </ul>
 
   <!-- Content -->
+    <div id="blocklyview">
     <!-- Toolbox visibility button -->
-    <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off hidden" style="display: none"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
-    <!-- Arduino IDE action buttons -->
-    <div id="ide_buttons_wrapper" class="hidden">
-      <div id="buttons_offline">
-        <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
-        <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
-        <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
-      </div>
+      <a id="button_toggle_toolbox" class="waves-effect waves-light btn-flat button_toggle_toolbox_off"><i id="button_toggle_toolbox_icon" class="mdi-action-visibility-off"></i></a>
+      <!-- Arduino IDE action buttons -->
+      <div id="ide_buttons_wrapper" class="hidden">
+        <div id="buttons_offline">
+          <a id="button_ide_left" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_yellow"><i id="button_ide_left_icon" class="mdi-action-open-in-browser"></i></a>
+          <a id="button_ide_middle" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_teal"><i id="button_ide_middle_icon" class="mdi-navigation-check"></i></a>
+          <a id="button_ide_large" class="waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange"><i id="button_ide_large_icon" class="mdi-av-play-arrow"></i></a>
+        </div>
 
-      <div id="buttons_online" class="hidden">
-        <a id="button_copy_clipboard" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_blue" data-clipboard-action="copy" data-clipboard-target="#content_arduino" data-position="left" data-delay="750" data-tooltip="In Zwischenablage kopieren"><i id="button_copy_clipboard_icon" class="mdi-action-assignment"></i></a>
-        <a id="button_compile_sketch" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" data-position="left" data-delay="750" data-tooltip="Sketch kompilieren"><i id="button_compile_sketch_icon" class="mdi-action-assignment-turned-in"></i></a>
-      </div>
+        <div id="buttons_online" class="hidden">
+          <a id="button_copy_clipboard" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_blue" data-clipboard-action="copy" data-clipboard-target="#content_arduino" data-position="left" data-delay="750" data-tooltip="In Zwischenablage kopieren"><i id="button_copy_clipboard_icon" class="mdi-action-assignment"></i></a>
+          <a id="button_compile_sketch" class="tooltipped copy-btn waves-effect waves-light waves-circle btn-floating z-depth-1-half arduino_orange" data-position="left" data-delay="750" data-tooltip="Sketch kompilieren"><i id="button_compile_sketch_icon" class="mdi-action-assignment-turned-in"></i></a>
+        </div>
 
-      <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader" style="display:none">
-        <div class="spinner-layer spinner-orange">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
+        <div id="button_ide_large_spinner" class="preloader-wrapper active ide_loader hidden">
+          <div class="spinner-layer spinner-orange">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-dark-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+          <div class="spinner-layer spinner-light-teal">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
           </div>
         </div>
-        <div class="spinner-layer spinner-dark-teal">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-        <div class="spinner-layer spinner-yellow">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
-        </div>
-        <div class="spinner-layer spinner-light-teal">
-          <div class="circle-clipper left">
-            <div class="circle"></div>
-          </div><div class="gap-patch">
-            <div class="circle"></div>
-          </div><div class="circle-clipper right">
-            <div class="circle"></div>
-          </div>
+      </div>
+      <!-- Blockly Panel -->
+      <div style="padding: 0">
+        <div id="blocks_panel" class="content blocks_panel_large">
+          <div id="content_blocks" class="content z-depth-1"></div>
         </div>
       </div>
     </div>
-    <!-- Blockly Panel -->
-    <div style="padding: 0">
-      <div id="blocks_panel" class="content blocks_panel_large">
-        <div id="content_blocks" class="content z-depth-1"></div>
-      </div>
+    <div id="codeview" class="hidden">
+      <ul class="collapsible z-depth-1" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header active">
+            <span class="collapsible_logo">{ }</span>
+            <span class="translatable_arduinoSourceCode">Arduino Source Code</span>
+          </div>
+          <div class="collapsible-body">
+            <pre id="content_arduino" class="content content_height_transition content_arduino_large"></pre>
+          </div>
+        </li>
+        <li>
+          <div class="collapsible-header" id="xml_collapsible_header">
+            <span class="collapsible_logo">&#60; &#62;</span>
+            <span class="translatable_blocksXml">Blocks XML</span>
+          </div>
+          <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
+            <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml"><i class="mdi-action-extension"></i></a>
+            <textarea id="content_xml" class="content content_height_transition content_xml_large" wrap="soft"></textarea>
+          </div>
+        </li>
+      </ul>
     </div>
-
-      <div class="hidden">
-        <ul class="collapsible z-depth-1" data-collapsible="accordion">
-          <li>
-            <div class="collapsible-header active">
-              <span class="collapsible_logo">{ }</span>
-              <span class="translatable_arduinoSourceCode">Arduino Source Code</span>
-            </div>
-            <div class="collapsible-body">
-              <pre id="content_arduino" class="content content_height_transition content_arduino_large"></pre>
-            </div>
-          </li>
-          <li>
-            <div class="collapsible-header" id="xml_collapsible_header">
-              <span class="collapsible_logo">&#60; &#62;</span>
-              <span class="translatable_blocksXml">Blocks XML</span>
-            </div>
-            <div class="collapsible-body" style="position:relative" id="xml_collapsible_body">
-              <a class="btn-floating btn-large waves-effect waves-light arduino_teal z-depth-1-half" id="button_load_xml"><i class="mdi-action-extension"></i></a>
-              <textarea id="content_xml" class="content content_height_transition content_xml_large" wrap="soft"></textarea>
-            </div>
-          </li>
-        </ul>
-      </div>
 
   <!-- IDE Output content -->
   <div class="ide_output_wrapper hidden">
@@ -191,7 +192,7 @@
 
   <!-- Settings: Displayed as a Materialize Modal -->
   <div id="settings_dialog" class="modal modal-fixed-footer hidden">
-    <div class="modal-content hidden">
+    <div class="modal-content">
       <h4><span class="translatable_settings">Settings</span></h4>
       <div class="modal_section online">
         <label><span class="translatable_compilerLocation">Compiler Location</span>:</label>
@@ -328,11 +329,15 @@
               data: code,
             }, event.origin)
             break;
+          case 'toggleView':
+            document.getElementById('blocklyview').classList.toggle('hidden');
+            document.querySelector('.blocklyToolboxDiv').classList.toggle('hidden');
+            document.getElementById('codeview').classList.toggle('hidden');
+            break;
           default:
             console.warn(`postMessage type ${event.data} not implemented`)
         }
       });
-
     });
   </script>
 </body>
