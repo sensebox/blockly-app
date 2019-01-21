@@ -8,7 +8,8 @@
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
     "build": "ionic-app-scripts build",
-    "android:deploy": "ionic cordova build android; adb install -r platforms/android/app/build/outputs/apk/debug/app-debug.apk",
+    "android:build": "ionic cordova build android",
+    "android:deploy": "adb install -r platforms/android/app/build/outputs/apk/debug/app-debug.apk",
     "android:start": "adb shell am force-stop io.ionic.starter; adb shell am start -n io.ionic.starter/io.ionic.starter.MainActivity; sleep 1; adb logcat | grep -F \"`adb shell ps | grep io.ionic.starter | cut -c15-18`\"",
     "lint": "ionic-app-scripts lint"
   },

@@ -29,7 +29,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   sketch = ''
   filterSsids = true
   availableSenseboxes: string[] = [] // list of SSIDs
-  compiledSketch = undefined
+  compiledSketch: ArrayBuffer = undefined
   errorMsg = ''
 
   state: OtaState = {
@@ -127,10 +127,13 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   private handleCompilation () {
+    // skip compilation slide if already compiled
     this.slides.lockSwipeToNext(!this.compiledSketch)
+    if (this.compiledSketch)
+      return this.slides.slideNext(0)
 
     // need to go online for compilation. compilation is retriggered via this.onlineSub
-    if (!this.compiledSketch && !this.state.isOnline) {
+    if (!this.state.isOnline) {
       switch (this.otaWifi.strategy) {
         case WifiStrategy.Automatic:
           // TODO: auto connect to previous network, if available
@@ -138,6 +141,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
           this.state.compilation = 'go-online'
           break
       }
+    } else {
+      this.compileSketch()
     }
   }
 
@@ -182,7 +187,12 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       this.slides.lockSwipeToNext(false)
     } catch (err) {
       this.state.compilation = 'error'
-      this.errorMsg = err.message
+      this.errorMsg = !err.message ? err : err.message
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/\n/g, '<br/>')
     }
   }
 }

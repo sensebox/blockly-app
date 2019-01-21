@@ -62,12 +62,12 @@ export class OtaWifiProvider {
       : WifiWizard2.connect(ssid, true)
   }
 
-  async uploadFirmware (binary: string): Promise<any> {
+  async uploadFirmware (binary: ArrayBuffer): Promise<any> {
     // TODO: send checksum?
-    return this.http.post(`${SENSEBOX_API}/flash`, binary, {
+    return this.http.post(`${SENSEBOX_API}/sketch`, binary, {
       responseType: 'text',
     })
-      .pipe(timeout(2500), catchError(err => {
+      .pipe(timeout(5000), catchError(err => {
         throw new Error('senseBox not found. Is it running in OTA mode?')
       }))
       .toPromise()
