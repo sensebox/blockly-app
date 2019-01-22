@@ -13,15 +13,18 @@ export class CompilerProvider {
   }
 
   async callcompiler(sketch : string): Promise<ArrayBuffer> {
-    const headers =  new HttpHeaders({'Content-Type': 'application/json'} );
+    const headers = new HttpHeaders({'Content-Type': 'application/json'} );
     const data = { board: 'sensebox-mcu', sketch }
 
     // send compilation request, returning a job ID
     return this.http.post(`${URL}/compile`, data, { headers })
-      .pipe(timeout(4000))
+      .pipe(timeout(30000))
       .toPromise()
       .catch(err => {
-        let msg = 'unable to contact web compiler. are you online?'
+        let msg = err.message
+        if (err.name === 'TimeoutError')
+          msg = 'unable to contact web compiler. are you online?'
+
         try {
           // attempt to extract the compilation error message and clean it up
           msg = JSON.parse(err.error.message).process
