@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>openSenseApp</name>
-    <description>Apps utilizing the openSenseMap and senseBox.</description>
+<widget id="de.sensebox.blockly" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>openSenseApp Blockly</name>
+    <description>graphical programming &amp; OTA upload for senseBox MCU</description>
     <author email="kontakt@reedu.de" href="https://reedu.de/">re:edu</author>
     <content src="index.html" />
     <access origin="*" />
