@@ -10,7 +10,7 @@
     "build": "ionic-app-scripts build",
     "android:build": "ionic cordova build android",
     "android:deploy": "adb install -r platforms/android/app/build/outputs/apk/debug/app-debug.apk",
-    "android:start": "adb shell am force-stop de.sensebox.blockly; adb shell am start -n de.sensebox.blockly/de.sensebox.blockly.MainActivity; sleep 1; adb logcat | grep -F \"`adb shell ps | grep de.sensebox.blockly | cut -c15-18`\"",
+    "android:start": "adb shell am force-stop de.sensebox.blockly; adb shell am start -n de.sensebox.blockly/de.sensebox.blockly.MainActivity; sleep 5; adb logcat | grep -F \"`adb shell ps | grep de.sensebox.blockly | awk -F' ' '{print $2}'`\"",
     "lint": "ionic-app-scripts lint"
   },
   "dependencies": {
