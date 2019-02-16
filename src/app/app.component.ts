@@ -33,10 +33,12 @@ export class openSenseApp {
         this.translate.use(this.translate.getBrowserLang()) // @TODO: check if this works on all platforms!
         // @TODO: also pass language to blockly (if possible?)
 
-        statusBar.styleDefault();
-        splashScreen.hide();
-
-        splashScreen.hide()
+        if ((<any>window).cordova) {
+          statusBar.overlaysWebView(false)
+          statusBar.backgroundColorByHexString(COLORS.PRIMARY)
+          statusBar.styleLightContent()
+          splashScreen.hide()
+        }
       })
   }
 
