@@ -3,8 +3,8 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HomePage } from '../pages/home/home';
 import { BlocklyPage } from '../pages/Blockly/blockly';
+import { BlocklyPage } from '../pages/blockly/blockly';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,13 +13,11 @@ export class openSenseApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  rootPage:any = BlocklyPage; // TODO: for development, revert to HomePage
+  rootPage:any = BlocklyPage;
 
   pages: Array<{title: string, component: any}> = [
-    { title: 'Home', component: HomePage },
+    { title:'Blockly', component:'BlocklyPage' },
     { title: 'About', component: 'AboutPage' },
-    { title: 'senseBox', component: 'SenseBoxPage' },
-    {title:'Blockly', component:'BlocklyPage'}
   ];
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {

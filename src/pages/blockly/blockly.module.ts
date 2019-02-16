@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
+import { TranslateModule } from '@ngx-translate/core';
+
 import { BlocklyPage } from './blockly';
 
 @NgModule({
@@ -7,6 +9,7 @@ import { BlocklyPage } from './blockly';
     BlocklyPage,
   ],
   imports: [
+    TranslateModule,
     IonicPageModule.forChild(BlocklyPage)
   ],
 })

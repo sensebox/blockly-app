@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { OtaWizardPage } from '../ota-wizard/ota-wizard';
+import { TranslateService } from '@ngx-translate/core';
 
+import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 
 @IonicPage()
 @Component({
@@ -15,7 +16,8 @@ export class BlocklyPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public translate: TranslateService,
   ) {
     // need to assign it here to keep the function reference for unsubscribing again
     // and to maintain the this scope properly
