@@ -13,15 +13,55 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
-  <p>
-    These apps were made at IfGI 2018.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-md-6>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Blockly</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              <em>Blockly for senseBox</em> is a visual programming editor for the <a href="https://sensebox.de/en/">senseBox:edu</a>.
+              It is based on Google's Blockly and Carlos Pereira Atencio's Ardublockly, which has been forked.
+            </p>
+            <p>
+              Integrated support for over-the-air programming was developed at <a href="https://ifgi.de/en/">ifgi</a> in a study project.
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
 
-  <ul>
-    <li>Institut für Geoinformatik</li>
-    <li>Heisenbergstr. 2</li>
-    <li>48149 Münster</li>
-  </ul>
+      <ion-col col-12 col-md-6>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Open Source</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>
+              This app is free & libre open source software.
+              To may find the source code & issue tracker on GitHub:
+            </p>
+            <ul>
+              <li><a href="https://github.com/sensebox/blockly-app">Source Code</a></li>
+              <li><a href="https://github.com/sensebox/blockly-app/issues">Issue Tracker</a></li>
+              <li><a href="https://forum.sensebox.de">Support Forum</a></li>
+              <li><a href="https://sensebox.de/en/">Website</a></li>
+            </ul>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+
+    <ion-row align-items-center>
+      <ion-col col-2></ion-col>
+      <ion-col colcol-8>
+        <p>
+          <em>Hint:</em>
+          A <a href="https://blockly.sensebox.de">web version of Blockly for senseBox</a> is available as well!
+        </p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
