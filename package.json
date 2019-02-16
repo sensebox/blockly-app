@@ -7,10 +7,12 @@
   "scripts": {
     "start": "ionic-app-scripts serve",
     "clean": "ionic-app-scripts clean",
-    "build": "ionic-app-scripts build",
-    "android:build": "ionic cordova build android",
+    "build": "ionic-app-scripts build --prod",
+    "android:build": "ionic cordova build --release --prod android",
+    "android:build:debug": "ionic cordova build android",
     "android:deploy": "adb install -r platforms/android/app/build/outputs/apk/debug/app-debug.apk",
     "android:start": "adb shell am force-stop de.sensebox.blockly; adb shell am start -n de.sensebox.blockly/de.sensebox.blockly.MainActivity; sleep 5; adb logcat | grep -F \"`adb shell ps | grep de.sensebox.blockly | awk -F' ' '{print $2}'`\"",
+    "android:dev": "npm run android:build:debug && npm run android:deploy && npm run android:start",
     "lint": "ionic-app-scripts lint"
   },
   "dependencies": {
