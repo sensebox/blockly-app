@@ -1,36 +1,54 @@
-### openSenseApp starter
+# Blockly for senseBox app
 
-- This IONIC 3 project was generated with IONIC CLI
-    - https://ionicframework.com/docs/cli/
-- please fork this repository to develop your apps
+Blockly for senseBox is a visual programming editor for the senseBox:edu on mobile.
+It is based on Google's [Blockly](https://developers.google.com/blockly/) and Carlos Pereira Atencio's [Ardublockly](https://github.com/carlosperate/ardublockly), which has been forked.
 
-### Prequesites 
-- Git Installation
-    - use  
-    `git clone https://github.com/AppDevelopmentAtsenseBox/openSenseApp --recursive`  
-    because the ardublockly submodule is used to implememt blockly
+## Features
+- generate Arduino code with visual drag-and-drop blocks, with blocks for the senseBox platform.
+- online compiler for senseBox MCU
+- over the air programming via WiFi for senseBox MCU
+- Android 7+ & Web-browser support. iOS support is upcoming!
 
-- Node + NPM (nvm) 
-    - https://www.npmjs.com/get-npm
-    - preferably use the latest 8.x.x release 
-    
-- IONIC CLI & cordova
-    - https://ionicframework.com/docs/intro/installation/
+## Development
 
-- To start this project run:
-    - npm install
-    - ionic serve
+This is an Ionic 2 / Angular 5 application using Cordova Plugins for mobile-native functionality.
 
-### Development Tipps
+### dev env setup
+For a basic web version, only Node.js 8+ is required.
+For Android & iOS builds the respective platform tooling is required.
 
-- use the IONIC CLI to generate new code
-    - https://ionicframework.com/docs/cli/generate/
+To install npm dependencies run `npm install` once.
 
-- lots of premade components like buttons and lists:
-    - https://ionicframework.com/docs/components/#overview
+Then run `npm start` to start a hot-reloading development view in the browser on <http://localhost:8100>.
 
-- use IONIC CLI to test on devices
-    - e.g. ionic cordova run android --device
+Ionic & cordova provide CLIs for plugin installation & code generation. You might want to install them with `npm install -g ionic cordova`.
 
-- senseBox page has an example how to talk to the openSenseMap Api
-    - please use https://api.testing.opensensemap.org for testing
+#### android specific
+First install the Android toolchain on your system.
+
+Make sure you have the correct environment variables set.
+On linux you could add this to your `~/.bashrc`:
+```
+export ANDROID_SDK=$HOME/Android/Sdk
+export ANDROID_HOME=$ANDROID_SDK
+export PATH=$PATH:$ANDROID_SDK/emulator:$ANDROID_SDK/tools:$ANDROID_SDK/tools/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/28.0.3
+```
+
+To create a signed release build, add a file `platform/android/release-signing.prorperties` following this template. following file. You need a keystore with a valid signing key!
+
+```
+storeFile=../../reedu-android.keystore
+storeType=jks
+keyAlias=reedu-android
+keyPassword=xxxxxxxxxxxxxxxxxxxxxxxxx
+storePassword=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+To build & deploy on an emulator or device use the `android:*` build commands defined in `package.json` (some only work on linux), for example:
+```bash
+npm run android:dev # build debug build & deploy to connected device & restart app
+```
+
+## License
+The source code in this repository is GPL-2 licensed.
+Submodules such as Blockly may be licensed differently, please check their respective repositories.
