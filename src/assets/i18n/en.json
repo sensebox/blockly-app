@@ -1,0 +1,16 @@
+{
+  "MENU": {
+    "TITLE": "Menu",
+    "ABOUT": "About",
+    "BLOCKLY": "Blockly"
+  },
+  "ABOUT": {
+
+  },
+  "BLOCKLY": {
+    "TITLE": "Blockly for senseBox"
+  },
+  "OTAWIZARD": {
+
+  }
+}

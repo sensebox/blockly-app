@@ -2,8 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TranslateService } from '@ngx-translate/core';
 
-import { BlocklyPage } from '../pages/Blockly/blockly';
+import { COLORS, DEFAULT_LANG } from '../constants';
 import { BlocklyPage } from '../pages/blockly/blockly';
 
 @Component({
@@ -16,17 +17,27 @@ export class openSenseApp {
   rootPage:any = BlocklyPage;
 
   pages: Array<{title: string, component: any}> = [
-    { title:'Blockly', component:'BlocklyPage' },
-    { title: 'About', component: 'AboutPage' },
+    { title: 'MENU.BLOCKLY', component: 'BlocklyPage' },
+    { title: 'MENU.ABOUT', component: 'AboutPage' },
   ];
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      statusBar.styleDefault();
-      splashScreen.hide();
-    });
+  constructor(
+    public translate: TranslateService,
+    platform: Platform,
+    statusBar: StatusBar,
+    splashScreen: SplashScreen,
+  ) {
+    platform.ready()
+      .then(() => {
+        this.translate.setDefaultLang(DEFAULT_LANG)
+        this.translate.use(this.translate.getBrowserLang()) // @TODO: check if this works on all platforms!
+        // @TODO: also pass language to blockly (if possible?)
+
+        statusBar.styleDefault();
+        splashScreen.hide();
+
+        splashScreen.hide()
+      })
   }
 
   openPage(page) {
@@ -35,4 +46,3 @@ export class openSenseApp {
     this.nav.setRoot(page.component);
   }
 }
-
