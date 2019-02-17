@@ -28,15 +28,16 @@ First install the Android toolchain on your system.
 
 Make sure you have the correct environment variables set.
 On linux you could add this to your `~/.bashrc`:
-```
+```bash
 export ANDROID_SDK=$HOME/Android/Sdk
 export ANDROID_HOME=$ANDROID_SDK
 export PATH=$PATH:$ANDROID_SDK/emulator:$ANDROID_SDK/tools:$ANDROID_SDK/tools/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/28.0.3
 ```
 
-To create a signed release build, add a file `platform/android/release-signing.prorperties` following this template. following file. You need a keystore with a valid signing key!
+To create a signed release build, add a file `platform/android/release-signing.properties` following this template.
+You need a keystore with a valid signing key!
 
-```
+```properties
 storeFile=../../reedu-android.keystore
 storeType=jks
 keyAlias=reedu-android
@@ -47,6 +48,16 @@ storePassword=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 To build & deploy on an emulator or device use the `android:*` build commands defined in `package.json` (some only work on linux), for example:
 ```bash
 npm run android:dev # build debug build & deploy to connected device & restart app
+```
+
+### updating blockly
+Blockly is included as a submodule, linking to <https://github.com/sensebox/ardublockly-1>.
+To update it, just pull in the commit you want, and commit the change in this repository:
+```bash
+cd src/assets/blockly
+git pull
+cd ../../..
+git commit -m 'update blockly'
 ```
 
 ## License
