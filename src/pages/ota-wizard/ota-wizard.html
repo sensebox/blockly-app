@@ -3,11 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Over The Air Progammer</ion-title>
+    <ion-title>{{ 'OTAWIZ.TITLE' | translate }}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding="false"> <!-- FIXME: remove padding -->
+<ion-content>
   <ion-slides #slides pager (ionSlideDidChange)="onSlideChange()">
 
     <!-- intro -->
@@ -16,22 +16,19 @@
         <ion-row>
           <ion-col col-12 col-md-6>
             <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
-            <h2>Welcome</h2>
-            <p>
-              To <b>program your senseBox</b> wirelessly, please follow these steps.
-              We will help you connect to your senseBox via <b>WiFi</b>.
-            </p>
+            <h2 translate>OTAWIZ.INTRO.TITLE</h2>
+            <p [innerHTML]="'OTAWIZ.INTRO.TEXT' | translate"></p>
           </ion-col>
 
           <ion-col col-12 col-md-6>
-            <p>First, please make sure that your senseBox...</p>
+            <p translate>OTAWIZ.INTRO.STEPS</p>
             <ul style="text-align: left">
-              <li>has the <b>WiFi shield</b> plugged in</li>
-              <li>has the initial <b>OTA sketch</b> installed</li>
-              <li>is running</li>
+              <li [innerHTML]="'OTAWIZ.INTRO.STEP1' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.INTRO.STEP2' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.INTRO.STEP3' | translate"></li>
             </ul>
             <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-              Continue
+              {{ 'OTAWIZ.BTN_NEXT' | translate }}
               <ion-icon name="arrow-forward"></ion-icon>
             </button>
           </ion-col>
@@ -42,29 +39,26 @@
     <!-- compilation waiting screen -->
     <ion-slide>
       <ng-container *ngIf="state.compilation == 'compiling'">
-        <h2>Compiling your sketch...</h2>
+        <h2 translate>OTAWIZ.COMPILATION.COMPILING.TITLE</h2>
         <ion-spinner *ngIf="slides.getActiveIndex() == 1" item-start name="dots"></ion-spinner>
       </ng-container>
 
       <ng-container *ngIf="state.compilation == 'go-online'">
-        <h2>You are offline.</h2>
-        <p>
-          For compilation, you need to connect to the internet.
-          Please enable a connection.
-        </p>
+        <h2 translate>OTAWIZ.COMPILATION.GO_ONLINE.TITLE</h2>
+        <p translate>OTAWIZ.COMPILATION.GO_ONLINE.TEXT</p>
       </ng-container>
 
       <ng-container *ngIf="state.compilation == 'done'">
-        <h2>Sketch successfully compiled.</h2>
+        <h2 translate>OTAWIZ.COMPILATION.DONE.TITLE</h2>
         <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-          Continue
+          {{ 'OTAWIZ.BTN_NEXT' | translate }}
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
       </ng-container>
 
       <ng-container *ngIf="state.compilation == 'error'">
-        <h2>Error compiling your sketch.</h2>
-        <p [innerHTML]="errorMsg"></p>
+        <h2 translate>OTAWIZ.COMPILATION.ERROR.TITLE</h2>
+        <p [innerHTML]="errorMsg"></p> <!-- @TODO: translate? -->
       </ng-container>
     </ion-slide>
 
@@ -72,13 +66,10 @@
     <ion-slide id="wifi-slide">
       <ion-grid>
         <div id="wifi-manual" *ngIf="state.wifiSelection == 'manual'">
-          <h2>Connect to your senseBox</h2>
-          <p>
-            Your senseBox should have opened the a WiFi network.
-            Because we can not do this automatically on your platform, please connect to it manually.
-          </p>
+          <h2 translate>OTAWIZ.WIFI.MANUAL.TITLE</h2>
+          <p translate>OTAWIZ.WIFI.MANUAL.TEXT</p>
           <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-            Continue
+            {{ 'OTAWIZ.BTN_NEXT' | translate }}
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
         </div>
@@ -86,15 +77,12 @@
         <ion-row id="wifi-automatic" *ngIf="state.wifiSelection != 'manual'">
           <ion-col col-12 col-md-6>
             <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
-            <h2>Select your senseBox</h2>
-            <p>
-              In the list, all running senseBoxes with OTA available are shown.
-              If you don't see yours, please make sure that GPS is enabled.
-            </p>
+            <h2 translate>OTAWIZ.WIFI.AUTO.TITLE</h2>
+            <p translate>OTAWIZ.WIFI.AUTO.TEXT</p>
           </ion-col>
 
           <ion-col col-12 col-md-6>
-            <h4>Available senseBox WiFis</h4>
+            <h4 translate>OTAWIZ.WIFI.AUTO.AVAILABLE</h4>
             <button ion-fab mini color="light" (click)="onWifiRefresh()">
               <ion-icon name="refresh"></ion-icon>
             </button>
@@ -102,12 +90,12 @@
             <ion-list id="wifi-list">
               <ion-item *ngIf="state.wifiSelection == 'scanning'">
                 <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
-                searching...
+                {{ 'OTAWIZ.WIFI.AUTO.SCANNING' | translate }}
               </ion-item>
 
               <ion-item *ngIf="state.wifiSelection == 'connecting'">
                 <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
-                connecting...
+                {{ 'OTAWIZ.WIFI.AUTO.CONNECTING' | translate }}
               </ion-item>
 
               <ion-item *ngFor="let ssid of availableSenseboxes" (click)="connectToSensebox(ssid)">
@@ -116,7 +104,7 @@
               </ion-item>
 
               <ion-item *ngIf="state.wifiSelection == 'select' && !availableSenseboxes.length">
-                no senseboxes available :(
+                {{ 'OTAWIZ.WIFI.AUTO.NONE_FOUND' | translate }}
               </ion-item>
             </ion-list>
 
@@ -126,7 +114,7 @@
             </ion-item>
 
             <ng-container *ngIf="state.wifiSelection == 'error'">
-              <h2>Error!</h2>
+              <h2 translate>OTAWIZ.WIFI.AUTO.ERROR</h2>
               <p [innerHTML]="errorMsg"></p>
             </ng-container>
           </ion-col>
@@ -138,27 +126,27 @@
     <!-- upload & final status -->
     <ion-slide>
       <ng-container *ngIf="state.upload == 'uploading'">
-        <h2>Uploading your sketch</h2>
+        <h2 translate>OTAWIZ.UPLOAD.UPLOADING</h2>
         <ion-spinner *ngIf="slides.getActiveIndex() == 3" item-start name="dots"></ion-spinner>
       </ng-container>
 
       <ng-container *ngIf="state.upload == 'done'">
         <ion-icon name="checkmark" style="font-size: 160px"></ion-icon>
-        <h2>Done!</h2>
+        <h2 translate>OTAWIZ.UPLOAD.DONE</h2>
         <button ion-button large clear icon-end color="primary" (click)="onClose()">
-          Close
+          {{ 'OTAWIZ.BTN_CLOSE' | translate }}
         </button>
       </ng-container>
 
       <ng-container *ngIf="state.upload == 'error'">
-        <h2>Error!</h2>
+        <h2 translate>OTAWIZ.UPLOAD.ERROR</h2>
         <p [innerHTML]="errorMsg"></p>
         <button ion-button large clear icon-end color="primary" (click)="slides.slidePrev()">
           <ion-icon item-start name="arrow-back"></ion-icon>
-          Back
+          {{ 'OTAWIZ.BTN_BACK' | translate }}
         </button>
         <button ion-button large clear icon-end color="primary" (click)="onClose()">
-          Close
+          {{ 'OTAWIZ.BTN_CLOSE' | translate }}
         </button>
       </ng-container>
     </ion-slide>

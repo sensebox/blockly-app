@@ -5,12 +5,58 @@
     "BLOCKLY": "Blockly"
   },
   "ABOUT": {
-
+    "TITLE": "About"
   },
   "BLOCKLY": {
     "TITLE": "Blockly for senseBox"
   },
-  "OTAWIZARD": {
-
+  "OTAWIZ": {
+    "TITLE": "Over The Air Programmer",
+    "BTN_NEXT": "Continue",
+    "BTN_CLOSE": "Close",
+    "BTN_BACK": "Back",
+    "INTRO": {
+      "TITLE": "Welcome",
+      "TEXT": "To <b>program your senseBox</b> wirelessly, please follow these steps. We will help you connect to your senseBox via <b>WiFi</b>.",
+      "STEPS": "First, please make sure that your senseBox...",
+      "STEP1": "has the <b>WiFi shield</b> plugged in",
+      "STEP2": "has the initial <b>OTA sketch</b> installed",
+      "STEP3": "is running"
+    },
+    "COMPILATION": {
+      "COMPILING": {
+        "TITLE": "Compiling your sketch..."
+      },
+      "GO_ONLINE": {
+        "TITLE": "Compiling your sketch...",
+        "TEXT": "For compilation, you need to connect to the internet. Please enable a connection."
+      },
+      "DONE": {
+        "TITLE": "Sketch successfully compiled."
+      },
+      "ERROR": {
+        "TITLE": "Error compiling your sketch."
+      }
+    },
+    "WIFI": {
+      "MANUAL": {
+        "TITLE": "Connect to your senseBox",
+        "TEXT": "Your senseBox should have opened the a WiFi network. Because we can not do this automatically on your platform, please connect to it manually."
+      },
+      "AUTO": {
+        "TITLE": "Select your senseBox",
+        "TEXT": "In the list, all running senseBoxes with OTA available are shown. If you don't see yours, please make sure that GPS is enabled.",
+        "AVAILABLE": "Available senseBox WiFis",
+        "SCANNING": "searching...",
+        "CONNECTING": "connecting...",
+        "NONE_FOUND": "no senseBoxes available :^(",
+        "ERROR": "Error!"
+      }
+    },
+    "UPLOAD": {
+      "UPLOADING": "Uploading your sketch",
+      "DONE": "Done!",
+      "ERROR": "Error!"
+    }
   }
 }

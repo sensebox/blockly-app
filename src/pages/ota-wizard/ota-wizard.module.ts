@@ -4,12 +4,14 @@ import { OtaWizardPage } from './ota-wizard';
 import { Network } from '@ionic-native/network';
 import { OtaWifiProvider } from '../../providers/ota-wifi/ota-wifi';
 import { CompilerProvider } from '../../providers/compiler/compiler';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
     OtaWizardPage,
   ],
   imports: [
+    TranslateModule,
     IonicPageModule.forChild(OtaWizardPage),
   ],
   providers: [
