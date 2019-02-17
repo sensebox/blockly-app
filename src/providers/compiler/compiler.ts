@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { timeout } from 'rxjs/operators'
 
-// const URL = "https://compiler.sensebox.de"
-const URL = "http://compiler.snsbx.nroo.de"
+const URL = "https://compiler.sensebox.de"
+// const URL = "http://compiler.snsbx.nroo.de"
 
 @Injectable()
 export class CompilerProvider {
