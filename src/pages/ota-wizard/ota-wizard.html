@@ -7,13 +7,13 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-slides #slides pager (ionSlideDidChange)="onSlideChange()">
 
     <!-- intro -->
     <ion-slide>
       <ion-grid>
-        <ion-row>
+        <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
             <h2 translate>OTAWIZ.INTRO.TITLE</h2>
@@ -36,11 +36,38 @@
       </ion-grid>
     </ion-slide>
 
-    <!-- compilation waiting screen -->
+    <!-- OTA mode guide -->
     <ion-slide>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-12 col-md-6>
+            <h2 translate>OTAWIZ.OTAMODE.TITLE</h2>
+            <p [innerHTML]="'OTAWIZ.OTAMODE.TEXT' | translate"></p>
+            <p translate>OTAWIZ.OTAMODE.STEPS</p>
+            <ol style="text-align: left">
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP1' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP2' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP3' | translate"></li>
+            </ol>
+          </ion-col>
+
+          <ion-col col-12 col-md-6>
+            <!-- @TODO: diagram! -->
+            <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+              {{ 'OTAWIZ.BTN_NEXT' | translate }}
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <!-- compilation waiting screen -->
+    <ion-slide *ngIf="!slideIsHidden(slideCompilation)">
       <ng-container *ngIf="state.compilation == 'compiling'">
         <h2 translate>OTAWIZ.COMPILATION.COMPILING.TITLE</h2>
-        <ion-spinner *ngIf="slides.getActiveIndex() == 1" item-start name="dots"></ion-spinner>
+        <!-- getActiveIndex() check because animated icons use loads of CPU, even when not visible! -->
+        <ion-spinner *ngIf="currentSlide == slideCompilation" item-start name="dots"></ion-spinner>
       </ng-container>
 
       <ng-container *ngIf="state.compilation == 'go-online'">
@@ -78,7 +105,11 @@
           <ion-col col-12 col-md-6>
             <ion-icon name="wifi" style="font-size: 160px"></ion-icon>
             <h2 translate>OTAWIZ.WIFI.AUTO.TITLE</h2>
-            <p translate>OTAWIZ.WIFI.AUTO.TEXT</p>
+            <ul style="text-align: left">
+              <li translate>OTAWIZ.WIFI.AUTO.TEXT1</li>
+              <li translate>OTAWIZ.WIFI.AUTO.TEXT2</li>
+              <li translate>OTAWIZ.WIFI.AUTO.TEXT3</li>
+            </ul>
           </ion-col>
 
           <ion-col col-12 col-md-6>
@@ -89,12 +120,12 @@
 
             <ion-list id="wifi-list">
               <ion-item *ngIf="state.wifiSelection == 'scanning'">
-                <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
+                <ion-spinner *ngIf="currentSlide == slideWifi" item-start name="dots"></ion-spinner>
                 {{ 'OTAWIZ.WIFI.AUTO.SCANNING' | translate }}
               </ion-item>
 
               <ion-item *ngIf="state.wifiSelection == 'connecting'">
-                <ion-spinner *ngIf="slides.getActiveIndex() == 2" item-start name="dots"></ion-spinner>
+                <ion-spinner *ngIf="currentSlide == slideWifi" item-start name="dots"></ion-spinner>
                 {{ 'OTAWIZ.WIFI.AUTO.CONNECTING' | translate }}
               </ion-item>
 
@@ -122,7 +153,7 @@
     <ion-slide>
       <ng-container *ngIf="state.upload == 'uploading'">
         <h2 translate>OTAWIZ.UPLOAD.UPLOADING</h2>
-        <ion-spinner *ngIf="slides.getActiveIndex() == 3" item-start name="dots"></ion-spinner>
+        <ion-spinner *ngIf="currentSlide == slideUpload" item-start name="dots"></ion-spinner>
       </ng-container>
 
       <ng-container *ngIf="state.upload == 'done'">

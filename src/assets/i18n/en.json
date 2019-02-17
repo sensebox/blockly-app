@@ -13,12 +13,14 @@
     },
     "OPENSOURCE": {
       "TITLE": "Open Source",
-      "TEXT": "This app is free & libre open source software. To may find the source code & issue tracker on GitHub:"
+      "TEXT": "This app is free & libre open source software. You may find the source code & issue tracker on GitHub:"
     },
     "HINT": "<em>Hint:</em> A <a href=\"https://blockly.sensebox.de\">web version of Blockly for senseBox</a> is available as well!"
   },
   "BLOCKLY": {
-    "TITLE": "Blockly for senseBox"
+    "TITLE": "Blockly for senseBox",
+    "BTN_CODE": "Code View",
+    "BTN_OTA": "OTA Programmer"
   },
   "OTAWIZ": {
     "TITLE": "Over The Air Programmer",
@@ -27,19 +29,27 @@
     "BTN_BACK": "Back",
     "INTRO": {
       "TITLE": "Welcome",
-      "TEXT": "To <b>program your senseBox</b> wirelessly, please follow these steps. We will help you connect to your senseBox via <b>WiFi</b>.",
+      "TEXT": "To transfer your code to your senseBox over the air (OTA), please follow these steps.",
       "STEPS": "First, please make sure that your senseBox...",
-      "STEP1": "has the <b>WiFi shield</b> plugged in",
+      "STEP1": "has the <b>WiFi Bee</b> plugged in XBee Slot 1",
       "STEP2": "has the initial <b>OTA sketch</b> installed",
-      "STEP3": "is running"
+      "STEP3": "is powered"
+    },
+    "OTAMODE": {
+      "TITLE": "Enable OTA Mode",
+      "TEXT": "To transfer your code, the senseBox must be in OTA mode.<br/>This is indicated by the green blinking LED next to the red reset button.",
+      "STEPS": "To enable OTA mode...",
+      "STEP1": "press &amp; hold the switch button (gray or blue)",
+      "STEP2": "press the red reset button shortly",
+      "STEP3": "release the switch button after one second"
     },
     "COMPILATION": {
       "COMPILING": {
         "TITLE": "Compiling your sketch..."
       },
       "GO_ONLINE": {
-        "TITLE": "Compiling your sketch...",
-        "TEXT": "For compilation, you need to connect to the internet. Please enable a connection."
+        "TITLE": "You are offline.",
+        "TEXT": "For compilation you need to connect to the internet. Please enable a connection."
       },
       "DONE": {
         "TITLE": "Sketch successfully compiled."
@@ -51,11 +61,13 @@
     "WIFI": {
       "MANUAL": {
         "TITLE": "Connect to your senseBox",
-        "TEXT": "Your senseBox should have opened the a WiFi network. Because we can not do this automatically on your platform, please connect to it manually."
+        "TEXT": "Your senseBox should have created a WiFi network. Because we can not do this automatically on your platform, please connect to it manually."
       },
       "AUTO": {
         "TITLE": "Select your senseBox",
-        "TEXT": "In the list, all running senseBoxes with OTA available are shown. If you don't see yours, please make sure that GPS is enabled.",
+        "TEXT1": "All powered senseBoxes around you with OTA mode enabled are listed here.",
+        "TEXT2": "Please check the last digits of MAC-Adress on your WiFi Bee to identify your senseBox. You can find it printed on the bottom of the WiFi Bee.",
+        "TEXT3": "If you can't find your senseBox, please make sure that your WiFi Bee is mounted correctly, OTA mode is enabled and GPS is enabled on this device.",
         "AVAILABLE": "Available senseBox WiFis",
         "SCANNING": "searching...",
         "CONNECTING": "connecting...",
