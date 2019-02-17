@@ -27,7 +27,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   offlineSub: Subscription
 
   sketch = ''
-  filterSsids = true
   availableSenseboxes: string[] = [] // list of SSIDs
   compiledSketch: ArrayBuffer = undefined
   errorMsg = ''
@@ -46,12 +45,17 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     navParams : NavParams,
     private compilerprovider:CompilerProvider
   ) {
-    this.sketch = navParams.get('sketch')
-
     // for OTA to work, the new sketch has to include the OTA logic as well.
     // to ensure that, we're prepending it here to the sketch.
     // this also works regardless wether the sketch already contains this line.
-    this.sketch = '#include <SenseBoxOTA.h>\n' + this.sketch
+    this.sketch = '#include <SenseBoxOTA.h>\n'
+
+    // get sketch from router param, or set minimal default code for successful compilation
+    let sketch = navParams.get('sketch')
+    if (!sketch)
+      sketch = 'void setup() {}\nvoid loop() {}\n'
+
+    this.sketch += sketch
   }
 
   ngOnInit() {
@@ -77,11 +81,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   onWifiRefresh () {
-    this.handleWifiSelection()
-  }
-
-  onFilterToggle (newVal) {
-    this.filterSsids = newVal
     this.handleWifiSelection()
   }
 
@@ -155,7 +154,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     } else {
       this.state.wifiSelection = 'scanning'
       try {
-        this.availableSenseboxes = await this.otaWifi.findSenseboxes(this.filterSsids)
+        this.availableSenseboxes = await this.otaWifi.findSenseboxes(true)
         this.state.wifiSelection = 'select'
       } catch (err) {
         this.state.wifiSelection = 'error'

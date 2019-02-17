@@ -108,11 +108,6 @@
               </ion-item>
             </ion-list>
 
-            <ion-item>
-              <ion-label>Show only senseBox WiFis</ion-label>
-              <ion-toggle (ngModelChange)="onFilterToggle($event)" [(ngModel)]="filterSsids"></ion-toggle>
-            </ion-item>
-
             <ng-container *ngIf="state.wifiSelection == 'error'">
               <h2 translate>OTAWIZ.WIFI.AUTO.ERROR</h2>
               <p [innerHTML]="errorMsg"></p>
