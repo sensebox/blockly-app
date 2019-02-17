@@ -1,6 +1,6 @@
 {
-  "name": "openSenseApp",
-  "version": "0.0.1",
+  "name": "blockly-sensebox",
+  "version": "0.1.0",
   "author": "Reedu GmbH",
   "homepage": "https://reedu.de/",
   "private": true,

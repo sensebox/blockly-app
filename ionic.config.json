@@ -1,5 +1,5 @@
 {
-  "name": "openSenseApp",
+  "name": "Blockly for senseBox",
   "integrations": {
     "cordova": {}
   },
