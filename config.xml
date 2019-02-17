@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.sensebox.blockly" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.sensebox.blockly" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Blockly for senseBox</name>
     <description>graphical programming &amp; OTA upload for senseBox MCU</description>
     <author email="kontakt@reedu.de" href="https://reedu.de/">re:edu</author>
