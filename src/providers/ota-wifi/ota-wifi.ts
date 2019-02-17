@@ -43,14 +43,21 @@ export class OtaWifiProvider {
     if (this.strategy != WifiStrategy.Automatic)
       throw new Error('can not search for WiFi networks on this platform')
 
-    return WifiWizard2.scan()
-      .then(networks => {
-        if (filterSsids)
-          networks = networks.filter(n => n.SSID.toLowerCase().includes(SSID_PREFIX))
-          networks = networks.filter(n => n.capabilities.includes('[ESS]'))
+    try {
+      let networks = await WifiWizard2.scan()
+      if (filterSsids)
+        networks = networks.filter(n => n.SSID.toLowerCase().includes(SSID_PREFIX))
 
-        return networks.map(n => n.SSID)
-      })
+      return networks
+        .filter(n => n.capabilities.includes('[ESS]')) // only unencrypted networks
+        .map(n => n.SSID)
+        .filter((val, i, arr) => arr.indexOf(val) === i) // unique filter (as networks are duplicated per BSSID)
+    } catch (err) {
+      if (err === 'SCAN_FAILED')
+        throw new Error('WiFi scan failed. Maybe location services are disabled or the location permission isn\'t set for this app?')
+      else
+        throw new Error(err)
+    }
   }
 
   async connectToSensebox (ssid: string): Promise<any> {
@@ -59,7 +66,7 @@ export class OtaWifiProvider {
 
     return this.platform.is('ios')
       ? WifiWizard2.iOSConnectNetwork(ssid)
-      : WifiWizard2.connect(ssid, true)
+      : WifiWizard2.connect(ssid, true) // true: bind to all connections, even without internet
   }
 
   async uploadFirmware (binary: ArrayBuffer): Promise<any> {

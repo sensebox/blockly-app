@@ -8,11 +8,9 @@ const URL = "https://compiler.sensebox.de"
 @Injectable()
 export class CompilerProvider {
 
-  constructor(public http: HttpClient) {
-    console.log('Hello CompilerProvider Provider');
-  }
+  constructor(public http: HttpClient) { }
 
-  async callcompiler(sketch : string): Promise<ArrayBuffer> {
+  async compile(sketch : string): Promise<ArrayBuffer> {
     const headers = new HttpHeaders({'Content-Type': 'application/json'} );
     const data = { board: 'sensebox-mcu', sketch }
 
@@ -27,10 +25,15 @@ export class CompilerProvider {
 
         try {
           // attempt to extract the compilation error message and clean it up
-          msg = JSON.parse(err.error.message).process
-          msg = `compilation error: ${msg.substr(msg.indexOf(' ') + 14)}`
-          msg = msg.substr(0, msg.indexOf('^'))
-        } catch (err) {}
+          console.error(err)
+          msg = JSON.parse(err.error.message)
+          if (msg.process) {
+            msg = `compilation error: ${msg.process.substr(msg.process.indexOf(' '))}`
+            msg = msg.substr(0, msg.indexOf('^'))
+          }
+        } catch (err2) {
+          console.error(err2)
+        }
         throw Error(msg)
       })
       // download the resulting sketch binary
