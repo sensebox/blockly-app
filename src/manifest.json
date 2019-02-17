@@ -1,6 +1,6 @@
 {
-  "name": "openSenseApp",
-  "short_name": "openSenseApp",
+  "name": "Blockly for senseBox",
+  "short_name": "Blockly for senseBox",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
