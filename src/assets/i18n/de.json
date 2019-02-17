@@ -1,16 +1,84 @@
 {
   "MENU": {
     "TITLE": "Menü",
-    "BLOCKLY": "Blockly",
-    "ABOUT": "Über"
+    "ABOUT": "Über",
+    "BLOCKLY": "Blockly"
   },
   "ABOUT": {
-
+    "TITLE": "Über",
+    "BLOCKLY": {
+      "TITLE": "Blockly",
+      "TEXT1": "<em>Blockly für senseBox</em> ist eine grafische Programmieroberfläche, die eine einfache und schnelle Programmierung der <a href=\"https://sensebox.de/\">senseBox:edu</a> ermöglicht. Ursprünglich von Google und Carlos Pereira Atencio's entwickelt, wurde die Plattform von uns weiterentwickelt und für die senseBox angepasst.",
+      "TEXT2": "Die App-Version sowie die OTA-Funktionalität wurde in einem Studienprojekt am <a href=\"https://ifgi.de/\">ifgi</a> entwickelt."
+    },
+    "OPENSOURCE": {
+      "TITLE": "Open Source",
+      "TEXT": "Diese App ist freie open source Software. Den Quellcode & den Bugtracker findest du auf GitHub:"
+    },
+    "HINT": "<em>Übrigens:</em> Es gibt auch eine <a href=\"https://blockly.sensebox.de\">web version von Blockly für senseBox</a>!"
   },
   "BLOCKLY": {
-    "TITLE": "Blockly für senseBox"
+    "TITLE": "Blockly für senseBox",
+    "BTN_CODE": "Quellcode Ansicht",
+    "BTN_OTA": "OTA Programmierung"
   },
-  "OTAWIZARD": {
-
+  "OTAWIZ": {
+    "TITLE": "Over The Air Programmierung",
+    "BTN_NEXT": "Weiter",
+    "BTN_CLOSE": "Schließen",
+    "BTN_BACK": "Zurück",
+    "INTRO": {
+      "TITLE": "Willkommen",
+      "TEXT": "Folge dieser Anleitung, um deinen Code drahtlos auf die senseBox zu übertragen (OTA).",
+      "STEPS": "Stelle sicher, dass deine senseBox...",
+      "STEP1": "die <b>WiFi Bee</b> in XBee Slot 1 gesteckt hat,",
+      "STEP2": "den initialen <b>OTA Sketch</b> installiert hat,",
+      "STEP3": "mit Strom versorgt ist."
+    },
+    "OTAMODE": {
+      "TITLE": "OTA Modus aktivieren",
+      "TEXT": "Um deinen Code zu übertragen, muss sich deine senseBox im OTA Modus befinden.<br/>Das erkennst du daran, dass neben dem roten Reset-Knopf die grüne LED blinkt.",
+      "STEPS": "Um den OTA Modus zu aktivieren...",
+      "STEP1": "halte den den 'Switch' Knopf (grau oder blau) gedrückt",
+      "STEP2": "drücke den roten 'Reset' Knopf einmal",
+      "STEP3": "lasse den 'Switch' Knopf nach einer Sekunde los."
+    },
+    "COMPILATION": {
+      "COMPILING": {
+        "TITLE": "Kompiliere dein Programm..."
+      },
+      "GO_ONLINE": {
+        "TITLE": "Du bist offline.",
+        "TEXT": "Für das Kompilieren des Coes ist eine Internetverbindung nötig. Bitte stelle eine Verbindung her."
+      },
+      "DONE": {
+        "TITLE": "Programm erfolgreich kompiliert."
+      },
+      "ERROR": {
+        "TITLE": "Fehler beim Kompilieren deines Programms."
+      }
+    },
+    "WIFI": {
+      "MANUAL": {
+        "TITLE": "Verbindung zur senseBox herstellen",
+        "TEXT": "Deine senseBox sollte nun ein WiFi Netzwerk erstellt haben. Bitte verbinde dich mit diesem Netzwerk im im WiFi Menü deines Geräts."
+      },
+      "AUTO": {
+        "TITLE": "Wähle deine senseBox",
+        "TEXT1": "Alle senseBoxen im OTA Modus in deiner Umgebung werden hier aufgelistet.",
+        "TEXT2": "Finde deine senseBox anhand der letzten 4 Stellen der MAC-Addresse. Du findest diese aufgedruckt auf der Unterseite der WiFi Bee.",
+        "TEXT3": "Wenn du deine senseBox nicht finden kannst, prüfe dass die WiFi Bee richtig eingesteckt ist, der OTA Modus aktiviert ist, und GPS auf diesem Gerät aktiviert ist.",
+        "AVAILABLE": "Verfügbare senseBox WiFis",
+        "SCANNING": "suche...",
+        "CONNECTING": "verbinde...",
+        "NONE_FOUND": "keine senseBox gefunden :^(",
+        "ERROR": "Fehler!"
+      }
+    },
+    "UPLOAD": {
+      "UPLOADING": "Übertrage dein Programm",
+      "DONE": "Fertig!",
+      "ERROR": "Fehler!"
+    }
   }
 }
