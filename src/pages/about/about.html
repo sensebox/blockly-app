@@ -1,9 +1,3 @@
-<!--
-  Generated template for the AboutPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -16,33 +10,26 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-12 col-md-6>
+      <ion-col col-md-1></ion-col>
+      <ion-col col-12 col-md-5>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Blockly</ion-card-title>
+            <ion-card-title>{{ 'ABOUT.BLOCKLY.TITLE' | translate }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>
-              <em>Blockly for senseBox</em> is a visual programming editor for the <a href="https://sensebox.de/en/">senseBox:edu</a>.
-              It is based on Google's Blockly and Carlos Pereira Atencio's Ardublockly, which has been forked.
-            </p>
-            <p>
-              Integrated support for over-the-air programming was developed at <a href="https://ifgi.de/en/">ifgi</a> in a study project.
-            </p>
+            <p [innerHTML]="'ABOUT.BLOCKLY.TEXT1' | translate"></p>
+            <p [innerHTML]="'ABOUT.BLOCKLY.TEXT2' | translate"></p>
           </ion-card-content>
         </ion-card>
       </ion-col>
 
-      <ion-col col-12 col-md-6>
+      <ion-col col-12 col-md-5>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Open Source</ion-card-title>
+            <ion-card-title>{{ 'ABOUT.OPENSOURCE.TITLE' | translate }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>
-              This app is free & libre open source software.
-              To may find the source code & issue tracker on GitHub:
-            </p>
+            <p translate>ABOUT.OPENSOURCE.TEXT</p>
             <ul>
               <li><a href="https://github.com/sensebox/blockly-app">Source Code</a></li>
               <li><a href="https://github.com/sensebox/blockly-app/issues">Issue Tracker</a></li>
@@ -55,12 +42,8 @@
     </ion-row>
 
     <ion-row align-items-center>
-      <ion-col col-2></ion-col>
-      <ion-col colcol-8>
-        <p>
-          <em>Hint:</em>
-          A <a href="https://blockly.sensebox.de">web version of Blockly for senseBox</a> is available as well!
-        </p>
+      <ion-col>
+        <p class="hint" [innerHTML]="'ABOUT.HINT' | translate"></p>
       </ion-col>
     </ion-row>
   </ion-grid>

@@ -5,7 +5,17 @@
     "BLOCKLY": "Blockly"
   },
   "ABOUT": {
-    "TITLE": "About"
+    "TITLE": "About",
+    "BLOCKLY": {
+      "TITLE": "Blockly",
+      "TEXT1": "<em>Blockly for senseBox</em> is a visual programming editor for the <a href=\"https://sensebox.de/en/\">senseBox:edu</a>. It is based on Google's Blockly and Carlos Pereira Atencio's Ardublockly, which has been forked.",
+      "TEXT2": "Integrated support for over-the-air programming was developed at <a href=\"https://ifgi.de/en/\">ifgi</a> in a study project."
+    },
+    "OPENSOURCE": {
+      "TITLE": "Open Source",
+      "TEXT": "This app is free & libre open source software. To may find the source code & issue tracker on GitHub:"
+    },
+    "HINT": "<em>Hint:</em> A <a href=\"https://blockly.sensebox.de\">web version of Blockly for senseBox</a> is available as well!"
   },
   "BLOCKLY": {
     "TITLE": "Blockly for senseBox"
