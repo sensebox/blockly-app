@@ -27,3 +27,9 @@
         background: map-get($colors, primary);
     }
 }
+
+// https://github.com/ionic-team/ionic/issues/16780
+// TODO: fixed in ionic-angular 3.9.3
+ion-content {
+  contain: size style;
+}
