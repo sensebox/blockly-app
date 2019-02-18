@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="de.sensebox.blockly" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="de.sensebox.blockly" version="1.1.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Blockly for senseBox</name>
     <description>graphical programming &amp; OTA upload for senseBox MCU</description>
     <author email="kontakt@reedu.de" href="https://reedu.de/">re:edu</author>
@@ -84,7 +84,7 @@
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
     <plugin name="wifiwizard2" spec="~3.1.0" />
     <plugin name="cordova-plugin-network-information" spec="2.0.1" />
+    <plugin name="cordova-plugin-app-version" spec="0.1.9" />
     <engine name="android" spec="7.1.1" />
     <engine name="browser" spec="5.0.4" />
-    <plugin name="cordova-plugin-app-version" spec="0.1.9" />
 </widget>
