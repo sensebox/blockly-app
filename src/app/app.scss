@@ -33,3 +33,22 @@
 ion-content {
   contain: size style;
 }
+
+// adds classes hidden-* for each responsive size that hides elements for this screen size only.
+$breakpoints-keys: map-keys($grid-breakpoints);
+$breakpoints-values: map-values($grid-breakpoints);
+@for $i from 1 to length($breakpoints-keys)+1 {
+  @if $i < length($breakpoints-keys) {
+    .hidden-#{nth($breakpoints-keys, $i)} {
+      @media (min-width: nth($breakpoints-values, $i)) and (max-width: #{nth($breakpoints-values, $i+1) - 1}) {
+        display: none !important;
+      }
+    }
+  } @else {
+    .hidden-#{nth($breakpoints-keys, $i)} {
+      @media (min-width: nth($breakpoints-values, $i)) {
+        display: none !important;
+      }
+    }
+  }
+}
