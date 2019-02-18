@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { OtaWifiProvider, WifiStrategy } from '../../providers/ota-wifi/ota-wifi';
 import { CompilerProvider } from '../../providers/compiler/compiler';
+import { LoggingProvider } from '../../providers/logging/logging';
 
 @IonicPage()
 @Component({
@@ -44,12 +45,17 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private compiledSketch: ArrayBuffer = undefined
   private hiddenSlides: OtaSlides[] = []
 
+  private log: LoggingProvider
+  private slideHistory: string[] = [OtaSlides[OtaSlides.Intro]] // for debug info in logs
+  private counts = { compile: 0, connect: 0, upload: 0 }
+
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
     private navCtrl: NavController,
     private webcompiler: CompilerProvider,
     private changedetect: ChangeDetectorRef,
+    logger: LoggingProvider,
     navParams : NavParams,
   ) {
     // for OTA to work, the new sketch has to include the OTA logic as well.
@@ -63,6 +69,14 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       sketch = 'void setup() {}\nvoid loop() {}\n'
 
     this.sketch += sketch
+
+    this.log = logger.createChild('OtaWizardPage', {
+      otaState: this.state,
+      slideHistory: this.slideHistory,
+      counts: this.counts,
+      sketch: this.sketch,
+      wifis: this.availableSenseboxes,
+    })
   }
 
   ngOnInit() {
@@ -88,6 +102,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.offlineSub = this.network.onDisconnect().subscribe(() => {
       this.state.isOnline = false
     })
+
+    this.log.debug('initialized')
   }
 
   ngOnDestroy () {
@@ -105,6 +121,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
 
   // call logic for each slide
   onSlideChange () {
+    this.slideHistory.push(OtaSlides[this.currentSlide])
     switch (this.currentSlide) {
       case OtaSlides.Intro:
       case OtaSlides.Intro2:
@@ -124,7 +141,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         break
 
       default:
-        console.warn('unknown slide, please define its logic')
+        this.log.warn('unknown slide, please define its logic', { slide: this.currentSlide })
     }
   }
 
@@ -146,6 +163,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   async connectToSensebox (ssid: string) {
+    this.counts.connect++
     this.state.wifiSelection = 'connecting'
     try {
       await this.otaWifi.connectToSensebox(ssid)
@@ -155,6 +173,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     } catch (err) {
       this.state.wifiSelection = 'error'
       this.errorMsg = err.message
+      this.log.error('could not connect to wifi:', err.message)
     }
   }
 
@@ -194,26 +213,29 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         this.errorMsg = err.message
         this.state.wifiSelection = 'error'
         this.changedetect.detectChanges()
+        this.log.error('could not scan wifi:', err.message)
       }
     }
   }
 
   private async handleUpload () {
+    this.counts.upload++
     this.state.upload = 'uploading'
     try {
       const res = await this.otaWifi.uploadFirmware(this.compiledSketch)
-      console.log(JSON.stringify(res, null, 2))
+      this.log.debug(JSON.stringify(res, null, 2))
 
       this.state.upload = 'done'
       this.slides.lockSwipeToNext(false)
     } catch (err) {
       this.state.upload = 'error'
       this.errorMsg = err.message
+      this.log.error('could not upload sketch:', err.message)
     }
-
   }
 
   private async compileSketch () {
+    this.counts.compile++
     this.state.compilation = 'compiling'
     try {
       this.compiledSketch = await this.webcompiler.compile(this.sketch)
@@ -227,6 +249,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/\n/g, '<br/>')
+      this.log.error('could not compile sketch:', err.message)
     }
   }
 }

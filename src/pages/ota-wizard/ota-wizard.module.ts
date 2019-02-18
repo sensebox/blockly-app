@@ -5,6 +5,7 @@ import { Network } from '@ionic-native/network';
 import { OtaWifiProvider } from '../../providers/ota-wifi/ota-wifi';
 import { CompilerProvider } from '../../providers/compiler/compiler';
 import { TranslateModule } from '@ngx-translate/core';
+import { LoggingProvider } from '../../providers/logging/logging';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TranslateModule } from '@ngx-translate/core';
   providers: [
     Network,
     OtaWifiProvider,
-    CompilerProvider
+    CompilerProvider,
+    LoggingProvider,
   ]
 })
 export class OtaWizardPageModule {}
