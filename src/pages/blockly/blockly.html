@@ -18,7 +18,7 @@
     <button
       ion-fab
       large
-      color ="light"
+      color="light"
       [title]="'BLOCKLY.BTN_OTA' | translate"
       (click)="launchOtaWizard();"
     >
@@ -30,7 +30,7 @@
     <button
       ion-fab
       mini
-      color ="light"
+      color="light"
       [title]="'BLOCKLY.BTN_CODE' | translate"
       (click)="toggleView();"
     >
@@ -38,5 +38,5 @@
     </button>
   </ion-fab>
 
-  <iframe #blocklyFrame scrolling="no" src='assets/blockly.html'></iframe>
+  <iframe #blocklyFrame scrolling="no" [src]="blocklyUrl"></iframe>
 </ion-content>

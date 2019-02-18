@@ -27,12 +27,10 @@ export class openSenseApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
   ) {
+    this.translate.setDefaultLang(DEFAULT_LANG)
+    this.translate.use(this.translate.getBrowserLang()) // @TODO: check if this works on all platforms!
     platform.ready()
       .then(() => {
-        this.translate.setDefaultLang(DEFAULT_LANG)
-        this.translate.use(this.translate.getBrowserLang()) // @TODO: check if this works on all platforms!
-        // @TODO: also pass language to blockly (if possible?)
-
         if ((<any>window).cordova) {
           statusBar.overlaysWebView(false)
           statusBar.backgroundColorByHexString(COLORS.PRIMARY)
