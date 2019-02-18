@@ -10,6 +10,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { openSenseApp } from './app.component';
 import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
 import { BlocklyPageModule } from '../pages/blockly/blockly.module';
+import { StorageProvider } from '../providers/storage/storage';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
 // @TODO: we possibly could optimize this by using a static loader in combination with webpack:
@@ -44,6 +45,7 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    StorageProvider,
   ]
 })
 export class AppModule {}
