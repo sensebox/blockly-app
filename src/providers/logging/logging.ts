@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppVersion } from '@ionic-native/app-version/ngx';
 import { Platform } from 'ionic-angular';
 
-import { LOG_OPTIONS } from '../../constants';
+import { LOG_OPTIONS, APP_VERSION } from '../../constants';
 import { StorageProvider, SETTINGS } from '../storage/storage';
 import { TranslateService } from '@ngx-translate/core';
 
@@ -28,23 +27,18 @@ export class LoggingProvider {
   constructor(
     private http: HttpClient,
     private plt: Platform,
-    private version: AppVersion,
     private storage: StorageProvider,
     private translate: TranslateService,
   ) {
-    if ((<any>window).cordova) {
-      this.version.getPackageName()
-        .then(name => this.defaultFields.app = name)
-      this.version.getVersionNumber()
-        .then(version => this.defaultFields.appVersion = version)
-    }
-    this.defaultFields.platform = this.plt.platforms().join(' ')
-    this.defaultFields.platformVersion = this.plt.version().str
-    this.defaultFields.lang = translate.currentLang
+    const { defaultFields } = this
+    defaultFields.appVersion = APP_VERSION
+    defaultFields.platform = this.plt.platforms().join(' ')
+    defaultFields.platformVersion = this.plt.version().str
+    defaultFields.lang = translate.currentLang
   }
 
   createChild (component: string, defaultFields: object = {}) {
-    const child = new LoggingProvider(this.http, this.plt, this.version, this.storage, this.translate)
+    const child = new LoggingProvider(this.http, this.plt, this.storage, this.translate)
     Object.assign(child.defaultFields, defaultFields, { component })
     return child
   }
