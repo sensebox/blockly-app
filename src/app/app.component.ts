@@ -16,9 +16,29 @@ export class openSenseApp {
 
   rootPage:any = BlocklyPage;
 
-  pages: Array<{title: string, component: any}> = [
-    { title: 'MENU.BLOCKLY', component: 'BlocklyPage' },
-    { title: 'MENU.ABOUT', component: 'AboutPage' },
+  pages: Array<AppPage> = [
+    {
+      title: 'MENU.BLOCKLY',
+      icon: 'code',
+      component: 'BlocklyPage'
+    },
+    {
+      title: 'MENU.DOCS',
+      icon: 'book',
+      callback: () => {
+        window.open('https://sensebox.github.io/books-v2/blockly/' + this.translate.currentLang)
+      }
+    },
+    {
+      title: 'MENU.ABOUT',
+      icon: 'at',
+      component: 'AboutPage'
+    },
+    {
+      title: 'MENU.SETTINGS',
+      icon: 'settings',
+      component: 'SettingsPage'
+    },
   ];
 
   constructor(
@@ -40,9 +60,19 @@ export class openSenseApp {
       })
   }
 
-  openPage(page) {
+  openPage(page: AppPage) {
+    if (page.callback)
+      return page.callback()
+
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
   }
+}
+
+interface AppPage {
+  title: string,
+  icon: string,
+  component?: string,
+  callback?: () => any,
 }

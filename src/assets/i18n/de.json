@@ -2,7 +2,9 @@
   "MENU": {
     "TITLE": "Menü",
     "ABOUT": "Über",
-    "BLOCKLY": "Blockly"
+    "BLOCKLY": "Blockly",
+    "DOCS": "Dokumentation",
+    "SETTINGS": "Einstellungen"
   },
   "ABOUT": {
     "TITLE": "Über",
@@ -21,6 +23,13 @@
     "TITLE": "Blockly für senseBox",
     "BTN_CODE": "Quellcode Ansicht",
     "BTN_OTA": "OTA Programmierung"
+  },
+  "SETTINGS": {
+    "TITLE": "Einstellungen",
+    "LOG_OPTIN": {
+      "TITLE": "Sende uns automatisch Fehler-Berichte zu",
+      "TEXT": "Das hilft uns beim Beheben von Fehlern.<br/>Keine persönlichen Daten außer deinem Sketch werden übertragen."
+    }
   },
   "OTAWIZ": {
     "TITLE": "Over The Air Programmierung",

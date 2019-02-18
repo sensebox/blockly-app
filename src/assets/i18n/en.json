@@ -2,7 +2,9 @@
   "MENU": {
     "TITLE": "Menu",
     "ABOUT": "About",
-    "BLOCKLY": "Blockly"
+    "BLOCKLY": "Blockly",
+    "DOCS": "Documentation",
+    "SETTINGS": "Settings"
   },
   "ABOUT": {
     "TITLE": "About",
@@ -21,6 +23,13 @@
     "TITLE": "Blockly for senseBox",
     "BTN_CODE": "Code View",
     "BTN_OTA": "OTA Programmer"
+  },
+  "SETTINGS": {
+    "TITLE": "Settings",
+    "LOG_OPTIN": {
+      "TITLE": "Automatically send error reports to us",
+      "TEXT": "These reports help us in troubleshooting issues.<br/>No personal information is collected, except for your Sketch."
+    }
   },
   "OTAWIZ": {
     "TITLE": "Over The Air Programmer",
@@ -66,7 +75,7 @@
       "AUTO": {
         "TITLE": "Select your senseBox",
         "TEXT1": "All powered senseBoxes around you with OTA mode enabled are listed here.",
-        "TEXT2": "Please check the last digits of MAC-Adress on your WiFi Bee to identify your senseBox. You can find it printed on the bottom of the WiFi Bee.",
+        "TEXT2": "Please check the last digits of the MAC-Adress on your WiFi Bee to identify your senseBox. You can find it printed on the bottom of the WiFi Bee.",
         "TEXT3": "If you can't find your senseBox, please make sure that your WiFi Bee is mounted correctly, OTA mode is enabled and GPS is enabled on this device.",
         "AVAILABLE": "Available senseBox WiFis",
         "SCANNING": "searching...",
