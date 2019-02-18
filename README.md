@@ -11,7 +11,7 @@ It is based on Google's [Blockly](https://developers.google.com/blockly/) and Ca
 
 ## Development
 
-This is an Ionic 2 / Angular 5 application using Cordova Plugins for mobile-native functionality.
+This is an Ionic 3 / Angular 5 application using Cordova Plugins for mobile-native functionality.
 
 ### dev env setup
 For a basic web version, only Node.js 8+ is required.

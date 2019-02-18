@@ -10,6 +10,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { openSenseApp } from './app.component';
 import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
 import { BlocklyPageModule } from '../pages/blockly/blockly.module';
+import { LoggingProvider } from '../providers/logging/logging';
+import { AppVersion } from '@ionic-native/app-version/ngx';
 import { StorageProvider } from '../providers/storage/storage';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
@@ -45,6 +47,8 @@ export function createTranslateLoader(http: HttpClient) {
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AppVersion,
+    LoggingProvider,
     StorageProvider,
   ]
 })
