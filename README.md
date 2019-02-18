@@ -1,4 +1,5 @@
 # Blockly for senseBox app
+[![Build Status](https://travis-ci.org/sensebox/blockly-app.svg?branch=master)](https://travis-ci.org/sensebox/blockly-app)
 
 Blockly for senseBox is a visual programming editor for the senseBox:edu on mobile.
 It is based on Google's [Blockly](https://developers.google.com/blockly/) and Carlos Pereira Atencio's [Ardublockly](https://github.com/carlosperate/ardublockly), which has been forked.
