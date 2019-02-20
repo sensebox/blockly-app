@@ -26,7 +26,7 @@ export class openSenseApp {
       title: 'MENU.DOCS',
       icon: 'book',
       callback: () => {
-        window.open('https://sensebox.github.io/books-v2/blockly/' + this.translate.currentLang)
+        window.open(`https://sensebox.github.io/books-v2/blockly/${this.translate.currentLang}/`)
       }
     },
     {
@@ -48,7 +48,8 @@ export class openSenseApp {
     splashScreen: SplashScreen,
   ) {
     this.translate.setDefaultLang(DEFAULT_LANG)
-    this.translate.use(this.translate.getBrowserLang()) // @TODO: check if this works on all platforms!
+    this.translate.use(this.getPreferredLanguage())
+
     platform.ready()
       .then(() => {
         if ((<any>window).cordova) {
@@ -66,7 +67,14 @@ export class openSenseApp {
 
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    // this.nav.setRoot(page.component);
     this.nav.setRoot(page.component);
+  }
+
+  private getPreferredLanguage () {
+    const langsAvailable = this.translate.getLangs()
+    const lang = this.translate.getBrowserLang()
+    return langsAvailable.indexOf(lang) === -1 ? DEFAULT_LANG : lang
   }
 }
 
