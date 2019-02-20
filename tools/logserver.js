@@ -21,10 +21,7 @@ const handleLog = (req, res) => {
   req.on('end', () => {
     try {
       const msg = JSON.parse(body)
-      msg.logclient = {
-        ip: req.connection.remoteAddress,
-        ua: req.headers['user-agent']
-      }
+      msg.useragent = req.headers['user-agent']
       fileStream.write(JSON.stringify(msg))
       fileStream.write('\n')
 

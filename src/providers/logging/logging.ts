@@ -30,11 +30,12 @@ export class LoggingProvider {
     private storage: StorageProvider,
     private translate: TranslateService,
   ) {
-    const { defaultFields } = this
-    defaultFields.appVersion = APP_VERSION
-    defaultFields.platform = this.plt.platforms().join(' ')
-    defaultFields.platformVersion = this.plt.version().str
-    defaultFields.lang = translate.currentLang
+    if (!this.defaultFields.appVersion) {
+      this.defaultFields.appVersion = APP_VERSION
+      this.defaultFields.platform = this.plt.platforms().join(' ')
+      this.defaultFields.platformVersion = this.plt.version().str
+      this.defaultFields.lang = translate.currentLang
+    }
   }
 
   createChild (component: string, defaultFields: object = {}) {
@@ -82,7 +83,8 @@ export class LoggingProvider {
       logentry.msg = msg
 
     Object.assign(logentry, this.defaultFields, {
-      time: Date.now(),
+      time: new Date().toISOString(),
+      levelText: LogLevel[level],
       level,
     })
 
