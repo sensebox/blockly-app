@@ -320,24 +320,43 @@
       Ardublockly.init({ blocklyPath: './blockly' });
       SenseboxExtension.init();
 
-      window.addEventListener('message', function load(event) {
-        switch (event.data) {
+      /**
+       * message handler for the postMessage protocol with the iframe parent (ionic BlocklyPage).
+       */
+      window.addEventListener('message', function msgHandler (event) {
+        switch (event.data.type) {
           case 'getSketch':
             var code = Ardublockly.generateArduino();
-            event.source.postMessage({
-              type: 'sketch',
-              data: code,
-            }, event.origin)
+            event.source.postMessage({ type: 'sketch', data: code }, event.origin);
             break;
+
+          case 'getXml':
+            var xml = Ardublockly.generateXml();
+            event.source.postMessage({ type: 'xml', data: xml }, event.origin);
+            break;
+
+          case 'setXml':
+            var xml = Ardublockly.replaceBlocksfromXml(event.data.data);
+            break;
+
           case 'toggleView':
             document.getElementById('blocklyview').classList.toggle('hidden');
             document.querySelector('.blocklyToolboxDiv').classList.toggle('hidden');
             document.getElementById('codeview').classList.toggle('hidden');
             break;
+
           default:
-            console.warn(`postMessage type ${event.data} not implemented`)
+            event.source.postMessage({
+              type: 'log',
+              data: `postMessage type ${event.data.type} not implemented`,
+            }, event.origin);
         }
       });
+
+      // notify parent that we are ready to receive commands.
+      // @FIXME: this is not exactly correct, as the default sketch is still loading after this point!
+      parent.postMessage({ type: 'ready' }, '*')
+
     });
   </script>
 </body>
