@@ -1,0 +1,11 @@
+{
+    "categoryName": "Test blocks",
+    "description": "Test blocks to demonstrate the feature.",
+    "languages": ["en", "es"],
+    "toolboxName": "Test",
+    "toolbox": [
+        "<category>",
+        "  <block type=\"ardublockly_name_top\"></block>",
+        "</category>"
+    ]
+}

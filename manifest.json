@@ -1,0 +1,13 @@
+{
+  "name": "Blockly for senseBox",
+  "short_name": "Blockly for senseBox",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [{
+    "src": "assets/imgs/logo.png",
+    "sizes": "377x376",
+    "type": "image/png"
+  }],
+  "background_color": "#4e8ef7",
+  "theme_color": "#4e8ef7"
+}
