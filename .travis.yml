@@ -1,14 +1,22 @@
 language: android
-node_js:
-- "8"
 
-before_script:
-- npm install
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-27.0.3
+    - android-27
+
+before_install:
+- yes | sdkmanager "platforms;android-27"
+
+install:
+- nvm install 8
 - npm install -g ionic cordova
+- npm install
 
 script:
-- npm run build
-- npm run android:build
+- npm run android:build # implies web build in www/ dir
 
 deploy:
   # deploy web build to gh-pages branch

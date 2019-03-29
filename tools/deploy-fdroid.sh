@@ -4,7 +4,7 @@
 target=https://$GITHUB_TOKEN@github.com/sensebox/blockly-app.git
 branch=fdroid
 
-git clone --depth=1 -b $target $repo fdroid
+git clone --depth=1 -b $branch $target fdroid
 rm -rf fdroid/*
 mv -f platforms/android fdroid/
 cd fdroid
