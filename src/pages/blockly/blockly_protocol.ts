@@ -10,7 +10,16 @@ import { LoggingProvider } from '../../providers/logging/logging';
 export class BlocklyMessageProtocol {
   ready: Promise<void>
 
+  // defines the expected response type for each request type
+  private reqResPatterns: BlocklyReqPatterns = {
+    'getSketch': 'sketch',
+    'getXml': 'xml',
+    'setXml': null,
+    'toggleView': null,
+  }
+
   constructor (private blocklyFrame: ElementRef, private log: LoggingProvider) {
+    // set up event listeners for non-request log messages
     window.addEventListener('message', (ev: IframePostMessageEvent) => {
       if (ev.data.type === 'log')
         this.log.warn('log entry from blockly:', ev.data)
@@ -18,6 +27,7 @@ export class BlocklyMessageProtocol {
         this.log.debug(`received ${ev.data.type} message from blockly`, { message: ev.data })
     })
 
+    // resolve ready promise once the blocklyFrame is ready
     this.ready = new Promise(resolve => {
       window.addEventListener('message', (ev: IframePostMessageEvent) => {
         // @HACK @FIXME: timeout is required, as blockly resolves some async functions
@@ -25,13 +35,6 @@ export class BlocklyMessageProtocol {
         if (ev.data.type === 'ready') setTimeout(resolve, 300)
       })
     })
-  }
-
-  private reqResPatterns: BlocklyReqPatterns = {
-    'getSketch': 'sketch',
-    'getXml': 'xml',
-    'setXml': null,
-    'toggleView': null,
   }
 
   toggleView() { this.sendRequest({ type: 'toggleView' }) }

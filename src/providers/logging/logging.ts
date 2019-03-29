@@ -38,6 +38,8 @@ export class LoggingProvider {
     }
   }
 
+  // construct a new logger with a new component name and default fields,
+  // inheriting existing default fields
   createChild (component: string, defaultFields: object = {}) {
     const child = new LoggingProvider(this.http, this.plt, this.storage, this.translate)
     Object.assign(child.defaultFields, defaultFields, { component })
@@ -72,6 +74,7 @@ export class LoggingProvider {
     const logentry = { } as LogMessage
     let msg = ''
 
+    // fields can be strings, which are appended to the message; or objects, which are merged.
     for (const param of fields) {
       if (typeof param === 'object')
         Object.assign(logentry, param)
@@ -82,6 +85,7 @@ export class LoggingProvider {
     if (msg)
       logentry.msg = msg
 
+    // add the static and dynamic default fields
     Object.assign(logentry, this.defaultFields, {
       time: new Date().toISOString(),
       levelText: LogLevel[level],
