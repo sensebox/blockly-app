@@ -1,22 +1,28 @@
-language: node_js
+language: android
 node_js:
 - "8"
 
-branches:
-  only:
-  - master
-
 before_script:
 - npm install
+- npm install -g ionic cordova
 
 script:
 - npm run build
+- npm run android:build
 
 deploy:
-  provider: pages
-  skip-cleanup: true
-  github-token: $GITHUB_TOKEN 
-  keep-history: true
-  on:
-    tags: true
-  local_dir: www
+  # deploy web build to gh-pages branch
+  - provider: pages
+    skip-cleanup: true
+    github-token: $GITHUB_TOKEN
+    keep-history: true
+    #on:
+    #  tags: true
+    local_dir: www
+
+  # deploy android project for fdroid builds
+  - provider: script
+    script: bash tools/deploy-fdroid.sh
+    skip-cleanup: true
+    #on:
+    #  tags: true
