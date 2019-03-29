@@ -24,13 +24,13 @@ deploy:
     skip-cleanup: true
     github-token: $GITHUB_TOKEN
     keep-history: true
-    #on:
-    #  tags: true
+    on:
+      tags: true
     local_dir: www
 
   # deploy android project for fdroid builds
   - provider: script
     script: bash tools/deploy-fdroid.sh
     skip-cleanup: true
-    #on:
-    #  tags: true
+    on:
+      tags: true
