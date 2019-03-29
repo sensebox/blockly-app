@@ -58,7 +58,7 @@
       },
       "GO_ONLINE": {
         "TITLE": "Du bist offline.",
-        "TEXT": "Für das Kompilieren des Coes ist eine Internetverbindung nötig. Bitte stelle eine Verbindung her."
+        "TEXT": "Für das Kompilieren des Codes ist eine Internetverbindung nötig. Bitte stelle eine Verbindung her."
       },
       "DONE": {
         "TITLE": "Programm erfolgreich kompiliert."
@@ -70,7 +70,7 @@
     "WIFI": {
       "MANUAL": {
         "TITLE": "Verbindung zur senseBox herstellen",
-        "TEXT": "Deine senseBox sollte nun ein WiFi Netzwerk erstellt haben. Bitte verbinde dich mit diesem Netzwerk im im WiFi Menü deines Geräts."
+        "TEXT": "Deine senseBox sollte nun ein WiFi Netzwerk erstellt haben. Bitte verbinde dich mit diesem Netzwerk im WiFi Menü deines Geräts."
       },
       "AUTO": {
         "TITLE": "Wähle deine senseBox",
