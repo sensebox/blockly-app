@@ -8,6 +8,11 @@ export class StorageProvider {
   private cache: Map<string, any> = new Map()
 
   constructor () {
+    this.init()
+  }
+
+  init () {
+    // set up default values
     this.registerKey(SETTINGS, { logOptin: false })
     this.registerKey(LASTSKETCH, '')
   }
@@ -26,5 +31,11 @@ export class StorageProvider {
   set (key, value) {
     localStorage.setItem(key, JSON.stringify(value))
     this.cache[key] = value
+  }
+
+  reset () {
+    localStorage.clear()
+    this.cache = new Map()
+    this.init()
   }
 }

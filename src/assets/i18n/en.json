@@ -1,4 +1,5 @@
 {
+  "CANCEL": "Cancel",
   "MENU": {
     "TITLE": "Menu",
     "ABOUT": "About",
@@ -32,6 +33,10 @@
     "LOG_OPTIN": {
       "TITLE": "Automatically send error reports to us",
       "TEXT": "These reports help us in troubleshooting issues.<br/>No personal information is collected, except for your Sketch."
+    },
+    "RESET": {
+      "TITLE": "Reset App",
+      "TEXT": "This will reset your settings and delete your Sketches!"
     }
   },
   "OTAWIZ": {

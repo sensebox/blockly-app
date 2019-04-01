@@ -31,5 +31,13 @@
       </ion-label>
       <ion-toggle (ngModelChange)="onSettingsChange('logOptin', $event)" [ngModel]="settings.logOptin"></ion-toggle>
     </ion-item>
+
+    <button ion-item (click)="resetStorage()">
+      <ion-icon name="refresh" item-start></ion-icon>
+      <ion-label>
+        <h2 translate>SETTINGS.RESET.TITLE</h2>
+      </ion-label>
+    </button>
+
   </ion-list>
 </ion-content>
