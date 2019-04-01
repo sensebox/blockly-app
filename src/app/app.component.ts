@@ -6,6 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { COLORS, DEFAULT_LANG } from '../constants';
 import { BlocklyPage } from '../pages/blockly/blockly';
+import { StorageProvider, SETTINGS } from '../providers/storage/storage';
 
 @Component({
   templateUrl: 'app.html'
@@ -43,12 +44,16 @@ export class openSenseApp {
 
   constructor(
     public translate: TranslateService,
+    private storage: StorageProvider,
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
   ) {
+    this.translate.addLangs(['en', 'de']);
     this.translate.setDefaultLang(DEFAULT_LANG)
-    this.translate.use(this.getPreferredLanguage())
+    const lang = this.getPreferredLanguage()
+    this.translate.use(lang)
+    this.storage.get(SETTINGS).language = lang
 
     platform.ready()
       .then(() => {
@@ -73,7 +78,7 @@ export class openSenseApp {
 
   private getPreferredLanguage () {
     const langsAvailable = this.translate.getLangs()
-    const lang = this.translate.getBrowserLang()
+    const lang = this.storage.get(SETTINGS).language || this.translate.getBrowserLang()
     return langsAvailable.indexOf(lang) === -1 ? DEFAULT_LANG : lang
   }
 }

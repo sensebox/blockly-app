@@ -10,6 +10,20 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
+      <ion-icon name="text" item-start></ion-icon>
+      <ion-label>
+        <h2 style="color: black;" translate>SETTINGS.LANGUAGE.TITLE</h2>
+      </ion-label>
+      <ion-select
+        interface="popover"
+        (ngModelChange)="onSettingsChange('language', $event)"
+        [ngModel]="settings.language"
+      >
+        <ion-option *ngFor="let lang of translate.langs" value="{{lang}}">{{ lang }}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
       <ion-icon name="megaphone" item-start></ion-icon>
       <ion-label>
         <h2 translate>SETTINGS.LOG_OPTIN.TITLE</h2>

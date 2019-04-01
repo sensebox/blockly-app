@@ -26,6 +26,9 @@
   },
   "SETTINGS": {
     "TITLE": "Settings",
+    "LANGUAGE": {
+      "TITLE": "Language"
+    },
     "LOG_OPTIN": {
       "TITLE": "Automatically send error reports to us",
       "TEXT": "These reports help us in troubleshooting issues.<br/>No personal information is collected, except for your Sketch."

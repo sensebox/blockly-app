@@ -26,6 +26,9 @@
   },
   "SETTINGS": {
     "TITLE": "Einstellungen",
+    "LANGUAGE": {
+      "TITLE": "Sprache"
+    },
     "LOG_OPTIN": {
       "TITLE": "Sende uns automatisch Fehler-Berichte zu",
       "TEXT": "Das hilft uns beim Beheben von Fehlern.<br/>Keine persönlichen Daten außer deinem Sketch werden übertragen."
