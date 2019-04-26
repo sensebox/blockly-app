@@ -11,12 +11,17 @@ It is based on Google's [Blockly](https://developers.google.com/blockly/) and Ca
 - Android 7+ & Web-browser support. iOS support is upcoming!
 
 ## Development
-
 This is an Ionic 3 / Angular 5 application using Cordova Plugins for mobile-native functionality.
+
 
 ### dev env setup
 For a basic web version, only Node.js 8+ is required.
 For Android & iOS builds the respective platform tooling is required.
+
+This repo contains mandatory submodules; so you need to clone this repo via
+```sh
+git clone --recursive https://github.com/sensebox/blockly-app.git
+```
 
 To install npm dependencies run `npm install` once.
 
