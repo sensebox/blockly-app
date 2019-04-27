@@ -27,10 +27,3 @@ deploy:
     on:
       tags: true
     local_dir: www
-
-  # deploy android project for fdroid builds
-  - provider: script
-    script: bash tools/deploy-fdroid.sh
-    skip-cleanup: true
-    on:
-      tags: true
