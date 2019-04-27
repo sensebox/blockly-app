@@ -18,6 +18,8 @@ install:
 script:
 - npm run android:build # implies web build in www/ dir
 
+before_deploy: "cp platforms/android/app/build/outputs/apk/release/app-release-unsigned.apk sensebox_blockly_${TRAVIS_TAG}.apk"
+
 deploy:
   # deploy web build to gh-pages branch
   - provider: pages
@@ -27,3 +29,11 @@ deploy:
     on:
       tags: true
     local_dir: www
+
+  - provider: releases
+    api_key: $GITHUB_TOKEN
+    file:
+      - "sensebox_blockly_{TRAVIS_TAG}.apk"
+    skip_cleanup: true
+    on:
+      tags: true
