@@ -1,14 +1,21 @@
-# Blockly for senseBox app
-[![Build Status](https://travis-ci.org/sensebox/blockly-app.svg?branch=master)](https://travis-ci.org/sensebox/blockly-app)
+# Blockly for senseBox app [![Build Status](https://travis-ci.org/sensebox/blockly-app.svg?branch=master)][travis] [![Fdroid Badge](https://img.shields.io/f-droid/v/de.sensebox.blockly.svg)][fdroid] [![github releases](https://img.shields.io/github/release/sensebox/blockly-app.svg?logo=github)][releases]
 
 Blockly for senseBox is a visual programming editor for the senseBox:edu on mobile.
-It is based on Google's [Blockly](https://developers.google.com/blockly/) and Carlos Pereira Atencio's [Ardublockly](https://github.com/carlosperate/ardublockly), which has been forked.
+It is based on Google's [Blockly](https://developers.google.com/blockly/) and Carlos Pereira Atencio's [Ardublockly](https://github.com/carlosperate/ardublockly).
 
-## Features
+### Features
 - generate Arduino code with visual drag-and-drop blocks, with blocks for the senseBox platform.
 - online compiler for senseBox MCU
-- over the air programming via WiFi for senseBox MCU
-- Android 7+ & Web-browser support. iOS support is upcoming!
+- over the air programming via WiFi
+- Android 7+ & Web-browser support. (iOS support is upcoming)
+
+[<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" height="75" />][fdroid]
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" height="75" />][playstore]
+
+[travis]:     https://travis-ci.org/sensebox/blockly-app
+[releases]:   https://github.com/sensebox/blockly-app/releases
+[fdroid]:     https://fdroid.org/de/packages/de.sensebox.blockly/
+[playstore]:  https://play.google.com/store/apps/details?id=de.sensebox.blockly
 
 ## Development
 This is an Ionic 3 / Angular 5 application using Cordova Plugins for mobile-native functionality.
