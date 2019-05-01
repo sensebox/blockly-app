@@ -14,7 +14,7 @@ It is based on Google's [Blockly](https://developers.google.com/blockly/) and Ca
 
 [travis]:     https://travis-ci.org/sensebox/blockly-app
 [releases]:   https://github.com/sensebox/blockly-app/releases
-[fdroid]:     https://fdroid.org/de/packages/de.sensebox.blockly/
+[fdroid]:     https://f-droid.org/packages/de.sensebox.blockly/
 [playstore]:  https://play.google.com/store/apps/details?id=de.sensebox.blockly
 
 ## Development
