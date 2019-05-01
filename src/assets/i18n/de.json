@@ -31,7 +31,7 @@
       "TITLE": "Sprache"
     },
     "LOG_OPTIN": {
-      "TITLE": "Sende uns automatisch Fehlerberichte zu",
+      "TITLE": "Sende Fehlerberichte",
       "TEXT": "Das hilft uns beim Beheben von Fehlern.<br/>Keine persönlichen Daten außer deinem Sketch werden übertragen."
     },
     "RESET": {
