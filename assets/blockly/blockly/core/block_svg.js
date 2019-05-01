@@ -81,6 +81,9 @@ Blockly.BlockSvg = function(workspace, prototypeName, opt_id) {
   /** @type {boolean} */
   this.rendered = false;
 
+  /** @type {number} */
+  this.lastMoveUpdate = 0;
+
   Blockly.Tooltip.bindMouseEvents(this.svgPath_);
   Blockly.BlockSvg.superClass_.constructor.call(this,
       workspace, prototypeName, opt_id);
@@ -831,6 +834,20 @@ Blockly.BlockSvg.prototype.setDragging_ = function(adding) {
  * @private
  */
 Blockly.BlockSvg.prototype.onMouseMove_ = function(e) {
+  e.stopPropagation();
+
+  // Update only if the event was emitted recently, but at least every 30ms
+  // This avoids the drag-lag on slower devices in favor of less smooth movement.
+  var now = performance.now();
+  var eventStale = now - e.timeStamp > 10; // event is already too old
+  var updateDue = now - this.lastMoveUpdate > 33; // we should do updates with 30Hz
+  if (!updateDue && eventStale) {
+    return false;
+  }
+  this.lastMoveUpdate = now;
+
+  // var now = performance.now(); if (now - a.timeStamp > 10 && now - this.lastMoveUpdate < 20) { a.stopPropagation(); return false; } this.lastMoveUpdate = now;
+
   if (e.type == 'mousemove' && e.clientX <= 1 && e.clientY == 0 &&
       e.button == 0) {
     /* HACK:

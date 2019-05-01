@@ -1,4 +1,5 @@
 {
+  "CANCEL": "Abbrechen",
   "MENU": {
     "TITLE": "Menü",
     "ABOUT": "Über",
@@ -22,13 +23,20 @@
   "BLOCKLY": {
     "TITLE": "Blockly für senseBox",
     "BTN_CODE": "Quellcode Ansicht",
-    "BTN_OTA": "OTA Programmierung"
+    "BTN_OTA": "OTA Upload"
   },
   "SETTINGS": {
     "TITLE": "Einstellungen",
+    "LANGUAGE": {
+      "TITLE": "Sprache"
+    },
     "LOG_OPTIN": {
-      "TITLE": "Sende uns automatisch Fehler-Berichte zu",
+      "TITLE": "Sende Fehlerberichte",
       "TEXT": "Das hilft uns beim Beheben von Fehlern.<br/>Keine persönlichen Daten außer deinem Sketch werden übertragen."
+    },
+    "RESET": {
+      "TITLE": "App zurücksetzen",
+      "TEXT": "Dies setzt die Einstellungen zurück und löscht deine Sketche!"
     }
   },
   "OTAWIZ": {
