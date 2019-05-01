@@ -29,12 +29,10 @@ export class OtaWifiProvider {
       return WifiStrategy.Manual
     }
 
-    if (
-      this.platform.is('android') ||
-      this.platform.is('ios') && this.platform.version().major >= 11
-    ) {
+    // FIXME: iOS 11+ supposedly allows WiFi API queries (see WifiWizard2 docs),
+    // but testing in emulator gives "not supported". might be an emulator issue?
+    if (this.platform.is('android'))
       return WifiStrategy.Automatic
-    }
 
     return WifiStrategy.Manual
   }
@@ -83,7 +81,7 @@ export class OtaWifiProvider {
 }
 
 export enum WifiStrategy {
-  Automatic   = 'Automatic',   // android, iOS 11+
-  Manual      = 'Manual',      // older iOS
-  Unavailable = 'Unavailable', // browser
+  Automatic   = 'Automatic',   // android
+  Manual      = 'Manual',      // iOS, browser
+  Unavailable = 'Unavailable', // currently unused
 }
