@@ -47,20 +47,16 @@ export ANDROID_HOME=$ANDROID_SDK
 export PATH=$PATH:$ANDROID_SDK/emulator:$ANDROID_SDK/tools:$ANDROID_SDK/tools/bin:$ANDROID_SDK/platform-tools:$ANDROID_SDK/build-tools/28.0.3
 ```
 
-To create a signed release build, add a file `platform/android/release-signing.properties` following this template.
-You need a keystore with a valid signing key!
-
-```properties
-storeFile=../../reedu-android.keystore
-storeType=jks
-keyAlias=reedu-android
-keyPassword=xxxxxxxxxxxxxxxxxxxxxxxxx
-storePassword=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
 To build & deploy on an emulator or device use the `android:*` build commands defined in `package.json` (some only work on linux), for example:
 ```bash
 npm run android:dev # build debug build & deploy to connected device & restart app
+```
+
+###### release signing
+You need a keystore with a valid signing key!
+```
+zipalign -p 4 blockly-unsigned.apk blockly-aligned.apk 
+apksigner sign -ks reedu-android.keystore --in blockly-aligned.apk --out blockly-signed.apk
 ```
 
 ### updating blockly
