@@ -31,10 +31,10 @@ export class OtaWifiProvider {
 
     // FIXME: iOS 11+ supposedly allows WiFi API queries (see WifiWizard2 docs),
     // but testing in emulator gives "not supported". might be an emulator issue?
-    if (this.platform.is('android'))
-      return WifiStrategy.Automatic
+    // if (this.platform.is('android'))
+    return WifiStrategy.Automatic
 
-    return WifiStrategy.Manual
+    //return WifiStrategy.Manual
   }
 
   async findSenseboxes (filterSsids = false): Promise<string[]> {
