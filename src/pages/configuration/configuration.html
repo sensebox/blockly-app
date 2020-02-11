@@ -14,7 +14,24 @@
       <ion-col col-12 col-md-5>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>{{ 'CONFIG.TITLE' | translate }}</ion-card-title>
+            <ion-card-title>{{'CONFIG.WIFI' | translate}} </ion-card-title>
+          </ion-card-header>
+        <ion-card-content>
+          <ion-item>
+            <ion-label>SSID</ion-label>
+            <ion-input [(ngModel)]="SSID" placeholder="GIATSCHOOL-NET"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Password</ion-label>
+            <ion-input [(ngModel)]="pw" placeholder="********"></ion-input>
+          </ion-item>
+        </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-12 col-md-5>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>{{ 'CONFIG.IDS' | translate }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <ion-item>
