@@ -18,6 +18,9 @@ export class ConfigurationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  uploadStandardSketch(){
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad ConfigPage');
   }

@@ -14,29 +14,16 @@
       <ion-col col-12 col-md-5>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>{{ 'ABOUT.BLOCKLY.TITLE' | translate }}</ion-card-title>
+            <ion-card-title>{{ 'CONFIG.TITLE' | translate }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p [innerHTML]="'ABOUT.BLOCKLY.TEXT1' | translate"></p>
-            <p [innerHTML]="'ABOUT.BLOCKLY.TEXT2' | translate"></p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <ion-col col-12 col-md-5>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-title>{{ 'ABOUT.OPENSOURCE.TITLE' | translate }}</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p translate>ABOUT.OPENSOURCE.TEXT</p>
-            <ul>
-              <li><a href="https://github.com/sensebox/blockly-app">Source Code</a></li>
-              <li><a href="https://github.com/sensebox/blockly-app/issues">Issue Tracker</a></li>
-              <li><a href="https://forum.sensebox.de">Support Forum</a></li>
-              <li><a href="https://sensebox.de/en/">Website</a></li>
-            </ul>
-          </ion-card-content>
+            <button ion-item (click)="uploadStandardSketch()">
+              <ion-icon name="refresh" item-start></ion-icon>
+              <ion-label>
+                <h2 translate>CONFIG.BUTTON</h2>
+              </ion-label>
+            </button>
+                  </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>

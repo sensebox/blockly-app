@@ -97,5 +97,9 @@
       "DONE": "Done!",
       "ERROR": "Error!"
     }
+  },
+  "CONFIG":{
+    "TITLE":"Initial configuration",
+    "BUTTON":"Upload standard senseBox Sketch!"
   }
 }
