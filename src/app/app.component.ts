@@ -40,6 +40,11 @@ export class openSenseApp {
       icon: 'settings',
       component: 'SettingsPage'
     },
+    {
+      title: 'MENU.CONFIGURATION',
+      icon: 'settings',
+      component: 'ConfigurationPage'
+    },
   ];
 
   constructor(
