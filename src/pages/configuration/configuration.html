@@ -17,17 +17,40 @@
             <ion-card-title>{{ 'CONFIG.TITLE' | translate }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
+            <ion-item>
+              <ion-label>Temperature</ion-label>
+              <ion-input [(ngModel)]="temp" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Humidity</ion-label>
+              <ion-input [(ngModel)]="humi" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Lux</ion-label>
+              <ion-input [(ngModel)]="lux" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>UV</ion-label>
+              <ion-input [(ngModel)]="uv" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>PM10</ion-label>
+              <ion-input [(ngModel)]="pm10" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>PM25</ion-label>
+              <ion-input [(ngModel)]="pm25" placeholder="5c4f75e83580950019240779"></ion-input>
+            </ion-item>
             <button ion-item (click)="uploadStandardSketch()">
               <ion-icon name="refresh" item-start></ion-icon>
               <ion-label>
                 <h2 translate>CONFIG.BUTTON</h2>
               </ion-label>
             </button>
-                  </ion-card-content>
+              </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
-
     <ion-row align-items-center>
       <ion-col>
         <p class="hint" [innerHTML]="'ABOUT.HINT' | translate"></p>
