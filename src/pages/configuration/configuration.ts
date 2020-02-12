@@ -54,7 +54,7 @@ export class ConfigurationPage {
       var values = {
         SSID: this.ssid,
         PASSWORD:this.pw,
-        INGRESS_DOMAIN:"opensensemap.org",
+        INGRESS_DOMAIN:"ingress.opensensemap.org",
         SENSEBOX_ID:this.senseboxid,
         NUM_SENSORS:6,
         TEMPERSENSOR_ID:this.temp,
@@ -67,13 +67,13 @@ export class ConfigurationPage {
         PM25SENSOR_ID:this.pm25
       };
       sketchy  = this.applyTemplate(sketchy,values);
-      console.log(sketchy);
     })
 
     /**
      * Start OTA Wizard here but with the pre defined sketch here and not with the blockly sketch 
      * 
-     * */
+     ** 
+     */
     const sketch =  'void setup(){Serial.begin(9600);} void loop(){Serial.println("Working");}'
     this.navCtrl.push(OtaWizardPage, { sketchy })
   }
