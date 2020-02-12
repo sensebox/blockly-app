@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 
 /**
  * Generated class for the AboutPage page.
@@ -23,17 +24,18 @@ export class ConfigurationPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  async launchOtaWizard () {
+
+  }
+
   uploadStandardSketch(){
-    console.log(this.temp);
-    console.log(this.humi);
-    console.log(this.lux);
-    console.log(this.uv);
-    console.log(this.pm10);
-    console.log(this.pm25);
+
     /**
      * Start OTA Wizard here but with the pre defined sketch here and not with the blockly sketch 
      * 
      * */
+    const sketch =  'void setup(){Serial.begin(9600);} void loop(){Serial.println("Working");}'
+    this.navCtrl.push(OtaWizardPage, { sketch })
   }
 
   ionViewDidLoad() {
