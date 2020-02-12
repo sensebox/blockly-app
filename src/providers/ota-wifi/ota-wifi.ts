@@ -18,7 +18,8 @@ export class OtaWifiProvider {
   public strategy: WifiStrategy
 
   constructor(private platform: Platform, private http: HttpClient) {
-    this.strategy = this.selectStrategy()
+    this.strategy = WifiStrategy.Manual;
+    // this.strategy = this.selectStrategy()
   }
 
   private selectStrategy (): WifiStrategy {

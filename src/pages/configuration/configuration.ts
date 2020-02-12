@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { OtaWizardPage } from '../ota-wizard/ota-wizard';
-
 /**
  * Generated class for the AboutPage page.
  *
