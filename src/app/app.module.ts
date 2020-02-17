@@ -12,6 +12,7 @@ import { OtaWizardPageModule } from '../pages/ota-wizard/ota-wizard.module';
 import { BlocklyPageModule } from '../pages/blockly/blockly.module';
 import { LoggingProvider } from '../providers/logging/logging';
 import { StorageProvider } from '../providers/storage/storage';
+import { AddItemPage } from '../pages/add-item/add-item';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
 // @TODO: we possibly could optimize this by using a static loader in combination with webpack:
@@ -23,6 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     openSenseApp,
+    AddItemPage
   ],
   imports: [
     HttpClientModule,
@@ -41,6 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     openSenseApp,
+    AddItemPage
   ],
   providers: [
     StatusBar,

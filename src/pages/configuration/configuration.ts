@@ -1,7 +1,8 @@
 import { Component, } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 import { HttpClient } from '@angular/common/http';
+import { AddItemPage } from '../add-item/add-item';
 /**
  * Generated class for the AboutPage page.
  *
@@ -15,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'configuration.html',
 })
 export class ConfigurationPage {
+  public sensors=[];
   temp : string;
   humi : string;
   lux : string;
@@ -26,12 +28,9 @@ export class ConfigurationPage {
   pressure:string;
   rain:string;
   senseboxid:string;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private http:HttpClient) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private http:HttpClient,public modalCtrl:ModalController) {
   }
 
-  async launchOtaWizard () {
-
-  }
   applyTemplate(template, properties) {
     var returnValue = "";
 
@@ -42,44 +41,56 @@ export class ConfigurationPage {
         var fragmentSections = templateFragments[i].split("}@", 2);
         returnValue += properties[fragmentSections[0]];
         returnValue += fragmentSections[1];
-    }
+  }
 
     return returnValue;
 }
-  uploadStandardSketch(){
-    // possily add define statements here based on inputs given or checkboxes checked 
-    let sketchy = "#define HDC1080\n";
+   async uploadStandardSketch(){
+    var values = {
+      SSID: this.ssid,
+      PASSWORD:this.pw,
+      INGRESS_DOMAIN:"ingress.opensensemap.org",
+      SENSEBOX_ID:this.senseboxid,
+      NUM_SENSORS:6,
+      TEMPERSENSOR_ID:this.temp,
+      RELLUFSENSOR_ID:this.humi,
+      BELEUCSENSOR_ID:this.lux,
+      UVINTESENSOR_ID:this.uv,
+      LUFTDRSENOSR_ID:this.pressure,
+      REGENMSENSOR_ID:this.rain,
+      PM10SENSOR_ID:this.pm10,
+      PM25SENSOR_ID:this.pm25
+    };
     this.http.get("assets/templates/homev2Wifi.tpl",{responseType:"text"}).subscribe(data=>{
-      sketchy = sketchy+data;
-      var values = {
-        SSID: this.ssid,
-        PASSWORD:this.pw,
-        INGRESS_DOMAIN:"ingress.opensensemap.org",
-        SENSEBOX_ID:this.senseboxid,
-        NUM_SENSORS:6,
-        TEMPERSENSOR_ID:this.temp,
-        RELLUFSENSOR_ID:this.humi,
-        BELEUCSENSOR_ID:this.lux,
-        UVINTESENSOR_ID:this.uv,
-        LUFTDRSENOSR_ID:this.pressure,
-        REGENMSENSOR_ID:this.rain,
-        PM10SENSOR_ID:this.pm10,
-        PM25SENSOR_ID:this.pm25
-      };
-      sketchy  = this.applyTemplate(sketchy,values);
+      let sketch  = this.applyTemplate(data,values);
+      this.navCtrl.push(OtaWizardPage, { sketch })    
+    })
+  }
+
+  addSensor(){
+    console.log("adding sensor");
+    
+    let addModal = this.modalCtrl.create(AddItemPage);
+
+    addModal.onDidDismiss((sensor)=>{
+      if(sensor){
+        this.saveSensor(sensor);
+      }
     })
 
-    /**
-     * Start OTA Wizard here but with the pre defined sketch here and not with the blockly sketch 
-     * 
-     ** 
-     */
-    const sketch =  'void setup(){Serial.begin(9600);} void loop(){Serial.println("Working");}'
-    this.navCtrl.push(OtaWizardPage, { sketchy })
+    addModal.present();
+
+  }
+
+  saveSensor(sensor){
+    this.sensors.push(sensor);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ConfigPage');
+    this.sensors =[
+      {title:"Temperatur",type:"temp"},
+      {title:"Temperatur",type:"temp"}
+    ]
   }
 
 }
