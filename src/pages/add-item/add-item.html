@@ -13,8 +13,16 @@
   <ion-list>
 
     <ion-item>
-      <ion-label floating>Title</ion-label>
-      <ion-input type="text" [(ngModel)]="title"></ion-input>
+      <ion-label floating>Type</ion-label>
+      <ion-select [(ngModel)]="typ">
+        <ion-option value="HDC1080">HDC1080(Air temperature & relative humidity)</ion-option>
+        <ion-option value="BMP280">BMP280(Air pressure)</ion-option>
+        <ion-option value="TSL45315">TSL45315(Lux)</ion-option>
+        <ion-option value="VEML6070">VEML6070(UV)</ion-option>
+        <ion-option value="SMT50">SMT50</ion-option>
+        <ion-option value="SOUNDLEVELMETER">SOUNDLEVELMETER</ion-option>
+        <ion-option value="BME680">BME680</ion-option>
+      </ion-select>
     </ion-item>
 
     <ion-item>
@@ -24,7 +32,7 @@
 
 
     <ion-item>
-      <ion-label floating>senseor ID</ion-label>
+      <ion-label floating>Sensor ID</ion-label>
       <ion-input type="text" [(ngModel)]="id"></ion-input>
     </ion-item>
 

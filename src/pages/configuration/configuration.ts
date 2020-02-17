@@ -109,8 +109,7 @@ export class ConfigurationPage {
 
   ionViewDidLoad() {
     this.sensors =[
-      {title:"Temperatur",type:"temp",id:"09327523"},
-      {title:"rel. Luftfeuchte",type:"temp",id:"97309852345"}
+      {title:"Temperatur",type:"HDC1080",id:"09327523"},
     ]
   }
 
