@@ -41,13 +41,24 @@
                   <ion-input [(ngModel)]="senseboxid" placeholder="5c4f75e83580950019240779"></ion-input>
                 </ion-item>
               </ion-row>
+              <ion-row *ngIf="sensors.length===0">
+                <ion-col col-8>
+                  <ion-item>
+                    <ion-label>Add a sensor</ion-label>
+                  </ion-item>
+                  </ion-col>
+                  <ion-col col-2>
+                    <button ion-item (click)="addSensor()">
+                      <ion-icon name="add" item-start></ion-icon>
+                    </button>
+                  </ion-col>              </ion-row>
               <ion-row *ngFor="let sensor of sensors;let i=index;let last = last;let first=first" >
                 <ion-col col-8>
                   <ion-item (click)="viewSensor(sensor)">
-                    <ion-label>{{sensor.typ}}  {{sensor.id}}</ion-label>
+                    <ion-label>{{sensor.typ}}  <code>{{sensor.id}}</code></ion-label>
                   </ion-item>
                   </ion-col>
-                  <ion-col *ngIf="!first" col-2>
+                  <ion-col col-2>
                     <button ion-item (click)="removeSensor(sensor)">
                       <ion-icon name="remove" item-start></ion-icon>
                     </button>
