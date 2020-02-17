@@ -59,7 +59,9 @@ export class ConfigurationPage {
       switch (sensor.typ) {
         case "HDC1080":
           values["TEMPERSENSOR_ID"] = sensor.id
-          values["RELLUFSENSOR_ID"] = sensor.id2
+          break;
+        case "HDC1080_r":
+          values["RELLUFSENSOR_ID"] = sensor.id
           break;
         case "BMP280":
           values["LUFTDRSENSOR_ID"] = sensor.id
@@ -71,10 +73,10 @@ export class ConfigurationPage {
           values["UVINTESENSOR_ID"] = sensor.id
           break;
         case "SDS1001":
-          values["PM10SENSORID"] = sensor.id
-          values["PM25SENSOR_ID"] = sensor.id2
+          values["PM10SENSOR_ID"] = sensor.id
           break;
-      
+        case "SDS1001_r":
+          values["PM25SENSOR_ID"] = sensor.id
         default:
           break;
       }

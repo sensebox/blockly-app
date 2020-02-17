@@ -13,19 +13,20 @@
   <ion-list>
 
     <ion-item>
-      <ion-label floating>Typ</ion-label>
+      <ion-label floating>Phenomenon</ion-label>
       <ion-select [(ngModel)]="typ">
-        <ion-option value="HDC1080">HDC1080(Air temperature & relative humidity)</ion-option>
-        <ion-option value="BMP280">BMP280(Air pressure)</ion-option>
-        <ion-option value="TSL45315">TSL45315(Lux)</ion-option>
-        <ion-option value="VEML6070">VEML6070(UV)</ion-option>
-        <ion-option value="SMT50">SMT50</ion-option>
-        <ion-option value="SOUNDLEVELMETER">SOUNDLEVELMETER</ion-option>
-        <ion-option value="BME680">BME680</ion-option>
+        <ion-option value="HDC1080">Air temperature</ion-option>
+        <ion-option value="HDC1080_r">Relative humidity</ion-option>
+        <ion-option value="BMP280">Air pressure</ion-option>
+        <ion-option value="TSL45315">Lux</ion-option>
+        <ion-option value="SDS1001">Particulate Matter 10</ion-option>
+        <ion-option value="SDS1001_r">Particulate Matter 2.5</ion-option>
+        <ion-option value="SMT50">Soil moisture</ion-option>
+        <ion-option value="VEML6070">UV Intensity</ion-option>
+        <ion-option value="SOUNDLEVELMETER">Sound level</ion-option>
+        <ion-option value="BME680">Air quality</ion-option>
       </ion-select>
     </ion-item>
-
-
     <ion-item>
       <ion-label floating>Sensor ID</ion-label>
       <ion-input type="text" [(ngModel)]="id"></ion-input>
