@@ -14,7 +14,7 @@ import { IonicPage, NavController, ViewController } from 'ionic-angular';
   templateUrl: 'add-item.html',
 })
 export class AddItemPage {
-
+  
   title:string;
   typ:string;
   id:string;

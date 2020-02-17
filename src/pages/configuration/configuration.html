@@ -58,6 +58,12 @@
                     </button>
                   </ion-col>
             </ion-row>
+            <ion-row>
+              <ion-item>
+                <ion-label>Enable debug</ion-label>
+                <ion-checkbox [(ngModel)]="DEBUG_ENABLED"></ion-checkbox>
+              </ion-item>
+            </ion-row>
               <ion-row>
                 <button ion-item (click)="uploadStandardSketch()">
                   <ion-icon name="send" item-start></ion-icon>

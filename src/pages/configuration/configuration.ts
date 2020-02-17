@@ -18,16 +18,9 @@ import { SensorDetailPage } from '../sensor-detail/sensor-detail';
 })
 export class ConfigurationPage {
   public sensors = [];
-  temp: string;
-  humi: string;
-  lux: string;
-  uv: string;
-  pm10: string;
-  pm25: string;
-  ssid: string;
-  pw: string;
-  pressure: string;
-  rain: string;
+  ssid:string;
+  pw:string;
+  DEBUG_ENABLED:boolean;
   senseboxid: string;
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public modalCtrl: ModalController) {
   }
@@ -53,6 +46,7 @@ export class ConfigurationPage {
       INGRESS_DOMAIN: "ingress.opensensemap.org",
       SENSEBOX_ID: this.senseboxid,
       defineSensors: this.buildDefines(),
+      DEBUG_ENABLED:this.DEBUG_ENABLED?"#define ENABLE_DEBUG":"//#define ENABLE_DEBUG",
       NUM_SENSORS: this.sensors.length,
     };
     this.sensors.map((sensor)=>{
@@ -92,8 +86,10 @@ export class ConfigurationPage {
     this.sensors.map((sensor) => {
       defineString += "#define " + sensor.typ + "_CONNECTED\n"
     })
+    
     return defineString;
   }
+
   addSensor() {
     let addModal = this.modalCtrl.create(AddItemPage);
 
@@ -126,7 +122,7 @@ export class ConfigurationPage {
 
   ionViewDidLoad() {
     this.sensors = [
-      { typ: "HDC1080", id: "5bb610bf043f3f001b6a4c55" },
+      { typ: "HDC1080", id: "5ca1e336cbf9ae001a6f1d88" },
     ]
   }
 
