@@ -52,7 +52,7 @@ export class ConfigurationPage {
       PASSWORD:this.pw,
       INGRESS_DOMAIN:"ingress.opensensemap.org",
       SENSEBOX_ID:this.senseboxid,
-      NUM_SENSORS:6,
+      NUM_SENSORS:this.sensors.length,
       TEMPERSENSOR_ID:this.temp,
       RELLUFSENSOR_ID:this.humi,
       BELEUCSENSOR_ID:this.lux,
@@ -69,8 +69,6 @@ export class ConfigurationPage {
   }
 
   addSensor(){
-    console.log("adding sensor");
-    
     let addModal = this.modalCtrl.create(AddItemPage);
 
     addModal.onDidDismiss((sensor)=>{
@@ -85,6 +83,7 @@ export class ConfigurationPage {
 
   saveSensor(sensor){
     this.sensors.push(sensor);
+    // add define statements
   }
   
   viewSensor(sensor){
@@ -92,6 +91,12 @@ export class ConfigurationPage {
       sensor:sensor
     })
   }
+
+  removeSensor(sensor){
+    this.sensors = this.sensors.filter((sensorF)=>{
+      return sensor!=sensorF
+      })
+    }
 
   ionViewDidLoad() {
     this.sensors =[
