@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController} from 'ionic-angul
 import { OtaWizardPage } from '../ota-wizard/ota-wizard';
 import { HttpClient } from '@angular/common/http';
 import { AddItemPage } from '../add-item/add-item';
+import { SensorDetailPage } from '../sensor-detail/sensor-detail';
 /**
  * Generated class for the AboutPage page.
  *
@@ -85,11 +86,17 @@ export class ConfigurationPage {
   saveSensor(sensor){
     this.sensors.push(sensor);
   }
+  
+  viewSensor(sensor){
+    this.navCtrl.push(SensorDetailPage,{
+      sensor:sensor
+    })
+  }
 
   ionViewDidLoad() {
     this.sensors =[
-      {title:"Temperatur",type:"temp"},
-      {title:"Temperatur",type:"temp"}
+      {title:"Temperatur",type:"temp",id:"09327523"},
+      {title:"rel. Luftfeuchte",type:"temp",id:"97309852345"}
     ]
   }
 

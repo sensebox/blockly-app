@@ -41,33 +41,23 @@
                   <ion-input [(ngModel)]="senseboxid" placeholder="5c4f75e83580950019240779"></ion-input>
                 </ion-item>
               </ion-row>
-              <ion-row *ngFor="let sensor of sensors;let i=index;let last = last">
-                <ion-col col-10>
+              <ion-row *ngFor="let sensor of sensors;let i=index;let last = last;let first=first" (click)="viewSensor(sensor)">
+                <ion-col col-8>
                   <ion-item>
-                    <ion-label>{{sensor.title}}</ion-label>
-                    <ion-input [(ngModel)]="temp"></ion-input>
+                    <ion-label>{{sensor.title}}  {{sensor.id}}</ion-label>
                   </ion-item>
                   </ion-col>
+                  <ion-col *ngIf="!first" col-2>
+                    <button ion-item (click)="removeSensor()">
+                      <ion-icon name="remove" item-start></ion-icon>
+                    </button>
+                  </ion-col>  
                   <ion-col *ngIf="last" col-2>
                     <button ion-item (click)="addSensor()">
                       <ion-icon name="add" item-start></ion-icon>
                     </button>
                   </ion-col>
-              </ion-row>
-              <!-- <ion-row>
-                <ion-col col-10>
-                <ion-item>
-                  <ion-label>Temperature</ion-label>
-                  <ion-input [(ngModel)]="temp" placeholder="5c4f75e83580950019240779"></ion-input>      
-                </ion-item>    
-                </ion-col>
-                <ion-col col-2>
-                  <button ion-item (click)="addSensor()">
-                    <ion-icon (click)="addSensor()" name="add" item-start></ion-icon>
-                    <ion-label>Add sensor</ion-label>
-                  </button>
-                </ion-col>
-              </ion-row> -->
+            </ion-row>
               <ion-row>
                 <button ion-item (click)="uploadStandardSketch()">
                   <ion-icon name="refresh" item-start></ion-icon>
@@ -77,30 +67,6 @@
                 </button>
               </ion-row>
             </ion-grid>
-            <!-- <ion-item>
-              <ion-label>Humidity</ion-label>
-              <ion-input [(ngModel)]="humi" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Pressure</ion-label>
-              <ion-input [(ngModel)]="pressure" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>Lux</ion-label>
-              <ion-input [(ngModel)]="lux" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>UV</ion-label>
-              <ion-input [(ngModel)]="uv" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>PM10</ion-label>
-              <ion-input [(ngModel)]="pm10" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item>
-            <ion-item>
-              <ion-label>PM25</ion-label>
-              <ion-input [(ngModel)]="pm25" placeholder="5c4f75e83580950019240779"></ion-input>
-            </ion-item> -->
 
           </ion-card-content>
         </ion-card>

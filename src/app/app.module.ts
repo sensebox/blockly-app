@@ -13,6 +13,7 @@ import { BlocklyPageModule } from '../pages/blockly/blockly.module';
 import { LoggingProvider } from '../providers/logging/logging';
 import { StorageProvider } from '../providers/storage/storage';
 import { AddItemPage } from '../pages/add-item/add-item';
+import { SensorDetailPage } from '../pages/sensor-detail/sensor-detail';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
 // @TODO: we possibly could optimize this by using a static loader in combination with webpack:
@@ -24,7 +25,8 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     openSenseApp,
-    AddItemPage
+    AddItemPage,
+    SensorDetailPage
   ],
   imports: [
     HttpClientModule,
@@ -43,7 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
   bootstrap: [IonicApp],
   entryComponents: [
     openSenseApp,
-    AddItemPage
+    AddItemPage,
+    SensorDetailPage
   ],
   providers: [
     StatusBar,
