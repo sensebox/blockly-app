@@ -16,14 +16,13 @@ import { IonicPage, NavController, ViewController } from 'ionic-angular';
 export class AddItemPage {
 
   title:string;
-  type:string;
+  typ:string;
   id:string;
   constructor(public navCtrl: NavController, public view: ViewController) {
   }
   saveSensor(){
     let newSensor = {
-      title:this.title,
-      type:this.type,
+      typ:this.typ,
       id:this.id
     }
     this.view.dismiss(newSensor);

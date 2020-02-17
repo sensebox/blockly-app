@@ -44,7 +44,7 @@
               <ion-row *ngFor="let sensor of sensors;let i=index;let last = last;let first=first" >
                 <ion-col col-8>
                   <ion-item (click)="viewSensor(sensor)">
-                    <ion-label>{{sensor.title}}  {{sensor.id}}</ion-label>
+                    <ion-label>{{sensor.typ}}  {{sensor.id}}</ion-label>
                   </ion-item>
                   </ion-col>
                   <ion-col *ngIf="!first" col-2>
