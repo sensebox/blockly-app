@@ -62,7 +62,7 @@ const char SENSEBOX_ID[] PROGMEM = "@{SENSEBOX_ID}@";
 static const uint8_t NUM_SENSORS = @{NUM_SENSORS}@;
 
 // Connected sensors
-@{SENSORS|toDefineWithSuffixPrefixAndKey~,_CONNECTED,sensorType}@
+@{defineSensors}@
 
 // Sensor SENSOR_IDs
 // Temperatur

@@ -52,6 +52,7 @@ export class ConfigurationPage {
       PASSWORD:this.pw,
       INGRESS_DOMAIN:"ingress.opensensemap.org",
       SENSEBOX_ID:this.senseboxid,
+      defineSensors:this.buildDefines(),
       NUM_SENSORS:this.sensors.length,
       TEMPERSENSOR_ID:this.temp,
       RELLUFSENSOR_ID:this.humi,
@@ -61,13 +62,21 @@ export class ConfigurationPage {
       REGENMSENSOR_ID:this.rain,
       PM10SENSOR_ID:this.pm10,
       PM25SENSOR_ID:this.pm25
+      
     };
     this.http.get("assets/templates/homev2Wifi.tpl",{responseType:"text"}).subscribe(data=>{
       let sketch  = this.applyTemplate(data,values);
+      console.log(sketch)
       this.navCtrl.push(OtaWizardPage, { sketch })    
     })
   }
-
+  buildDefines(){
+    let defineString =""
+    this.sensors.map((sensor)=>{
+      defineString+="#define "+sensor.type+"_CONNECTED\n"
+    })
+    return defineString;
+  }
   addSensor(){
     let addModal = this.modalCtrl.create(AddItemPage);
 
