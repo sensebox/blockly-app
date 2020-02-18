@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid *ngIf="loading;else nonloading">
+   loading
+  </ion-grid>
+  <ng-template late #nonloading>
+    <ion-card>
+    <ion-grid>
+      <ion-row>
+        <ion-item>
+          <ion-label>userName</ion-label>
+          <ion-input placeholder="userName" [(ngModel)]="userName"></ion-input>
+        </ion-item> 
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <ion-label>Password</ion-label>
+          <ion-input placeholder="Password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-item>
+          <button full ion-button color="secondary" (click)="submitLogin()">Login</button> 
+        </ion-item>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+  </ng-template>
+</ion-content>
+

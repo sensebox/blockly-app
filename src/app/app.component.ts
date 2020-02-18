@@ -45,6 +45,11 @@ export class openSenseApp {
       icon: 'settings',
       component: 'ConfigurationPage'
     },
+    {
+      title: 'MENU.MYSENSEBOX',
+      icon: "settings",
+      component : 'LoginPage'
+    }
   ];
 
   constructor(
