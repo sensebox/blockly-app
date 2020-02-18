@@ -10,30 +10,37 @@
 
 <ion-content padding>
   <ion-grid *ngIf="loading;else nonloading">
-   loading
+    loading
   </ion-grid>
   <ng-template late #nonloading>
     <ion-card>
-    <ion-grid>
-      <ion-row>
-        <ion-item>
-          <ion-label>userName</ion-label>
-          <ion-input placeholder="userName" [(ngModel)]="userName"></ion-input>
-        </ion-item> 
-      </ion-row>
-      <ion-row>
-        <ion-item>
-          <ion-label>Password</ion-label>
-          <ion-input placeholder="Password" [(ngModel)]="password"></ion-input>
-        </ion-item>
-      </ion-row>
-      <ion-row>
-        <ion-item>
-          <button full ion-button color="secondary" (click)="submitLogin()">Login</button> 
-        </ion-item>
-      </ion-row>
-    </ion-grid>
-  </ion-card>
+      <ion-grid>
+        <ion-row>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="person"></ion-icon>
+            </ion-label>
+            <ion-input placeholder="userName" [(ngModel)]="userName"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item>
+            <ion-label>
+              <ion-icon name="lock"></ion-icon>
+            </ion-label>
+            <ion-input placeholder="Password" [(ngModel)]="password"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-col col-8>
+          </ion-col>
+          <ion-col col-4>
+            <ion-item>
+              <button full ion-button color="secondary" (click)="submitLogin()"><ion-icon name="send"></ion-icon>Login</button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
   </ng-template>
 </ion-content>
-

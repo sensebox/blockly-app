@@ -22,8 +22,8 @@ export class LoginPage {
 
   submitLogin(){
     this.loading = true;
-    
-    //this.navCtrl.push(MySenseBoxPage)
+    // make api call to login with the credentials 
+    this.navCtrl.push(MySenseBoxPage)
   }
 
   ionViewDidLoad() {
