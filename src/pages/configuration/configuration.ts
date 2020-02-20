@@ -44,10 +44,8 @@ export class ConfigurationPage {
     return returnValue;
   }
   async uploadStandardSketch() {
-   const sketch = await this.loginProvider.getUserSketch(this.token,this.box._id,this.ssid,this.pw)
-   console.log(sketch);
-  this.navCtrl.push(OtaWizardPage,{sketch})
-
+    const sketch = await this.loginProvider.getUserSketch(this.token,this.box._id,this.ssid,this.pw)
+    this.navCtrl.push(OtaWizardPage,{sketch})
   }
 
   addSensor() {
