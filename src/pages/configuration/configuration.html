@@ -22,7 +22,7 @@
               <ion-input [(ngModel)]="ssid" placeholder="GIATSCHOOL-NET"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Password</ion-label>
+              <ion-label>{{'Password'|translate}}</ion-label>
               <ion-input [(ngModel)]="pw" placeholder="********"></ion-input>
             </ion-item>
           </ion-card-content>
@@ -37,41 +37,19 @@
             <ion-grid>
               <ion-row>
                 <ion-item>
-                  <ion-label>senseBoxID</ion-label>
-                  <ion-input [(ngModel)]="senseboxid" placeholder="5c4f75e83580950019240779"></ion-input>
+                  <ion-label>{{box._id}}</ion-label>
                 </ion-item>
               </ion-row>
-              <ion-row *ngIf="sensors.length===0">
-                <ion-col col-8>
-                  <ion-item>
-                    <ion-label>Add a sensor</ion-label>
-                  </ion-item>
-                  </ion-col>
-                  <ion-col col-2>
-                    <button ion-item (click)="addSensor()">
-                      <ion-icon name="add" item-start></ion-icon>
-                    </button>
-                  </ion-col>              </ion-row>
-              <ion-row *ngFor="let sensor of sensors;let i=index;let last = last;let first=first" >
-                <ion-col col-8>
+              <ion-row *ngFor="let sensor of box.sensors" >
+                <ion-col col-12>
                   <ion-item (click)="viewSensor(sensor)">
-                    <ion-label>{{sensor.typ}}  <code>{{sensor.id}}</code></ion-label>
+                    <ion-label>{{sensor.sensorType}}  <code>{{sensor._id}}</code></ion-label>
                   </ion-item>
-                  </ion-col>
-                  <ion-col col-2>
-                    <button ion-item (click)="removeSensor(sensor)">
-                      <ion-icon name="remove" item-start></ion-icon>
-                    </button>
-                  </ion-col>  
-                  <ion-col *ngIf="last" col-2>
-                    <button ion-item (click)="addSensor()">
-                      <ion-icon name="add" item-start></ion-icon>
-                    </button>
                   </ion-col>
             </ion-row>
             <ion-row>
               <ion-item>
-                <ion-label>Enable debug</ion-label>
+                <ion-label>{{'CONFIG.DEBUG' | translate}}</ion-label>
                 <ion-checkbox [(ngModel)]="DEBUG_ENABLED"></ion-checkbox>
               </ion-item>
             </ion-row>

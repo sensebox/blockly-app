@@ -22,7 +22,7 @@
         </ion-card-header>
         <ion-card-content>
           <ion-row>
-            Exposure: {{box.exposure}}
+            {{'MYSENSEBOX.EXPOSURE' | translate}}: {{box.exposure}}
           </ion-row>
           <ion-row>
             Model: {{box.model}}
@@ -32,10 +32,10 @@
           </ion-row>
           <ion-row>
             <ion-col col-6>
-              <button class="actionButton" ion-button color="light"(click)="forwardShow(box)">Show</button>
+              <button class="actionButton" ion-button color="light"(click)="forwardShow(box)">{{'MYSENSEBOX.SHOW' | translate}}</button>
             </ion-col>
             <ion-col col-6>
-              <button class="actionButton" ion-button color="light" (click)="forwardSketch(box)">Sketch</button>
+              <button class="actionButton" ion-button color="light" (click)="forwardSketch(box)">{{'MYSENSEBOX.SKETCH' | translate}}</button>
             </ion-col>
           </ion-row>
         </ion-card-content>

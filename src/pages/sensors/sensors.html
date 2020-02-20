@@ -24,10 +24,10 @@
         </ion-card-header>
         <ion-card-content>
           <ion-row>
-            Typ:{{sensor.sensorType}}
+            {{'SENSORS.TYP'|translate}}:{{sensor.sensorType}}
           </ion-row>
           <ion-row>
-            Last measurement: {{sensor.lastMeasurement.value}}{{sensor.unit}} at {{sensor.lastMeasurement.createdAt}}
+            {{'SENSORS.MEASUREMENT' | translate}}: {{sensor.lastMeasurement.value}}{{sensor.unit}} at {{sensor.lastMeasurement.createdAt}}
           </ion-row>
           <ion-row>
             ID: <code>{{sensor._id}}</code>

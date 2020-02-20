@@ -22,6 +22,8 @@ export class ConfigurationPage {
   pw:string;
   DEBUG_ENABLED:boolean;
   senseboxid: string;
+
+  public box:Object = this.navParams.data 
   constructor(public navCtrl: NavController, public navParams: NavParams, private http: HttpClient, public modalCtrl: ModalController) {
   }
 
@@ -121,6 +123,7 @@ export class ConfigurationPage {
   }
 
   ionViewDidLoad() {
+    console.log(this.navParams)
     this.sensors = [
       { typ: "HDC1080", id: "5ca1e336cbf9ae001a6f1d88" },
     ]
