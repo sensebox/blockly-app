@@ -17,6 +17,7 @@ import { SensorDetailPage } from '../pages/sensor-detail/sensor-detail';
 import { MySenseBoxPage } from '../pages/my-sense-box/my-sense-box';
 import { LoginProvider } from '../providers/LoginProvider/LoginProvider';
 import { SensorsPage } from '../pages/sensors/sensors';
+import { ConfigurationPage } from '../pages/configuration/configuration';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
 // @TODO: we possibly could optimize this by using a static loader in combination with webpack:
@@ -31,7 +32,8 @@ export function createTranslateLoader(http: HttpClient) {
     AddItemPage,
     SensorDetailPage,
     MySenseBoxPage,
-    SensorsPage
+    SensorsPage,
+    ConfigurationPage
   ],
   imports: [
     HttpClientModule,
@@ -53,7 +55,9 @@ export function createTranslateLoader(http: HttpClient) {
     AddItemPage,
     SensorDetailPage,
     MySenseBoxPage,
-    SensorsPage
+    SensorsPage,
+    ConfigurationPage
+
 
   ],
   providers: [

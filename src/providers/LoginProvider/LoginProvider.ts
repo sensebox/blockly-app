@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { timeout } from 'rxjs/operators'
 const URL_login = 'https://api.opensensemap.org/users/sign-in';
 const URL_user = 'https://api.opensensemap.org/users/me/boxes';
+const URL_sketch = 'https://api.opensensemap.org/boxes/';
 
 // const URL = "http://compiler.snsbx.nroo.de"
 
@@ -52,6 +53,23 @@ export class LoginProvider {
                 })
                 .then((response:any)=>{
                     return response;
+                })
+  }
+
+  async getUserSketch(token:string,id:string):Promise<string>{
+      let URL_sketch_final = URL_sketch+id+"/script";
+      console.log(URL_sketch_final)
+      const headers = new HttpHeaders({'Authorization':"Bearer "+token,responseType:'text'})
+      return this.http.get(URL_sketch_final,{headers})
+                .pipe(timeout(30000))
+                .toPromise()
+                .catch(err=>{
+                    let msg = err.message;
+                    console.log(msg);
+                })
+                .then((response:any)=>{
+                    console.log(response);
+                    return response
                 })
   }
 }

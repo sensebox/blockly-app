@@ -35,7 +35,7 @@ export class LoginPage  {
     catch(err){
       console.log(err.message)
     }
-    this.navCtrl.push(MySenseBoxPage,this.boxes);
+    this.navCtrl.push(MySenseBoxPage,[this.boxes,this.token]);
   }
 
   ionViewDidLoad() {

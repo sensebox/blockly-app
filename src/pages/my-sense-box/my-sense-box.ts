@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginProvider} from "../../providers/LoginProvider/LoginProvider";
 import { SensorsPage } from '../sensors/sensors';
+import { ConfigurationPage } from '../configuration/configuration';
 /**
  * Generated class for the MySenseBoxPage page.
  *
@@ -15,8 +16,8 @@ import { SensorsPage } from '../sensors/sensors';
   templateUrl: 'my-sense-box.html',
 })
 export class MySenseBoxPage {
-  token:string;
-  public boxes:Array<any>;
+  public boxes:Array<Object> = this.navParams.data[0].data.boxes;
+  private token:string = this.navParams.data[1];
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private loginProvider: LoginProvider
@@ -26,18 +27,14 @@ export class MySenseBoxPage {
   forwardShow(box){
     this.navCtrl.push(SensorsPage,box)
   }
-
-  forwardEdit(box){
-
-  }
-
   forwardSketch(box){
+    // Call sketch 
+    // forward to config page 
+    this.navCtrl.push(ConfigurationPage,box)
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySenseBoxPage');
-    this.boxes = this.navParams.data.data.boxes
-    console.log(this.boxes);
  }
 
 }
