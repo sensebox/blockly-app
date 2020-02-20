@@ -46,7 +46,7 @@ export class ConfigurationPage {
   async uploadStandardSketch() {
    const sketch = await this.loginProvider.getUserSketch(this.token,this.box._id,this.ssid,this.pw)
    console.log(sketch);
-    this.navCtrl.push(OtaWizardPage,{sketch})
+  this.navCtrl.push(OtaWizardPage,{sketch})
 
   }
 
