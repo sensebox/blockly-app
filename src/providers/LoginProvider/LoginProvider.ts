@@ -41,7 +41,7 @@ export class LoginProvider {
       });
   };
 
-  async getUser(token:string):Promise<ArrayBuffer>{
+  async getUserBoxes(token:string):Promise<Object>{
       const headers = new HttpHeaders({'Authorization':"Bearer "+token})
       return this.http.get(URL_user,{headers})
                 .pipe(timeout(30000))

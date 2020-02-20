@@ -15,7 +15,7 @@ import {LoginProvider} from "../../providers/LoginProvider/LoginProvider";
 })
 export class MySenseBoxPage {
   token:string;
-  private user: ArrayBuffer=undefined;
+  public boxes:Array<any>;
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
      private loginProvider: LoginProvider
@@ -24,6 +24,8 @@ export class MySenseBoxPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySenseBoxPage');
-  console.log(this.navParams)  }
+    this.boxes = this.navParams.data.data.boxes
+    console.log(this.boxes);
+ }
 
 }

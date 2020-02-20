@@ -18,7 +18,7 @@ export class LoginPage  {
   userName: string;
   password: string;
   private token:string
-  private user:ArrayBuffer=undefined;
+  private boxes:Object;
   public loading=false;
   constructor(
     public navCtrl: NavController,
@@ -30,12 +30,12 @@ export class LoginPage  {
   private async submitLogin(form){
     try {
       this.token = await this.loginProvider.login("e_thie10@uni-muenster.de","Qxpxtexb1")
-      this.user = await this.loginProvider.getUser(this.token);
+      this.boxes = await this.loginProvider.getUserBoxes(this.token);
     }
     catch(err){
       console.log(err.message)
     }
-    this.navCtrl.push(MySenseBoxPage,this.user);
+    this.navCtrl.push(MySenseBoxPage,this.boxes);
   }
 
   ionViewDidLoad() {

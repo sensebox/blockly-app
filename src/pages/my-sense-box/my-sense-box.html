@@ -11,8 +11,29 @@
   </ion-navbar>
 
 </ion-header>
-
-
 <ion-content padding>
-
+  <ion-grid>
+    <ion-row *ngFor="let box of boxes">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            {{box.name}}
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            <ion-col col-4>
+              <button class="actionButton" ion-button color="light">Show</button>
+            </ion-col>
+            <ion-col col-4>
+              <button class="actionButton" ion-button color="light">Edit</button>
+            </ion-col>
+            <ion-col col-4>
+              <button class="actionButton" ion-button color="light">Sketch</button>
+            </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 </ion-content>
