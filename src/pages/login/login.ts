@@ -29,7 +29,7 @@ export class LoginPage  {
 
   private async submitLogin(form){
     try {
-      this.token = await this.loginProvider.login(form.values.email,form.values.password)
+      this.token = await this.loginProvider.login(form.value.email,form.value.password)
       this.boxes = await this.loginProvider.getUserBoxes(this.token);
     }
     catch(err){
