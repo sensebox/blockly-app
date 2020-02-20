@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'sensors.html',
 })
 export class SensorsPage {
-
+  public box:Object = this.navParams.data
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

@@ -7,12 +7,34 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>sensors</ion-title>
+    <ion-title>Sensors</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-grid>
+    <ion-row *ngFor="let sensor of box.sensors">
+      <ion-card>
+        <ion-card-header>
+          <ion-title>
+          {{sensor.title}}
+          </ion-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-row>
+            Typ:{{sensor.sensorType}}
+          </ion-row>
+          <ion-row>
+            Last measurement: {{sensor.lastMeasurement.value}}{{sensor.unit}} at {{sensor.lastMeasurement.createdAt}}
+          </ion-row>
+          <ion-row>
+            ID: <code>{{sensor._id}}</code>
+          </ion-row>  
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
 
+  </ion-grid>
 </ion-content>

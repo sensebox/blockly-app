@@ -22,14 +22,23 @@
         </ion-card-header>
         <ion-card-content>
           <ion-row>
+            Exposure: {{box.exposure}}
+          </ion-row>
+          <ion-row>
+            Model: {{box.model}}
+          </ion-row>
+          <ion-row>
+           ID: <code>{{box._id}}</code>
+          </ion-row>
+          <ion-row>
             <ion-col col-4>
-              <button class="actionButton" ion-button color="light">Show</button>
+              <button class="actionButton" ion-button color="light"(click)="forwardShow(box)">Show</button>
             </ion-col>
             <ion-col col-4>
-              <button class="actionButton" ion-button color="light">Edit</button>
+              <button class="actionButton" ion-button color="light" (click)="forwardEdit(box)">Edit</button>
             </ion-col>
             <ion-col col-4>
-              <button class="actionButton" ion-button color="light">Sketch</button>
+              <button class="actionButton" ion-button color="light" (click)="forwardSketch(box)">Sketch</button>
             </ion-col>
           </ion-row>
         </ion-card-content>

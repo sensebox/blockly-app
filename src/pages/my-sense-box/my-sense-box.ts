@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {LoginProvider} from "../../providers/LoginProvider/LoginProvider";
+import { SensorsPage } from '../sensors/sensors';
 /**
  * Generated class for the MySenseBoxPage page.
  *
@@ -20,6 +21,17 @@ export class MySenseBoxPage {
      public navParams: NavParams,
      private loginProvider: LoginProvider
      ) {
+  }
+
+  forwardShow(box){
+    this.navCtrl.push(SensorsPage,box)
+  }
+
+  forwardEdit(box){
+
+  }
+
+  forwardSketch(box){
   }
 
   ionViewDidLoad() {
