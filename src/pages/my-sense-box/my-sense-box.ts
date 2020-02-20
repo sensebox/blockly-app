@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import {LoginProvider} from "../../providers/LoginProvider/LoginProvider";
 /**
  * Generated class for the MySenseBoxPage page.
  *
@@ -14,12 +14,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'my-sense-box.html',
 })
 export class MySenseBoxPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  token:string;
+  private user: ArrayBuffer=undefined;
+  constructor(public navCtrl: NavController,
+     public navParams: NavParams,
+     private loginProvider: LoginProvider
+     ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MySenseBoxPage');
-  }
+  console.log(this.navParams)  }
 
 }

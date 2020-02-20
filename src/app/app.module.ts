@@ -15,6 +15,7 @@ import { StorageProvider } from '../providers/storage/storage';
 import { AddItemPage } from '../pages/add-item/add-item';
 import { SensorDetailPage } from '../pages/sensor-detail/sensor-detail';
 import { MySenseBoxPage } from '../pages/my-sense-box/my-sense-box';
+import { LoginProvider } from '../providers/LoginProvider/LoginProvider';
 
 // For AoT compilation (production builds) we need to have a factory for the loader of translation files.
 // @TODO: we possibly could optimize this by using a static loader in combination with webpack:
@@ -58,6 +59,7 @@ export function createTranslateLoader(http: HttpClient) {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     LoggingProvider,
     StorageProvider,
+    LoginProvider
   ]
 })
 export class AppModule {}
