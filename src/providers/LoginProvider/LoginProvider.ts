@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { timeout } from 'rxjs/operators'
 const URL_login = 'https://api.opensensemap.org/users/sign-in';
@@ -56,11 +56,15 @@ export class LoginProvider {
                 })
   }
 
-  async getUserSketch(token:string,id:string):Promise<string>{
+  async getUserSketch(token:string,id:string,ssid:string,password:string):Promise<string>{
       let URL_sketch_final = URL_sketch+id+"/script";
       console.log(URL_sketch_final)
       const headers = new HttpHeaders({'Authorization':"Bearer "+token,responseType:'text'})
-      return this.http.get(URL_sketch_final,{headers})
+      const params = new HttpParams({fromObject:{
+        ssid,
+        password
+      }})
+      return this.http.get(URL_sketch_final,{headers,params})
                 .pipe(timeout(30000))
                 .toPromise()
                 .catch(err=>{

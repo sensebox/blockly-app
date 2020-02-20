@@ -30,7 +30,7 @@ export class MySenseBoxPage {
   forwardSketch(box){
     // Call sketch 
     // forward to config page 
-    this.navCtrl.push(ConfigurationPage,box)
+    this.navCtrl.push(ConfigurationPage,[box,this.token])
   }
 
   ionViewDidLoad() {
