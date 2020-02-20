@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { SensorDetailPage } from '../sensor-detail/sensor-detail';
 
 /**
  * Generated class for the SensorsPage page.
@@ -18,6 +19,9 @@ export class SensorsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  viewSensor(sensor){
+    this.navCtrl.push(SensorDetailPage,{sensor:sensor})
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad SensorsPage');
   }

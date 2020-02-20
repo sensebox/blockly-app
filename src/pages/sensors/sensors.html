@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-grid>
     <ion-row *ngFor="let sensor of box.sensors">
-      <ion-card>
+      <ion-card (click)="viewSensor(sensor)">
         <ion-card-header>
           <ion-title>
           {{sensor.title}}
