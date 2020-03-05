@@ -32,6 +32,9 @@
               <ion-input name="password" type="password" placeholder="Password" ngModel required></ion-input>
             </ion-item>
           </ion-row>
+          <ion-row class="errorMessage" *ngIf="errorInput">
+             {{'LOGIN.ERRORINPUT' | translate}}
+          </ion-row>
           <ion-row>
             <ion-col col-8>
             </ion-col>

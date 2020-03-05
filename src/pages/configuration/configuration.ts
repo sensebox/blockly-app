@@ -17,7 +17,10 @@ import { LoginProvider } from "../../providers/LoginProvider/LoginProvider"
   selector: 'page-configuration',
   templateUrl: 'configuration.html',
 })
+
+
 export class ConfigurationPage {
+  
   public sensors = [];
   ssid:string;
   pw:string;
@@ -44,7 +47,7 @@ export class ConfigurationPage {
     return returnValue;
   }
   async uploadStandardSketch() {
-    const sketch = await this.loginProvider.getUserSketch(this.token,this.box._id,this.ssid,this.pw)
+    const sketch = await this.loginProvider.getUserSketch(this.token,this.box['_id'],this.ssid,this.pw)
     this.navCtrl.push(OtaWizardPage,{sketch})
   }
 

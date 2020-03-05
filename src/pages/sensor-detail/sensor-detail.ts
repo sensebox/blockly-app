@@ -15,18 +15,13 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SensorDetailPage {
 
-  title;
-  type;
-  id;
-
+  public sensor:Object=this.navParams.data.sensor
   constructor(public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SensorDetailPage');
-    this.title=this.navParams.get('sensor').title;
-    this.type = this.navParams.get('sensor').type;
-    this.id = this.navParams.get('sensor').id;
+    console.log(this.navParams.data.sensor)
   }
 
 }

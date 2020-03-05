@@ -57,8 +57,6 @@ export function createTranslateLoader(http: HttpClient) {
     MySenseBoxPage,
     SensorsPage,
     ConfigurationPage
-
-
   ],
   providers: [
     StatusBar,

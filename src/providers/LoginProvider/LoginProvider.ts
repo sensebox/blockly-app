@@ -60,12 +60,7 @@ export class LoginProvider {
       let URL_sketch_final = URL_sketch+id+"/script";
       const headers = new HttpHeaders({'Authorization':"Bearer "+token})
       const params = new HttpParams({fromObject:{ssid,password}})
-      const options = {
-        headers,
-        params,
-        'responseType':'text'
-      }
-      return this.http.get(URL_sketch_final,options)
+      return this.http.get(URL_sketch_final,{headers,params,responseType:'text'})
                 .pipe(timeout(30000))
                 .toPromise()
                 .catch(err=>{

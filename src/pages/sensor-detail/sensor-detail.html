@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar color="secondary">
     <ion-title>
-      {{title}}
+      {{sensor.title}}
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -9,8 +9,16 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
-     Type: {{type}}<br>
-     ID: {{id}}
+      <ul>
+        <li>{{sensor.title}}</li>
+        <li>{{sensor.unit}}</li>
+        <li>{{sensor.sensorType}}</li>
+        <li>{{sensor.icon}}</li>
+        <li>{{sensor._id}}</li>
+        <li>{{sensor.lastMeasurement.value}}</li>
+        <li>{{sensor.lastMeasurement.createdAt}}</li>
+      </ul>
     </ion-card-content>
+
   </ion-card>
 </ion-content>

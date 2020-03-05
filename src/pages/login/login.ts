@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {MySenseBoxPage} from "../my-sense-box/my-sense-box"
+import { MySenseBoxPage } from "../my-sense-box/my-sense-box"
 import { LoginProvider } from "../../providers/LoginProvider/LoginProvider"
 /**
  * Generated class for the LoginPage page.
@@ -14,32 +14,40 @@ import { LoginProvider } from "../../providers/LoginProvider/LoginProvider"
   selector: 'page-login',
   templateUrl: 'login.html',
 })
-export class LoginPage  {
+export class LoginPage {
   userName: string;
   password: string;
-  private token:string
-  private boxes:Object;
-  public loading=false;
+  private token: string
+  private boxes: Object;
+  public loading = false;
+  public errorInput = false;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private loginProvider: LoginProvider
-     ) {
+  ) {
   }
 
-  private async submitLogin(form){
-    try {
-      this.token = await this.loginProvider.login(form.value.email,form.value.password)
-      this.boxes = await this.loginProvider.getUserBoxes(this.token);
+  private async submitLogin(form) {
+    if (form.value.email && form.value.password) {
+      try {
+        this.token = await this.loginProvider.login(form.value.email, form.value.password)
+        this.boxes = await this.loginProvider.getUserBoxes(this.token);
+      }
+      catch (err) {
+        console.log(err.message)
+      }
+      this.navCtrl.push(MySenseBoxPage, [this.boxes, this.token]);
     }
-    catch(err){
-      console.log(err.message)
+    else {
+      this.errorInput = true;
     }
-    this.navCtrl.push(MySenseBoxPage,[this.boxes,this.token]);
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+
   }
 
 }
