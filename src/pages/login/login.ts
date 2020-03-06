@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { MySenseBoxPage } from "../my-sense-box/my-sense-box"
 import { LoginProvider } from "../../providers/LoginProvider/LoginProvider"
+
 /**
  * Generated class for the LoginPage page.
  *
@@ -25,11 +26,25 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private loginProvider: LoginProvider
+    private loginProvider: LoginProvider,
+    public loadingController: LoadingController
   ) {
   }
 
+  async presentLoading(){
+    const loading = await this.loadingController.create({
+      content: 'Please wait...',
+      duration: 2000
+    })
+
+    loading.present();
+  }
+
   private async submitLogin(form) {
+    const loading = await this.loadingController.create({
+      content: 'Logging in...'
+    })
+    loading.present();
     if (form.value.email && form.value.password) {
       try {
         this.token = await this.loginProvider.login(form.value.email, form.value.password)
@@ -38,7 +53,8 @@ export class LoginPage {
       catch (err) {
         console.log(err.message)
       }
-      this.navCtrl.push(MySenseBoxPage, [this.boxes, this.token]);
+     loading.dismiss();
+     this.navCtrl.push(MySenseBoxPage, [this.boxes, this.token]);
     }
     else {
       this.errorInput = true;
