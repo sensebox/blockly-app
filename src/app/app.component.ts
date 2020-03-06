@@ -42,7 +42,7 @@ export class openSenseApp {
     },
     {
       title: 'MENU.MYSENSEBOX',
-      icon: "settings",
+      icon: "person",
       component : 'LoginPage'
     }
   ];

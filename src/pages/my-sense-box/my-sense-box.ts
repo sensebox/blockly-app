@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {LoginProvider} from "../../providers/LoginProvider/LoginProvider";
 import { SensorsPage } from '../sensors/sensors';
 import { ConfigurationPage } from '../configuration/configuration';
 /**
@@ -20,7 +19,6 @@ export class MySenseBoxPage {
   private token:string = this.navParams.data[1];
   constructor(public navCtrl: NavController,
      public navParams: NavParams,
-     private loginProvider: LoginProvider
      ) {
   }
 
