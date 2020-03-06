@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, ModalController } from 'ionic-angular';
 import { MySenseBoxPage } from "../my-sense-box/my-sense-box"
 import { LoginProvider } from "../../providers/LoginProvider/LoginProvider"
+import { ErrorPage } from '../error/error';
 
 /**
  * Generated class for the LoginPage page.
@@ -21,13 +22,15 @@ export class LoginPage {
   private token: string
   private boxes: Object;
   public loading = false;
+  public error = false;
   public errorInput = false;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private loginProvider: LoginProvider,
-    public loadingController: LoadingController
+    public loadingController: LoadingController,
+    public modalCtrl : ModalController
   ) {
   }
 
@@ -49,18 +52,29 @@ export class LoginPage {
       try {
         this.token = await this.loginProvider.login(form.value.email, form.value.password)
         this.boxes = await this.loginProvider.getUserBoxes(this.token);
+        this.navCtrl.push(MySenseBoxPage, [this.boxes, this.token]);
+
       }
       catch (err) {
-        console.log(err.message)
+        console.log(err)
+        this.showModal(err);
       }
      loading.dismiss();
-     this.navCtrl.push(MySenseBoxPage, [this.boxes, this.token]);
     }
     else {
       this.errorInput = true;
     }
   }
 
+  showModal(message){
+    let modal = this.modalCtrl.create(ErrorPage,message);
+
+    modal.onDidDismiss(()=>{
+
+    })
+
+    modal.present();
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
 

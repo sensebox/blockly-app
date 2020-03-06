@@ -1,0 +1,35 @@
+<!--
+  Generated template for the ErrorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> Error ({{error.message}})</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      There was an error when trying to login. The error code is:<code>{{error.message}}</code>.
+    </ion-row>
+    <ion-row>
+      <p>      {{errorMessages[error.message]}}      </p>
+    </ion-row>
+    <ion-row>
+      <ion-col col-8>
+      </ion-col>
+      <ion-col col-4>
+        <ion-item>
+          <button full ion-button (click)="dismissModal()" color="secondary">
+            Okay
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

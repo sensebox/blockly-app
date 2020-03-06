@@ -19,21 +19,11 @@ export class LoginProvider {
       .pipe(timeout(30000))
       .toPromise()
       .catch(err => {
-        let msg = err.message
+        console.log(err);
+        let msg = err.status
         if (err.name === 'TimeoutError')
           msg = 'unable to contact api. are you online?'
 
-        try {
-          // attempt to extract the compilation error message and clean it up
-          console.error(err)
-          msg = JSON.parse(err.error.message)
-          if (msg.process) {
-            msg = `compilation error: ${msg.process.substr(msg.process.indexOf(' '))}`
-            msg = msg.substr(0, msg.indexOf('^'))
-          }
-        } catch (err2) {
-          console.error(err2)
-        }
         throw Error(msg)
       })
       // download the resulting sketch binary
