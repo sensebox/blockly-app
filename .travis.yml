@@ -11,7 +11,7 @@ before_install:
 - yes | sdkmanager "platforms;android-27" # accept android licenses
 
 install:
-- nvm install 6 # build with nodejs 6, as this is what FDroid uses (debian stretch backports)
+- nvm install 12
 - npm install -g ionic cordova
 - npm install
 
