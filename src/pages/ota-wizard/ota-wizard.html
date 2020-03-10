@@ -42,16 +42,17 @@
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <h2 translate>OTAWIZ.OTAMODE.TITLE</h2>
+            <img class="tutorial_gif" src="../../assets/imgs/ota_modus.gif" />
             <p [innerHTML]="'OTAWIZ.OTAMODE.TEXT' | translate"></p>
-            <p translate>OTAWIZ.OTAMODE.STEPS</p>
+
+          </ion-col>
+
+          <ion-col col-12 col-md-6>
             <ol style="text-align: left">
               <li [innerHTML]="'OTAWIZ.OTAMODE.STEP1' | translate"></li>
               <li [innerHTML]="'OTAWIZ.OTAMODE.STEP2' | translate"></li>
               <li [innerHTML]="'OTAWIZ.OTAMODE.STEP3' | translate"></li>
             </ol>
-          </ion-col>
-
-          <ion-col col-12 col-md-6>
             <!-- @TODO: diagram! -->
             <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
               {{ 'OTAWIZ.BTN_NEXT' | translate }}
@@ -93,14 +94,21 @@
     <ion-slide id="wifi-slide">
       <ion-grid>
         <div id="wifi-manual" *ngIf="state.wifiSelection == 'manual'">
-          <h2 translate>OTAWIZ.WIFI.MANUAL.TITLE</h2>
-          <p translate>OTAWIZ.WIFI.MANUAL.TEXT</p>
-          <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-            {{ 'OTAWIZ.BTN_NEXT' | translate }}
-            <ion-icon name="arrow-forward"></ion-icon>
-          </button>
+          <ion-row align-items-center>
+            <ion-col col-12 col-md-6>
+              <h2 translate>OTAWIZ.WIFI.MANUAL.TITLE</h2>
+            
+              <img src="../../assets/imgs/wifiselection.gif" class="tutorial_gif"/>
+              <p translate>OTAWIZ.WIFI.MANUAL.TEXT</p>
+            </ion-col>
+            <ion-col col-12 col-md-6>
+              <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+                {{ 'OTAWIZ.BTN_NEXT' | translate }}
+                <ion-icon name="arrow-forward"></ion-icon>
+              </button>
+            </ion-col>
+          </ion-row>
         </div>
-
         <ion-row id="wifi-automatic" *ngIf="state.wifiSelection != 'manual'">
           <ion-col col-12 col-md-6>
             <ion-icon class="hidden-xs hidden-sm" name="wifi" style="font-size: 160px"></ion-icon>

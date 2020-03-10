@@ -5,6 +5,11 @@ page-ota-wizard {
     background: map-get($colors, primary);
   }
 
+  .tutorial_gif {
+    border-radius: 25px;
+    box-shadow: 10px 10px 8px #888888;
+    }
+
   ion-slide {
     h4 {
       margin-bottom: 40px;
