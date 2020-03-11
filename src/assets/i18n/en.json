@@ -21,6 +21,9 @@
     },
     "HINT": "<em>Hint:</em> A <a href=\"https://blockly.sensebox.de\">web version of Blockly for senseBox</a> is available as well!"
   },
+  "LOGIN":{
+    "LOADING":"Logging in...",
+    },
   "BLOCKLY": {
     "TITLE": "Blockly for senseBox",
     "BTN_CODE": "Code View",
@@ -89,7 +92,7 @@
     "WIFI": {
       "MANUAL": {
         "TITLE": "Connect to your senseBox",
-        "TEXT": "Your senseBox should have created a WiFi network. Because we can not do this automatically on your platform, please connect to it manually."
+        "TEXT": "Your senseBox should have created a WiFi network. Open your WiFi Settings and connect to the newly opened network. After you have established a connection return to the app."
       },
       "AUTO": {
         "TITLE": "Select your senseBox",

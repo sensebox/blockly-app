@@ -30,13 +30,16 @@
     "WIFI":"WiFi Einstellungen",
     "IDS":"senseBox und Sensor ID's",
     "DEBUG":"Debugging einschalten",
-    "BTN_UPLOAD":"Sketch hochladen!"
+    "BUTTON":"Sketch hochladen!"
   },
   "MYSENSEBOX":{
     "TITLE":"Meine senseBox",
     "SHOW":"Zeige Sensoren",
     "SKETCH":"Sketch hochladen",
     "EXPOSURE":"Position"
+  },
+  "LOGIN":{
+    "LOADING":"Einloggen..."
   },
   "SENSORS":{
     "TYP":"Typ",
@@ -95,7 +98,7 @@
     "WIFI": {
       "MANUAL": {
         "TITLE": "Verbindung zur senseBox herstellen",
-        "TEXT": "Deine senseBox sollte nun ein WiFi Netzwerk erstellt haben. Bitte verbinde dich mit diesem Netzwerk im WiFi Menü deines Geräts."
+        "TEXT": "Deine senseBox sollte nun ein WiFi Netzwerk erstellt haben. Öffne die WiFi Einstellungen deines Gerätes und verbinde dich mit dem Netzwerk der senseBox. Nachdem du eine Verbindung aufgebaut hast komme zur App zurück."
       },
       "AUTO": {
         "TITLE": "Wähle deine senseBox",
