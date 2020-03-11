@@ -24,6 +24,11 @@ export class openSenseApp {
       component: 'BlocklyPage'
     },
     {
+      title: 'MENU.MYSENSEBOX',
+      icon: "person",
+      component : 'LoginPage'
+    },
+    {
       title: 'MENU.DOCS',
       icon: 'book',
       callback: () => {
@@ -39,11 +44,6 @@ export class openSenseApp {
       title: 'MENU.SETTINGS',
       icon: 'settings',
       component: 'SettingsPage'
-    },
-    {
-      title: 'MENU.MYSENSEBOX',
-      icon: "person",
-      component : 'LoginPage'
     }
   ];
 

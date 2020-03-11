@@ -5,7 +5,8 @@
     "ABOUT": "Über",
     "BLOCKLY": "Blockly",
     "DOCS": "Dokumentation",
-    "SETTINGS": "Einstellungen"
+    "SETTINGS": "Einstellungen",
+    "MYSENSEBOX":"Meine senseBox"
   },
   "ABOUT": {
     "TITLE": "Über",
@@ -24,6 +25,22 @@
     "TITLE": "Blockly für senseBox",
     "BTN_CODE": "Quellcode Ansicht",
     "BTN_OTA": "OTA Upload"
+  },
+  "CONFIG":{
+    "WIFI":"WiFi Einstellungen",
+    "IDS":"senseBox und Sensor ID's",
+    "DEBUG":"Debugging einschalten",
+    "BTN_UPLOAD":"Sketch hochladen!"
+  },
+  "MYSENSEBOX":{
+    "TITLE":"Meine senseBox",
+    "SHOW":"Zeige Sensoren",
+    "SKETCH":"Sketch hochladen",
+    "EXPOSURE":"Position"
+  },
+  "SENSORS":{
+    "TYP":"Typ",
+    "MEASUREMENT":"Letzte Messung"
   },
   "SETTINGS": {
     "TITLE": "Einstellungen",

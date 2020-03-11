@@ -5,7 +5,8 @@
     "ABOUT": "About",
     "BLOCKLY": "Blockly",
     "DOCS": "Documentation",
-    "SETTINGS": "Settings"
+    "SETTINGS": "Settings",
+    "MYSENSEBOX": "My senseBox"
   },
   "ABOUT": {
     "TITLE": "About",
@@ -24,6 +25,16 @@
     "TITLE": "Blockly for senseBox",
     "BTN_CODE": "Code View",
     "BTN_OTA": "OTA Programmer"
+  },
+  "MYSENSEBOX":{
+    "TITLE":"My senseBox",
+    "SHOW":"Show sensors",
+    "SKETCH":"Upload Sketch",
+    "EXPOSURE":"Exposure"
+  },
+  "SENSORS":{
+    "TYP":"Type",
+    "MEASUREMENT":"Last measurement"
   },
   "SETTINGS": {
     "TITLE": "Settings",
@@ -100,6 +111,9 @@
   },
   "CONFIG":{
     "TITLE":"Initial configuration",
-    "BUTTON":"Upload!"
+    "BUTTON":"Upload Sketch!",
+    "WIFI":"Configure WiFi Settings",
+    "IDS":"senseBox and sensor ID's",
+    "DEBUG":"Enable debugging"
   }
 }
