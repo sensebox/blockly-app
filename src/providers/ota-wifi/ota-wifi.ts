@@ -9,7 +9,7 @@ declare var WifiWizard2: any
 // corresponding to the initial MCU firmware
 const SSID_PREFIX = 'sensebox'
 const SENSEBOX_API = 'http://192.168.1.1'
-
+const URL_sensebox = 'http://192.168.0.46'
 /*
   Interface for uploading a binary to a senseBox MCU.
 */
@@ -77,6 +77,17 @@ export class OtaWifiProvider {
         throw new Error('senseBox not found. Is it running in OTA mode?')
       }))
       .toPromise()
+  }
+
+  async activateOtaMode():Promise<any>{
+    return this.http.get(URL_sensebox)
+                .pipe(timeout(5000),catchError(err=>{
+                  throw new Error('senseBox not found. Is it running the proper OpenSenseMap Sketch?')
+                }))
+                .toPromise()
+                .then((response:any)=>{
+                  return response;
+                })
   }
 
 }

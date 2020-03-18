@@ -50,6 +50,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private counts = { compile: 0, connect: 0, upload: 0 }
   private manual = false;
   private automatic = false;
+  private requestSuccessful = false;
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
@@ -141,7 +142,16 @@ export class OtaWizardPage implements OnInit, OnDestroy {
 
   }
   
-  activateOta(){
+  async makeRequest(){
+    
+    try{
+      // open modal that shows loading
+      await this.otaWifi.activateOtaMode();
+      this.requestSuccessful = true;
+    }
+    catch(err){
+      console.log(err)
+    }
     // Sends request; upon successful response go to next slide (wifi selection)
 
   }
