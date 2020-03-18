@@ -44,7 +44,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private sketch = ''
   private compiledSketch: ArrayBuffer = undefined
   private hiddenSlides: OtaSlides[] = []
-
+  private modus = "manual"
   private log: LoggingProvider
   private slideHistory: string[] = [OtaSlides[OtaSlides.Intro]] // for debug info in logs
   private counts = { compile: 0, connect: 0, upload: 0 }
@@ -119,6 +119,19 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.navCtrl.pop()
   }
 
+  toggleManual(){
+    if(this.modus === "manual"){
+      this.modus = "automatic"
+    }
+    else {
+      this.modus = "manual"
+    }
+  }
+  
+  activateOta(){
+    // Sends request; upon successful response go to next slide (wifi selection)
+    
+  }
   // call logic for each slide
   onSlideChange () {
     this.slideHistory.push(OtaSlides[this.currentSlide])
