@@ -48,7 +48,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private log: LoggingProvider
   private slideHistory: string[] = [OtaSlides[OtaSlides.Intro]] // for debug info in logs
   private counts = { compile: 0, connect: 0, upload: 0 }
-
+  private manual = false;
+  private automatic = false;
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
@@ -127,14 +128,27 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       this.modus = "manual"
     }
   }
+  showAutomatic(){
+    this.automatic = true;
+    this.manual = false;
+    this.slides.slideNext()
+  }
+
+  showManual(){
+    this.manual = true;
+    this.automatic = false;
+    this.slides.slideNext()
+
+  }
   
   activateOta(){
     // Sends request; upon successful response go to next slide (wifi selection)
-    
+
   }
   // call logic for each slide
   onSlideChange () {
     this.slideHistory.push(OtaSlides[this.currentSlide])
+    console.log(this.currentSlide)
     switch (this.currentSlide) {
       case OtaSlides.Intro:
       case OtaSlides.Intro2:

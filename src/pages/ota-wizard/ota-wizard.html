@@ -40,23 +40,23 @@
       <ion-grid>
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
-            <ion-card>
+            <ion-card (click)="showAutomatic()">
               <ion-card-header>
                 Automatic mode
               </ion-card-header>
               <ion-card-content>
-                <ion-icon class="mode_selection" name="wifi"></ion-icon> <br>
+                <ion-icon class="mode_selection" name="wifi" ></ion-icon> <br>
                 {{ ' OTAWIZ.OTAMODESELECTION.AUTOMATIC | translate'}}
               </ion-card-content>
             </ion-card>
           </ion-col>
           <ion-col col-12 col-md-6>
-            <ion-card>
+            <ion-card (click)="showManual()">
               <ion-card-header>
                 Manual mode
               </ion-card-header>
               <ion-card-content>
-                <ion-icon class="mode_selection" name="hammer"></ion-icon> <br>
+                <ion-icon class="mode_selection" name="hammer" ></ion-icon> <br>
                 {{ ' OTAWIZ.OTAMODESELECTION.MANUAL | translate'}}
               </ion-card-content>
             </ion-card>
@@ -66,7 +66,7 @@
       </ion-grid>
     </ion-slide>
     <!-- OTA Manual -->
-    <ion-slide>
+    <ion-slide *ngIf="manual" id="manual-slide">
       <ion-grid>
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
@@ -90,7 +90,7 @@
       </ion-grid>
     </ion-slide>
     <!-- OTA Automatic -->
-    <ion-slide>
+    <ion-slide *ngIf="automatic" id="automatic-slide">
       <ion-grid>
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
