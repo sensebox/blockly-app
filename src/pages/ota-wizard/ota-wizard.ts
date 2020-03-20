@@ -182,12 +182,20 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   // call logic for each slide
   onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
+    console.log(this.currentSlide)
     switch (this.currentSlide) {
       case OtaSlides.Intro:
+        this.slides.lockSwipeToNext(false);
       case OtaSlides.Intro2:
-        this.slides.lockSwipeToNext(true)
         break
-
+      case OtaSlides.Intro3:
+        if(this.automatic){
+          this.slides.lockSwipeToNext(true);
+        }
+        if(this.manual){
+          this.slides.lockSwipeToNext(false);
+        }
+        break  
       case OtaSlides.Compilation:
         this.handleCompilation()
         break
@@ -326,6 +334,7 @@ enum OtaSlides {
   Intro = 0,
   Intro2 = 1,
   Compilation = 2,
-  WifiSelection = 3,
-  Upload = 4,
+  Intro3 = 3, 
+  WifiSelection = 4,
+  Upload = 5,
 }

@@ -22,7 +22,7 @@
     "HINT": "<em>Hint:</em> A <a href=\"https://blockly.sensebox.de\">web version of Blockly for senseBox</a> is available as well!"
   },
   "LOGIN":{
-    "LOADING":"Logging in...",
+    "LOADING":"Logging in..."
     },
   "BLOCKLY": {
     "TITLE": "Blockly for senseBox",
@@ -58,6 +58,7 @@
     "BTN_NEXT": "Continue",
     "BTN_CLOSE": "Close",
     "BTN_BACK": "Back",
+    "BTN_REQUEST":"Enable OTA Mode",
     "INTRO": {
       "TITLE": "Welcome",
       "TEXT": "To transfer your code to your senseBox over the air (OTA), please follow these steps.",
@@ -71,8 +72,17 @@
       "TEXT": "To transfer your code, the senseBox must be in OTA mode.<br/>This is indicated by the green blinking LED next to the red reset button.",
       "STEPS": "To enable OTA mode...",
       "STEP1": "press &amp; hold the switch button (gray or blue)",
-      "STEP2": "press the red reset button shortly",
-      "STEP3": "release the switch button after one second"
+      "STEP2": "press the red r eset button shortly",
+      "STEP3": "release the switch button after one second",
+      "AUTOMATIC":{
+        "STEP1":"Upload the Over-the-Air Sketch from the OpenSenseMap to the senseBox",
+        "STEP2":"Connect this device to the same network the senseBox is connected with",
+        "STEP3":"Click Enable OTA Mode!"
+      }
+    },
+    "OTAMODESELECTION":{
+      "AUTOMATIC":"Choose this mode if your senseBox is currently running an OpenSenseMap Sketch acquired after 20.03.2020",
+      "MANUAL":"Choose this mode if you have uploaded the OTA Sketch"
     },
     "COMPILATION": {
       "COMPILING": {

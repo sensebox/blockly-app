@@ -51,7 +51,7 @@
               </ion-card-header>
               <ion-card-content>
                 <ion-icon class="mode_selection" name="wifi" ></ion-icon> <br>
-                {{ ' OTAWIZ.OTAMODESELECTION.AUTOMATIC | translate'}}
+                {{ 'OTAWIZ.OTAMODESELECTION.AUTOMATIC' | translate}}
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -62,7 +62,7 @@
               </ion-card-header>
               <ion-card-content>
                 <ion-icon class="mode_selection" name="hammer" ></ion-icon> <br>
-                {{ ' OTAWIZ.OTAMODESELECTION.MANUAL | translate'}}
+                {{ 'OTAWIZ.OTAMODESELECTION.MANUAL' | translate}}
               </ion-card-content>
             </ion-card>
           </ion-col>
@@ -71,8 +71,8 @@
       </ion-grid>
     </ion-slide>
     <!-- OTA Manual -->
-    <ion-slide *ngIf="manual" id="manual-slide">
-      <ion-grid>
+    <ion-slide  id="manual-slide">
+      <ion-grid *ngIf="manual">
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <img class="tutorial_gif" src="../../assets/imgs/ota_modus.gif" />
@@ -92,10 +92,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-slide>
-    <!-- OTA Automatic -->
-    <ion-slide *ngIf="automatic" id="automatic-slide">
-      <ion-grid>
+      <ion-grid *ngIf="automatic">
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <ol style="text-align: left">
@@ -105,7 +102,6 @@
             </ol>
           </ion-col>
           <ion-col col-12 col-md-6>
-
             <!-- @TODO: diagram! -->
             <button  *ngIf="requestSuccessful;else request" ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
               {{ 'OTAWIZ.BTN_NEXT' | translate }}
