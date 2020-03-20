@@ -10,6 +10,8 @@ import {
   Slides,
   NavController,
   NavParams,
+  ModalController,
+  LoadingController,
 } from 'ionic-angular'
 import { Network } from '@ionic-native/network'
 import { Subscription } from 'rxjs/Subscription';
@@ -17,7 +19,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { OtaWifiProvider, WifiStrategy } from '../../providers/ota-wifi/ota-wifi';
 import { CompilerProvider } from '../../providers/compiler/compiler';
 import { LoggingProvider } from '../../providers/logging/logging';
-
+import {ErrorPage} from '../../pages/error/error'
 @IonicPage()
 @Component({
   selector: 'page-ota-wizard',
@@ -57,8 +59,10 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     private navCtrl: NavController,
     private webcompiler: CompilerProvider,
     private changedetect: ChangeDetectorRef,
+    public loadingController: LoadingController,
+    public modalCtrl: ModalController,
     logger: LoggingProvider,
-    navParams : NavParams,
+    navParams: NavParams,
   ) {
     // for OTA to work, the new sketch has to include the OTA logic as well.
     // to ensure that, we're prepending it here to the sketch.
@@ -108,55 +112,72 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.log.debug('initialized')
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.onlineSub.unsubscribe()
     this.offlineSub.unsubscribe()
   }
 
-  onWifiRefresh () {
+  onWifiRefresh() {
     this.handleWifiSelection(true)
   }
 
-  onClose () {
+  onClose() {
     this.navCtrl.pop()
   }
 
-  toggleManual(){
-    if(this.modus === "manual"){
+  toggleManual() {
+    if (this.modus === "manual") {
       this.modus = "automatic"
     }
     else {
       this.modus = "manual"
     }
   }
-  showAutomatic(){
+  showAutomatic() {
     this.automatic = true;
     this.manual = false;
     this.slides.slideNext()
   }
 
-  showManual(){
+  showManual() {
     this.manual = true;
     this.automatic = false;
     this.slides.slideNext()
 
   }
-  
-  async makeRequest(){
-    
-    try{
+
+
+  showModal(message){
+    let modal = this.modalCtrl.create(ErrorPage,message);
+
+    modal.onDidDismiss(()=>{
+
+    })
+
+    modal.present();
+  }
+
+  async makeRequest() {
+    const loading = await this.loadingController.create({
+      content: 'Pinging senseBox...'
+    });
+    try {
       // open modal that shows loading
+
+      loading.present();
       await this.otaWifi.activateOtaMode();
       this.requestSuccessful = true;
     }
-    catch(err){
+    catch (err) {
+      this.showModal(err);
       console.log(err)
     }
+    loading.dismiss();
     // Sends request; upon successful response go to next slide (wifi selection)
 
   }
   // call logic for each slide
-  onSlideChange () {
+  onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
     console.log(this.currentSlide)
     switch (this.currentSlide) {
@@ -182,24 +203,24 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  get currentSlide (): OtaSlides {
+  get currentSlide(): OtaSlides {
     const current = this.slides.getActiveIndex()
     const hiddenOffset = this.hiddenSlides.filter(slide => slide <= current).length
     return current + hiddenOffset
   }
 
-  slideIsHidden (slide: OtaSlides): boolean {
+  slideIsHidden(slide: OtaSlides): boolean {
     return this.hiddenSlides.indexOf(slide) !== -1
   }
 
-  private hideSlide (slide: OtaSlides) {
+  private hideSlide(slide: OtaSlides) {
     if (this.currentSlide === slide) return
     if (this.slideIsHidden(slide)) return
     this.hiddenSlides.push(slide)
     this.slides.update()
   }
 
-  async connectToSensebox (ssid: string) {
+  async connectToSensebox(ssid: string) {
     this.counts.connect++
     this.state.wifiSelection = 'connecting'
     try {
@@ -214,14 +235,14 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private handleCompilation () {
+  private handleCompilation() {
     this.slides.lockSwipeToNext(!this.compiledSketch)
 
     // need to go online for compilation. compilation is retriggered via this.onlineSub
     if (!this.state.isOnline) {
       switch (this.otaWifi.strategy) {
         case WifiStrategy.Automatic:
-          // TODO: auto connect to previous network, if available
+        // TODO: auto connect to previous network, if available
         default:
           this.state.compilation = 'go-online'
           break
@@ -231,7 +252,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private async handleWifiSelection (force = false) {
+  private async handleWifiSelection(force = false) {
     if (this.otaWifi.strategy === WifiStrategy.Automatic) {
       this.slides.lockSwipeToNext(true)
 
@@ -255,7 +276,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private async handleUpload () {
+  private async handleUpload() {
     this.counts.upload++
     this.state.upload = 'uploading'
     try {
@@ -271,7 +292,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
 
-  private async compileSketch () {
+  private async compileSketch() {
     this.counts.compile++
     this.state.compilation = 'compiling'
     try {
