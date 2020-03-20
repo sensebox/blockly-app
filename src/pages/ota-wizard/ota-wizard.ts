@@ -136,12 +136,14 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   showAutomatic() {
     this.automatic = true;
     this.manual = false;
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
   }
 
   showManual() {
     this.manual = true;
     this.automatic = false;
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
 
   }
@@ -169,6 +171,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       this.requestSuccessful = true;
     }
     catch (err) {
+      this.slides.lockSwipeToNext(true);
       this.showModal(err);
       console.log(err)
     }
@@ -179,11 +182,10 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   // call logic for each slide
   onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
-    console.log(this.currentSlide)
     switch (this.currentSlide) {
       case OtaSlides.Intro:
       case OtaSlides.Intro2:
-        this.slides.lockSwipeToNext(false)
+        this.slides.lockSwipeToNext(true)
         break
 
       case OtaSlides.Compilation:
