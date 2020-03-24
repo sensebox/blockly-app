@@ -21,7 +21,10 @@ const handleLog = (req, res) => {
   req.on('end', () => {
     try {
       const msg = JSON.parse(body)
-      msg.useragent = req.headers['user-agent']
+      msg.logclient = {
+        ip: req.connection.remoteAddress,
+        ua: req.headers['user-agent']
+      }
       fileStream.write(JSON.stringify(msg))
       fileStream.write('\n')
 
@@ -49,7 +52,10 @@ const requestHandler = (req, res) => {
   }
 }
 
-const fileStream = fs.createWriteStream(logfile, 'utf-8')
+const fileStream = fs.createWriteStream(logfile, {
+  encoding: 'utf-8',
+  flags: 'a', // append
+})
 const server = http.createServer(requestHandler)
 
 server.listen(port, err => {
