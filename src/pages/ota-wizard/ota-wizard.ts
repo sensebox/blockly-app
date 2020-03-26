@@ -20,6 +20,7 @@ import { OtaWifiProvider, WifiStrategy } from '../../providers/ota-wifi/ota-wifi
 import { CompilerProvider } from '../../providers/compiler/compiler';
 import { LoggingProvider } from '../../providers/logging/logging';
 import {ErrorPage} from '../../pages/error/error'
+import { isUndefined } from 'ionic-angular/umd/util/util';
 @IonicPage()
 @Component({
   selector: 'page-ota-wizard',
@@ -52,7 +53,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private counts = { compile: 0, connect: 0, upload: 0 }
   private manual = false;
   private automatic = false;
-  private requestSuccessful = false;
+  private wifiSlideHidden = false;
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
@@ -134,16 +135,18 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
   showAutomatic() {
+    this.slides.lockSwipeToNext(false);
+    this.wifiSlideHidden = true;
     this.automatic = true;
     this.manual = false;
-    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
   }
 
   showManual() {
+    this.slides.lockSwipeToNext(false);
+    this.wifiSlideHidden = false;
     this.manual = true;
     this.automatic = false;
-    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
 
   }
@@ -153,31 +156,9 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     let modal = this.modalCtrl.create(ErrorPage,message);
 
     modal.onDidDismiss(()=>{
-
     })
 
     modal.present();
-  }
-
-  async makeRequest() {
-    const loading = await this.loadingController.create({
-      content: 'Pinging senseBox...'
-    });
-    try {
-      // open modal that shows loading
-
-      loading.present();
-      await this.otaWifi.activateOtaMode();
-      this.requestSuccessful = true;
-    }
-    catch (err) {
-      this.slides.lockSwipeToNext(true);
-      this.showModal(err);
-      console.log(err)
-    }
-    loading.dismiss();
-    // Sends request; upon successful response go to next slide (wifi selection)
-
   }
   // call logic for each slide
   onSlideChange() {
@@ -187,20 +168,16 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       case OtaSlides.Intro:
         this.slides.lockSwipeToNext(false);
       case OtaSlides.Intro2:
+        this.slides.lockSwipeToNext(true);
         break
       case OtaSlides.Intro3:
-        if(this.automatic){
-          this.slides.lockSwipeToNext(true);
-        }
-        if(this.manual){
-          this.slides.lockSwipeToNext(false);
-        }
         break  
       case OtaSlides.Compilation:
         this.handleCompilation()
         break
 
       case OtaSlides.WifiSelection:
+        if(this.automatic) this.slides.slideNext()
         this.handleWifiSelection()
         break
 
@@ -290,6 +267,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.counts.upload++
     this.state.upload = 'uploading'
     try {
+      
       const res = await this.otaWifi.uploadFirmware(this.compiledSketch)
       this.log.debug(JSON.stringify(res, null, 2))
 

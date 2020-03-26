@@ -103,16 +103,10 @@
           </ion-col>
           <ion-col col-12 col-md-6>
             <!-- @TODO: diagram! -->
-            <button  *ngIf="requestSuccessful;else request" ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+            <button  ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
               {{ 'OTAWIZ.BTN_NEXT' | translate }}
               <ion-icon name="arrow-forward"></ion-icon>
             </button>
-            <ng-template #request>
-              <button  ion-button large clear icon-end color="primary" (click)="makeRequest()">
-                {{ 'OTAWIZ.BTN_REQUEST' | translate }}
-                <ion-icon name="arrow-forward"></ion-icon>
-              </button>
-            </ng-template>
           </ion-col>
         </ion-row>
       </ion-grid>
@@ -142,7 +136,7 @@
       </ng-container>
     </ion-slide>
     <!-- wifi selection -->
-    <ion-slide id="wifi-slide">
+    <ion-slide id="wifi-slide" *ngIf="!slideIsHidden(slideWifi)">
       <ion-grid>
         <div id="wifi-manual" *ngIf="state.wifiSelection == 'manual'">
           <ion-row align-items-center>
