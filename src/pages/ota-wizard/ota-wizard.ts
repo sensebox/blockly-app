@@ -170,7 +170,8 @@ export class OtaWizardPage implements OnInit, OnDestroy {
       case OtaSlides.Compilation:
         this.handleCompilation()
         break
-
+      case OtaSlides.Mode:
+        break
       case OtaSlides.WifiSelection:
         this.handleWifiSelection()
         break

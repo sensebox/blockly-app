@@ -70,7 +70,7 @@ export class OtaWifiProvider {
 
   async uploadFirmware (binary: ArrayBuffer,OTAAddress:String): Promise<any> {
     // TODO: send checksum?
-    return this.http.post(`${OTAAddress}/sketch`, binary, {
+    return this.http.post(`http://${OTAAddress}/sketch`, binary, {
       responseType: 'text',
     })
       .pipe(timeout(5000), catchError(err => {

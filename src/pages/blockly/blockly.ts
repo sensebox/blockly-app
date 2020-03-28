@@ -59,7 +59,6 @@ export class BlocklyPage implements OnInit {
 
   async launchOtaWizard () {
     const sketch = await this.blockly.getSketch()
-    console.log(typeof sketch);
     this.navCtrl.push(OtaWizardPage, { sketch })
   }
 
