@@ -77,7 +77,7 @@
       "AUTOMATIC":{
         "STEP1":"Upload the Over-the-Air Sketch from the OpenSenseMap to the senseBox",
         "STEP2":"Connect this device to the same network the senseBox is connected with",
-        "STEP3":"Click Enable OTA Mode!"
+        "STEP3":"Click Continue!"
       }
     },
     "OTAMODESELECTION":{

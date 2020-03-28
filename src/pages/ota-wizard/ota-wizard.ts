@@ -135,7 +135,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
   showAutomatic() {
-    this.slides.lockSwipeToNext(false);
     this.wifiSlideHidden = true;
     this.automatic = true;
     this.manual = false;
@@ -143,7 +142,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   showManual() {
-    this.slides.lockSwipeToNext(false);
     this.wifiSlideHidden = false;
     this.manual = true;
     this.automatic = false;
@@ -166,9 +164,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     console.log(this.currentSlide)
     switch (this.currentSlide) {
       case OtaSlides.Intro:
-        this.slides.lockSwipeToNext(false);
       case OtaSlides.Intro2:
-        this.slides.lockSwipeToNext(true);
         break
       case OtaSlides.Intro3:
         break  
@@ -177,7 +173,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
         break
 
       case OtaSlides.WifiSelection:
-        if(this.automatic) this.slides.slideNext()
         this.handleWifiSelection()
         break
 

@@ -83,7 +83,7 @@
       "AUTOMATIC":{
         "STEP1":"Laden den Over-the-Air Sketch der openSenseMap auf die senseBox",
         "STEP2":"Verbinde dich mit gleichen Netzwekr in dem die senseBox eingewählt ist",
-        "STEP3":"Klicke auf OTA Modus aktivieren!"
+        "STEP3":"Klicke auf 'Weiter'!"
       }
     },
     "OTAMODESELECTION":{

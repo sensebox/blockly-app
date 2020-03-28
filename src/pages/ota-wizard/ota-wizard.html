@@ -136,7 +136,7 @@
       </ng-container>
     </ion-slide>
     <!-- wifi selection -->
-    <ion-slide id="wifi-slide" *ngIf="!slideIsHidden(slideWifi)">
+    <ion-slide id="wifi-slide" *ngIf="!wifiSlideHidden">
       <ion-grid>
         <div id="wifi-manual" *ngIf="state.wifiSelection == 'manual'">
           <ion-row align-items-center>
