@@ -20,7 +20,6 @@ import { OtaWifiProvider, WifiStrategy } from '../../providers/ota-wifi/ota-wifi
 import { CompilerProvider } from '../../providers/compiler/compiler';
 import { LoggingProvider } from '../../providers/logging/logging';
 import {ErrorPage} from '../../pages/error/error'
-import { isUndefined } from 'ionic-angular/umd/util/util';
 @IonicPage()
 @Component({
   selector: 'page-ota-wizard',
@@ -53,7 +52,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private counts = { compile: 0, connect: 0, upload: 0 }
   private modus;
   private OTAAddress = '192.168.0.46'
-  private wifiSlideHidden = false;
   constructor(
     private network: Network,
     private otaWifi: OtaWifiProvider,
@@ -163,7 +161,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   // call logic for each slide
   onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
-    console.log("currentSlide",this.currentSlide);
     switch (this.currentSlide) {
       case OtaSlides.Intro:
         break
@@ -188,7 +185,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   get currentSlide(): OtaSlides {
-    console.log(this.OTAAddress);
     let current = this.slides.getActiveIndex()
     const hiddenOffset = this.hiddenSlides.filter(slide => slide <= current).length
     if(current === 3 && this.slideIsHidden(this.slideWifi)){
@@ -228,7 +224,6 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   private handleCompilation() {
-    console.log("handleCompilation",this.compiledSketch);
     this.slides.lockSwipeToNext(!this.compiledSketch)
 
     // need to go online for compilation. compilation is retriggered via this.onlineSub
