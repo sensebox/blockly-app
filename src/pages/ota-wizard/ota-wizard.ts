@@ -142,6 +142,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
 
   showManual() {
     this.modus = "manual";
+    this.showSlide(this.slideWifi);
     this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
 
@@ -204,6 +205,9 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.slides.update()
   }
 
+  private showSlide(slide:OtaSlides){
+    this.hiddenSlides =  this.hiddenSlides.filter((hiddenSlide)=>hiddenSlide!=slide)
+    }
   async connectToSensebox(ssid: string) {
     this.counts.connect++
     this.state.wifiSelection = 'connecting'
