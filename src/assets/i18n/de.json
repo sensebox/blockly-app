@@ -6,7 +6,7 @@
     "BLOCKLY": "Blockly",
     "DOCS": "Dokumentation",
     "SETTINGS": "Einstellungen",
-    "MYSENSEBOX":"Meine senseBox"
+    "MYSENSEBOX": "Meine senseBox"
   },
   "ABOUT": {
     "TITLE": "Über",
@@ -26,24 +26,24 @@
     "BTN_CODE": "Quellcode Ansicht",
     "BTN_OTA": "OTA Upload"
   },
-  "CONFIG":{
-    "WIFI":"WiFi Einstellungen",
-    "IDS":"senseBox und Sensor ID's",
-    "DEBUG":"Debugging einschalten",
-    "BUTTON":"Sketch hochladen!"
+  "CONFIG": {
+    "WIFI": "WiFi Einstellungen",
+    "IDS": "senseBox und Sensor ID's",
+    "DEBUG": "Debugging einschalten",
+    "BUTTON": "Sketch hochladen!"
   },
-  "MYSENSEBOX":{
-    "TITLE":"Meine senseBox",
-    "SHOW":"Zeige Sensoren",
-    "SKETCH":"Sketch hochladen",
-    "EXPOSURE":"Position"
+  "MYSENSEBOX": {
+    "TITLE": "Meine senseBox",
+    "SHOW": "Zeige Sensoren",
+    "SKETCH": "Sketch hochladen",
+    "EXPOSURE": "Position"
   },
-  "LOGIN":{
-    "LOADING":"Einloggen..."
+  "LOGIN": {
+    "LOADING": "Einloggen..."
   },
-  "SENSORS":{
-    "TYP":"Typ",
-    "MEASUREMENT":"Letzte Messung"
+  "SENSORS": {
+    "TYP": "Typ",
+    "MEASUREMENT": "Letzte Messung"
   },
   "SETTINGS": {
     "TITLE": "Einstellungen",
@@ -63,7 +63,7 @@
     "TITLE": "Over The Air Programmierung",
     "BTN_NEXT": "Weiter",
     "BTN_CLOSE": "Schließen",
-    "BTN_REQUEST":"OTA Modus aktivieren!",
+    "BTN_REQUEST": "OTA Modus aktivieren!",
     "BTN_BACK": "Zurück",
     "INTRO": {
       "TITLE": "Willkommen",
@@ -80,15 +80,16 @@
       "STEP1": "halte den den 'Switch' Knopf (grau oder blau) gedrückt",
       "STEP2": "drücke den roten 'Reset' Knopf einmal",
       "STEP3": "lasse den 'Switch' Knopf nach einer Sekunde los.",
-      "AUTOMATIC":{
-        "STEP1":"Laden den Over-the-Air Sketch der openSenseMap auf die senseBox",
-        "STEP2":"Verbinde dich mit gleichen Netzwekr in dem die senseBox eingewählt ist",
-        "STEP3":"Klicke auf 'Weiter'!"
+      "AUTOMATIC": {
+        "STEP0": "IP Addresse der senseBox: ",
+        "STEP1": "Laden den Over-the-Air Sketch der openSenseMap auf die senseBox",
+        "STEP2": "Verbinde dich mit gleichen Netzwekr in dem die senseBox eingewählt ist",
+        "STEP3": "Klicke auf 'Weiter'!"
       }
     },
-    "OTAMODESELECTION":{
-      "AUTOMATIC":"Wähle diesen Modus wenn du den openSenseMap Sketch nach dem 20.03.2020 auf die senseBox hochgeladen hast!",
-      "MANUAL":"Wähle diesen Modus aus um die senseBox manuell in den OTA Modus zu schalten!"
+    "OTAMODESELECTION": {
+      "AUTOMATIC": "Wähle diesen Modus wenn du den openSenseMap Sketch nach dem 20.03.2020 auf die senseBox hochgeladen hast!",
+      "MANUAL": "Wähle diesen Modus aus um die senseBox manuell in den OTA Modus zu schalten!"
     },
     "COMPILATION": {
       "COMPILING": {

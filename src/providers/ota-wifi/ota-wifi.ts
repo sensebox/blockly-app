@@ -68,9 +68,9 @@ export class OtaWifiProvider {
       : WifiWizard2.connect(ssid, true) // true: bind to all connections, even without internet
   }
 
-  async uploadFirmware (binary: ArrayBuffer): Promise<any> {
+  async uploadFirmware (binary: ArrayBuffer,OTAAddress:String): Promise<any> {
     // TODO: send checksum?
-    return this.http.post(`${URL_sensebox}/sketch`, binary, {
+    return this.http.post(`${OTAAddress}/sketch`, binary, {
       responseType: 'text',
     })
       .pipe(timeout(5000), catchError(err => {

@@ -120,7 +120,11 @@
       <ion-grid *ngIf="modus === 'automatic' ">
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
-            <ol style="text-align: left">
+            <ol style="text-align: left" start="0">
+              <li>
+                {{ 'OTAWIZ.OTAMODE.AUTOMATIC.STEP0' | translate }}
+                <input [(ngModel)]="OTAAddress" placeholder=" 'OTAWIZ.OTAMODE.AUTOMATIC.IPINPUT' | translate"/>
+              </li>
               <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP1' | translate"></li>
               <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP2' | translate"></li>
               <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP3' | translate"></li>

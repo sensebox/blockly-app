@@ -21,23 +21,23 @@
     },
     "HINT": "<em>Hint:</em> A <a href=\"https://blockly.sensebox.de\">web version of Blockly for senseBox</a> is available as well!"
   },
-  "LOGIN":{
-    "LOADING":"Logging in..."
-    },
+  "LOGIN": {
+    "LOADING": "Logging in..."
+  },
   "BLOCKLY": {
     "TITLE": "Blockly for senseBox",
     "BTN_CODE": "Code View",
     "BTN_OTA": "OTA Programmer"
   },
-  "MYSENSEBOX":{
-    "TITLE":"My senseBox",
-    "SHOW":"Show sensors",
-    "SKETCH":"Upload Sketch",
-    "EXPOSURE":"Exposure"
+  "MYSENSEBOX": {
+    "TITLE": "My senseBox",
+    "SHOW": "Show sensors",
+    "SKETCH": "Upload Sketch",
+    "EXPOSURE": "Exposure"
   },
-  "SENSORS":{
-    "TYP":"Type",
-    "MEASUREMENT":"Last measurement"
+  "SENSORS": {
+    "TYP": "Type",
+    "MEASUREMENT": "Last measurement"
   },
   "SETTINGS": {
     "TITLE": "Settings",
@@ -58,7 +58,7 @@
     "BTN_NEXT": "Continue",
     "BTN_CLOSE": "Close",
     "BTN_BACK": "Back",
-    "BTN_REQUEST":"Enable OTA Mode",
+    "BTN_REQUEST": "Enable OTA Mode",
     "INTRO": {
       "TITLE": "Welcome",
       "TEXT": "To transfer your code to your senseBox over the air (OTA), please follow these steps.",
@@ -74,15 +74,16 @@
       "STEP1": "press &amp; hold the switch button (gray or blue)",
       "STEP2": "press the red r eset button shortly",
       "STEP3": "release the switch button after one second",
-      "AUTOMATIC":{
-        "STEP1":"Upload the Over-the-Air Sketch from the OpenSenseMap to the senseBox",
-        "STEP2":"Connect this device to the same network the senseBox is connected with",
-        "STEP3":"Click Continue!"
+      "AUTOMATIC": {
+        "STEP0": "IP Address of the senseBox: ",
+        "STEP1": "Upload the Over-the-Air Sketch from the OpenSenseMap to the senseBox",
+        "STEP2": "Connect this device to the same network the senseBox is connected with",
+        "STEP3": "Click Continue!"
       }
     },
-    "OTAMODESELECTION":{
-      "AUTOMATIC":"Choose this mode if your senseBox is currently running an OpenSenseMap Sketch acquired after 20.03.2020",
-      "MANUAL":"Choose this mode if you have uploaded the OTA Sketch"
+    "OTAMODESELECTION": {
+      "AUTOMATIC": "Choose this mode if your senseBox is currently running an OpenSenseMap Sketch acquired after 20.03.2020",
+      "MANUAL": "Choose this mode if you have uploaded the OTA Sketch"
     },
     "COMPILATION": {
       "COMPILING": {
@@ -122,11 +123,11 @@
       "ERROR": "Error!"
     }
   },
-  "CONFIG":{
-    "TITLE":"Initial configuration",
-    "BUTTON":"Upload Sketch!",
-    "WIFI":"Configure WiFi Settings",
-    "IDS":"senseBox and sensor ID's",
-    "DEBUG":"Enable debugging"
+  "CONFIG": {
+    "TITLE": "Initial configuration",
+    "BUTTON": "Upload Sketch!",
+    "WIFI": "Configure WiFi Settings",
+    "IDS": "senseBox and sensor ID's",
+    "DEBUG": "Enable debugging"
   }
 }

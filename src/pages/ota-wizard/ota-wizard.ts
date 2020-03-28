@@ -52,6 +52,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private slideHistory: string[] = [OtaSlides[OtaSlides.Intro]] // for debug info in logs
   private counts = { compile: 0, connect: 0, upload: 0 }
   private modus;
+  private OTAAddress = '192.168.0.46'
   private wifiSlideHidden = false;
   constructor(
     private network: Network,
@@ -136,12 +137,14 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   showAutomatic() {
     this.hideSlide(OtaSlides.WifiSelection);
     this.modus = "automatic";
+    this.OTAAddress = '192.168.0.46'
     this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
   }
 
   showManual() {
     this.modus = "manual";
+    this.OTAAddress = '192.168.1.1'
     this.showSlide(this.slideWifi);
     this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
@@ -185,6 +188,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   get currentSlide(): OtaSlides {
+    console.log(this.OTAAddress);
     let current = this.slides.getActiveIndex()
     const hiddenOffset = this.hiddenSlides.filter(slide => slide <= current).length
     if(current === 3 && this.slideIsHidden(this.slideWifi)){
@@ -270,7 +274,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     this.state.upload = 'uploading'
     try {
       
-      const res = await this.otaWifi.uploadFirmware(this.compiledSketch)
+      const res = await this.otaWifi.uploadFirmware(this.compiledSketch,this.OTAAddress)
       this.log.debug(JSON.stringify(res, null, 2))
 
       this.state.upload = 'done'
