@@ -9,7 +9,7 @@ declare var WifiWizard2: any
 // corresponding to the initial MCU firmware
 const SSID_PREFIX = 'sensebox'
 const SENSEBOX_API = 'http://192.168.1.1'
-const URL_sensebox = 'http://10.0.1.12'
+const URL_sensebox = 'http://192.168.0.46'
 /*
   Interface for uploading a binary to a senseBox MCU.
 */

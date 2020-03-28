@@ -135,14 +135,13 @@ export class OtaWizardPage implements OnInit, OnDestroy {
     }
   }
   showAutomatic() {
-    this.wifiSlideHidden = true;
+    this.hideSlide(OtaSlides.WifiSelection);
     this.automatic = true;
     this.manual = false;
     this.slides.slideNext()
   }
 
   showManual() {
-    this.wifiSlideHidden = false;
     this.manual = true;
     this.automatic = false;
     this.slides.slideNext()
@@ -186,8 +185,12 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   get currentSlide(): OtaSlides {
-    const current = this.slides.getActiveIndex()
+    let current = this.slides.getActiveIndex()
     const hiddenOffset = this.hiddenSlides.filter(slide => slide <= current).length
+    if(current === 3 && this.slideIsHidden(this.slideWifi)){
+      // Hotfix for when automatic is selected and Wifi selection slide is hidden
+      current +=1;
+    }
     return current + hiddenOffset
   }
 
