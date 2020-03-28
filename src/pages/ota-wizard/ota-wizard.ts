@@ -47,12 +47,11 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   private sketch = ''
   private compiledSketch: ArrayBuffer = undefined
   private hiddenSlides: OtaSlides[] = []
-  private modus = "manual"
+ // private modus = "manual"
   private log: LoggingProvider
   private slideHistory: string[] = [OtaSlides[OtaSlides.Intro]] // for debug info in logs
   private counts = { compile: 0, connect: 0, upload: 0 }
-  private manual = false;
-  private automatic = false;
+  private modus;
   private wifiSlideHidden = false;
   constructor(
     private network: Network,
@@ -136,14 +135,14 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
   showAutomatic() {
     this.hideSlide(OtaSlides.WifiSelection);
-    this.automatic = true;
-    this.manual = false;
+    this.modus = "automatic";
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
   }
 
   showManual() {
-    this.manual = true;
-    this.automatic = false;
+    this.modus = "manual";
+    this.slides.lockSwipeToNext(false);
     this.slides.slideNext()
 
   }
@@ -160,10 +159,10 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   // call logic for each slide
   onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
-    console.log(this.currentSlide)
     switch (this.currentSlide) {
       case OtaSlides.Intro:
       case OtaSlides.Intro2:
+        if(this.modus == undefined) this.slides.lockSwipeToNext(true);
         break
       case OtaSlides.Intro3:
         break  

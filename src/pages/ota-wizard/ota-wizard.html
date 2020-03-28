@@ -72,7 +72,7 @@
     </ion-slide>
     <!-- OTA Manual -->
     <ion-slide  id="manual-slide">
-      <ion-grid *ngIf="manual">
+      <ion-grid *ngIf="modus==='manual'">
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <img class="tutorial_gif" src="../../assets/imgs/ota_modus.gif" />
@@ -92,7 +92,7 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      <ion-grid *ngIf="automatic">
+      <ion-grid *ngIf="modus === 'automatic' ">
         <ion-row align-items-center>
           <ion-col col-12 col-md-6>
             <ol style="text-align: left">
