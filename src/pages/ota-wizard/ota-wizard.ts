@@ -160,13 +160,13 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   // call logic for each slide
   onSlideChange() {
     this.slideHistory.push(OtaSlides[this.currentSlide])
+    console.log("currentSlide",this.currentSlide);
     switch (this.currentSlide) {
       case OtaSlides.Intro:
-      case OtaSlides.Intro2:
-        if(this.modus == undefined) this.slides.lockSwipeToNext(true);
         break
-      case OtaSlides.Intro3:
-        break  
+      case OtaSlides.ModeGuide:
+        //if(this.modus == undefined) this.slides.lockSwipeToNext(true);
+        break
       case OtaSlides.Compilation:
         this.handleCompilation()
         break
@@ -224,6 +224,7 @@ export class OtaWizardPage implements OnInit, OnDestroy {
   }
 
   private handleCompilation() {
+    console.log("handleCompilation",this.compiledSketch);
     this.slides.lockSwipeToNext(!this.compiledSketch)
 
     // need to go online for compilation. compilation is retriggered via this.onlineSub
@@ -311,9 +312,10 @@ type OtaState = {
 // names for the slide indices for easier access
 enum OtaSlides {
   Intro = 0,
-  Intro2 = 1,
-  Compilation = 2,
-  Intro3 = 3, 
+  // Intro2 = 1,
+  Compilation = 1,
+  ModeGuide = 2, 
+  Mode = 3,
   WifiSelection = 4,
   Upload = 5,
 }

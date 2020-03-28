@@ -35,82 +35,6 @@
         </ion-row>
       </ion-grid>
     </ion-slide>
-    <!-- OTA Mode guide-->
-    <ion-slide>
-      <ion-grid>
-        <ion-row align-items-center>
-          <ion-col col-12>
-          <h2 translate>OTAWIZ.OTAMODE.TITLE</h2>
-        </ion-col>
-        </ion-row>
-        <ion-row align-items-center>
-          <ion-col col-12 col-md-6>
-            <ion-card (click)="showAutomatic()">
-              <ion-card-header>
-                Automatic mode
-              </ion-card-header>
-              <ion-card-content>
-                <ion-icon class="mode_selection" name="wifi" ></ion-icon> <br>
-                {{ 'OTAWIZ.OTAMODESELECTION.AUTOMATIC' | translate}}
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-          <ion-col col-12 col-md-6>
-            <ion-card (click)="showManual()">
-              <ion-card-header>
-                Manual mode
-              </ion-card-header>
-              <ion-card-content>
-                <ion-icon class="mode_selection" name="hammer" ></ion-icon> <br>
-                {{ 'OTAWIZ.OTAMODESELECTION.MANUAL' | translate}}
-              </ion-card-content>
-            </ion-card>
-          </ion-col>
-
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
-    <!-- OTA Manual -->
-    <ion-slide  id="manual-slide">
-      <ion-grid *ngIf="modus==='manual'">
-        <ion-row align-items-center>
-          <ion-col col-12 col-md-6>
-            <img class="tutorial_gif" src="../../assets/imgs/ota_modus.gif" />
-            <p [innerHTML]="'OTAWIZ.OTAMODE.TEXT' | translate"></p>
-          </ion-col>
-          <ion-col col-12 col-md-6>
-            <ol style="text-align: left">
-              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP1' | translate"></li>
-              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP2' | translate"></li>
-              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP3' | translate"></li>
-            </ol>
-            <!-- @TODO: diagram! -->
-            <button  ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-              {{ 'OTAWIZ.BTN_NEXT' | translate }}
-              <ion-icon name="arrow-forward"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-      <ion-grid *ngIf="modus === 'automatic' ">
-        <ion-row align-items-center>
-          <ion-col col-12 col-md-6>
-            <ol style="text-align: left">
-              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP1' | translate"></li>
-              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP2' | translate"></li>
-              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP3' | translate"></li>
-            </ol>
-          </ion-col>
-          <ion-col col-12 col-md-6>
-            <!-- @TODO: diagram! -->
-            <button  ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
-              {{ 'OTAWIZ.BTN_NEXT' | translate }}
-              <ion-icon name="arrow-forward"></ion-icon>
-            </button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-slide>
     <!-- compilation waiting screen -->
     <ion-slide *ngIf="!slideIsHidden(slideCompilation)">
       <ng-container *ngIf="state.compilation == 'compiling'">
@@ -134,6 +58,83 @@
         <h2 translate>OTAWIZ.COMPILATION.ERROR.TITLE</h2>
         <p [innerHTML]="errorMsg"></p> <!-- @TODO: translate? -->
       </ng-container>
+    </ion-slide>
+    <!-- OTA Mode guide-->
+    <ion-slide>
+      <ion-grid>
+        <ion-row align-items-center>
+          <ion-col col-12>
+            <h2 translate>OTAWIZ.OTAMODE.TITLE</h2>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center>
+          <ion-col col-12 col-md-6>
+            <ion-card (click)="showAutomatic()">
+              <ion-card-header>
+                Automatic mode
+              </ion-card-header>
+              <ion-card-content>
+                <ion-icon class="mode_selection" name="wifi"></ion-icon> <br>
+                {{ 'OTAWIZ.OTAMODESELECTION.AUTOMATIC' | translate}}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+          <ion-col col-12 col-md-6>
+            <ion-card (click)="showManual()">
+              <ion-card-header>
+                Manual mode
+              </ion-card-header>
+              <ion-card-content>
+                <ion-icon class="mode_selection" name="hammer"></ion-icon> <br>
+                {{ 'OTAWIZ.OTAMODESELECTION.MANUAL' | translate}}
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+    <!-- OTA Manual -->
+    <ion-slide id="manual-slide">
+      <ion-grid *ngIf="modus==='manual'">
+        <ion-row align-items-center>
+          <ion-col col-12 col-md-6>
+            <img class="tutorial_gif" src="../../assets/imgs/ota_modus.gif" />
+            <p [innerHTML]="'OTAWIZ.OTAMODE.TEXT' | translate"></p>
+          </ion-col>
+          <ion-col col-12 col-md-6>
+            <ol style="text-align: left">
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP1' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP2' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.STEP3' | translate"></li>
+            </ol>
+            <!-- @TODO: diagram! -->
+            <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+              {{ 'OTAWIZ.BTN_NEXT' | translate }}
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <!-- OTA Automatic-->
+      <ion-grid *ngIf="modus === 'automatic' ">
+        <ion-row align-items-center>
+          <ion-col col-12 col-md-6>
+            <ol style="text-align: left">
+              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP1' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP2' | translate"></li>
+              <li [innerHTML]="'OTAWIZ.OTAMODE.AUTOMATIC.STEP3' | translate"></li>
+            </ol>
+          </ion-col>
+          <ion-col col-12 col-md-6>
+            <!-- @TODO: diagram! -->
+            <button ion-button large clear icon-end color="primary" (click)="slides.slideNext()">
+              {{ 'OTAWIZ.BTN_NEXT' | translate }}
+              <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-slide>
     <!-- wifi selection -->
     <ion-slide id="wifi-slide" *ngIf="!slideIsHidden(slideWifi)">
